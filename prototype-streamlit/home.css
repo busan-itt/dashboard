@@ -1,0 +1,61 @@
+/* Approved home layout, loaded only by app_revised.py. */
+.home-page { padding:24px 0 52px; color:var(--deep); }
+.home-page * { box-sizing:border-box; }
+.home-page svg { display:block; width:24px; height:24px; flex-shrink:0; }
+.home-heading { margin-bottom:26px; }
+.home-heading h1 { margin:0 0 8px; padding:0; color:var(--deep); font-size:clamp(26px,2.7vw,38px); font-weight:800; letter-spacing:-.04em; }
+.home-heading p { margin:0; color:#45566a; font-size:16px; line-height:1.6; }
+.home-summary { display:grid; grid-template-columns:minmax(210px,.9fr) minmax(0,2.3fr); align-items:center; gap:40px; padding:11px 34px; border-radius:14px; background:#d6eaff; }
+.home-summary-label { padding-right:30px; border-right:1px solid #b2cce0; }
+.home-summary-label h2 { margin:0; padding:0; color:#082f5a; font-size:clamp(36px,3.5vw,58px); font-weight:800; line-height:1.08; letter-spacing:-.04em; }
+.home-summary-label h2>span { white-space:nowrap; }
+.home-summary-label h2 b { display:inline-block; padding:4px 10px; border-radius:10px; background:#0874d7; color:#fff; font-size:.58em; vertical-align:middle; letter-spacing:0; }
+.home-summary-label>p { margin:20px 0 12px; color:#122d47; font-size:22px; font-weight:700; }
+.home-summary-label small { color:#647d94; font-size:14px; }
+.home-summary-content { display:grid; gap:4px; min-width:0; }
+.home-summary-item h3 { margin:0 0 4px; padding:0; color:#102b49; font-size:20px; font-weight:800; letter-spacing:-.025em; }
+.home-summary-item p { margin:0; color:#40586d; font-size:15px; line-height:1.65; word-break:keep-all; overflow-wrap:anywhere; }
+.home-explore { margin-top:32px; }
+.home-explore-heading { margin-bottom:20px; }
+.home-explore-heading h2 { margin:0 0 6px; padding:0; color:#102b49; font-size:27px; font-weight:800; letter-spacing:-.035em; }
+.home-explore-heading p { margin:0; color:#526573; font-size:14px; line-height:1.6; }
+.home-nav-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+.home-nav-card { position:relative; min-width:0; min-height:156px; padding:22px; border:1px solid transparent; border-radius:14px; background:#fff; box-shadow:0 3px 12px #14364b0a; transition:border-color .15s,box-shadow .15s; }
+.home-card-link { display:flex; align-items:flex-start; gap:14px; color:var(--deep) !important; text-decoration:none !important; }
+.home-card-link::after { position:absolute; inset:0; border-radius:14px; content:""; }
+.home-card-icon svg { width:32px; height:32px; }
+.home-card-copy { flex:1; min-width:0; }
+.home-card-copy h3 { margin:0 0 9px; padding:0; color:#102b49; font-size:22px; font-weight:800; letter-spacing:-.04em; }
+.home-card-copy p { margin:0; color:#526573; font-size:13px; line-height:1.7; word-break:keep-all; overflow-wrap:anywhere; }
+.home-card-arrow { margin-top:4px; color:#185dac; }
+.home-card-arrow svg { width:21px; height:21px; }
+.home-card-children { position:relative; z-index:1; display:flex; flex-wrap:wrap; gap:7px; width:fit-content; margin:12px 0 0 46px; }
+.home-card-children a { padding:4px 9px; border-radius:10px; background:#d6eaff; color:#185dac !important; font-size:11px; font-weight:700; line-height:1.5; text-decoration:none !important; }
+.home-nav-card:hover { border-color:#a8c9e6; box-shadow:0 6px 18px #14364b14; }
+.home-card-children a:hover { background:#bfdfff; }
+.home-card-link:focus-visible { outline:none; }
+.home-card-link:focus-visible::after { outline:3px solid #185dac; outline-offset:3px; }
+.home-card-children a:focus-visible { outline:3px solid #185dac; outline-offset:3px; }
+@media (max-width:1150px) {
+  .home-summary { grid-template-columns:minmax(180px,.8fr) minmax(0,2fr); gap:26px; padding:9px 28px; }
+  .home-summary-label { padding-right:24px; }
+  .home-summary-label h2 { font-size:40px; }
+  .home-nav-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:700px) {
+  .home-page { padding-top:20px; }
+  .home-heading p { font-size:14px; }
+  .home-summary { grid-template-columns:1fr; gap:18px; padding:8px 24px; }
+  .home-summary-label { padding:0 0 20px; border-right:0; border-bottom:1px solid #b2cce0; }
+  .home-summary-label h2 { font-size:38px; }
+  .home-summary-label>p { margin:14px 0 6px; font-size:19px; }
+  .home-summary-content { gap:6px; }
+  .home-summary-item h3 { font-size:18px; }
+  .home-summary-item p { font-size:14px; }
+  .home-nav-grid { grid-template-columns:1fr; gap:14px; }
+  .home-nav-card { min-height:130px; padding:20px; }
+  .home-card-copy h3 { font-size:21px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .home-nav-card { transition:none; }
+}

@@ -1,0 +1,18 @@
+{
+  "sources": {
+    "상관관계_분석_DGT_ODT.ipynb": "51b7400636e41d6ddca4cc22e0e1b07db2563c2eb6eb39960acfdf4120618c62",
+    "상관관계_분석_HJNC_ODT.ipynb": "fae77df63fb328f41eb036bbbb2d22d001623c71ab9779a3bfa93133823eea58",
+    "상관관계_분석_ITT_표본변경.ipynb": "0cdb9cd5ea2ff3f6549484673a96a33c6f5f3308787e0e5ac6dbc66edf8bf43d"
+  },
+  "baseline_counts": {
+    "DGT ODT": 122,
+    "HJNC ODT": 1490,
+    "DGT → HJNC ITT": 17389,
+    "HJNC → DGT ITT": 20143
+  },
+  "itt_effective_yard_counts": {
+    "DGT → HJNC": 17378,
+    "HJNC → DGT": 20143
+  },
+  "note": "Published saved notebook results; source notebooks were not executed or modified."
+}

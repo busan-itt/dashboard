@@ -1,0 +1,167 @@
+{
+  "dgt": {
+    "title": "DGT_ODT",
+    "sample": "122건 · 73항차",
+    "definition": "장치 → 반출",
+    "unit": "항차별 TEU 가중평균",
+    "comparison": "unified-dgt-r.png",
+    "plots": [
+      {
+        "label": "본선작업완료지연시간",
+        "image": "unified-dgt-scatter.png",
+        "r": 0.1041,
+        "n": 73
+      }
+    ],
+    "conclusion": "73항차에서 r=0.104, p=0.381. 유의한 선형 상관을 확인하지 못했다.",
+    "note": "작업완료 지표는 반입 마감부터 마지막 본선 작업까지의 간격이다.",
+    "berth": [
+      {
+        "image": "unified-dgt-berth-0.png",
+        "label": "선석별 양하·적하 환적 작업 물동량"
+      },
+      {
+        "image": "unified-dgt-berth-1.png",
+        "label": "적하 선석별 본선작업완료지연시간과 야드 장치 기간의 상관관계"
+      }
+    ],
+    "berth_meta": "DGT ODT · 122건 · 208 TEU",
+    "berth_volume_note": "양하와 적하를 각각 집계한 작업량: B1 95 TEU · B2 185 TEU · B3 136 TEU. 총 작업량 416 TEU.",
+    "berth_correlation_note": "종속변수: 장치→반출 기간의 항차별 TEU 가중평균. B1 16항차 · B2 29항차 · B3 28항차. 세 선석 모두 Holm 보정 후 유의한 Pearson 상관을 확인하지 못했다."
+  },
+  "hjnc": {
+    "title": "HJNC_ODT",
+    "sample": "1,490건",
+    "definition": "장치 → 온샤시",
+    "unit": "컨테이너 기준",
+    "comparison": "unified-hjnc-r.png",
+    "plots": [
+      {
+        "label": "작업시간",
+        "image": "unified-hjnc-0.png",
+        "r": 0.092,
+        "n": 1490
+      },
+      {
+        "label": "출항 지연시간*",
+        "image": "unified-hjnc-1.png",
+        "r": 0.1038,
+        "n": 1490
+      },
+      {
+        "label": "입항 지연시간*",
+        "image": "unified-hjnc-2.png",
+        "r": 0.062,
+        "n": 1490
+      },
+      {
+        "label": "작업시작전 대기시간",
+        "image": "unified-hjnc-3.png",
+        "r": 0.1124,
+        "n": 1490
+      }
+    ],
+    "conclusion": "5개 지표 모두 |r|<0.12. 선박 운영시간만으로 야드 장치 기간의 차이를 설명하기 어렵다.",
+    "note": "* 입·출항 지연시간은 반입 일정 기준 경과시간을 뜻하는 대체지표이다.",
+    "berth_pending": false,
+    "berth": [
+      {
+        "image": "unified-hjnc-berth-volume.png",
+        "label": "HJNC ODT 선석별 양하·적하 작업 물동량"
+      },
+      {
+        "image": "unified-hjnc-berth-correlation.png",
+        "label": "HJNC ODT 적하 선석별 상관계수"
+      }
+    ],
+    "berth_meta": "HJNC ODT · 1,490건 · 2,934 TEU",
+    "berth_volume_note": "양하와 적하를 각각 집계한 총 작업량 5,868 TEU. 해당 표본의 작업량이며 HJNC 전체 물동량은 아니다.",
+    "berth_correlation_note": "종속변수: 장치→온샤시 기간의 적하 항차별 평균. n은 해당 적하 선석의 항차수이다. * 반입 일정 기준 경과시간. 선석별 결과는 원자료로 새로 계산한 탐색 분석이다."
+  },
+  "forward": {
+    "title": "DGT ↔ HJNC ITT",
+    "direction": "DGT→HJNC",
+    "sample": "17,389건",
+    "definition": "두 터미널의 장치 → 온샤시 합계",
+    "unit": "방문 건 · 항차 평균",
+    "comparison": "unified-itt-forward-r.png",
+    "plots": [
+      {
+        "label": "입항 지연시간*",
+        "image": "unified-itt-forward0.png",
+        "r": 0.0318,
+        "n": 520
+      },
+      {
+        "label": "작업시작전 대기시간",
+        "image": "unified-itt-forward1.png",
+        "r": 0.0049,
+        "n": 520
+      },
+      {
+        "label": "작업시간",
+        "image": "unified-itt-forward2.png",
+        "r": 0.0754,
+        "n": 520
+      }
+    ],
+    "conclusion": "항차 기준 5개 지표 모두 p>0.05. 뚜렷한 선형 상관을 확인하지 못했다.",
+    "note": "총 야드 시간 계산 17,378건. * 입·출항 지표는 예정 대비 지연과 구분한다.",
+    "berth": [
+      {
+        "image": "unified-itt-forward-berth-volume.png",
+        "label": "HJNC 선석별 양하·적하 작업량"
+      },
+      {
+        "image": "unified-itt-forward-berth-correlation.png",
+        "label": "HJNC 선석별 5개 독립변수와 총 야드 장치 기간의 상관계수"
+      }
+    ],
+    "berth_meta": "DGT→HJNC · 17,389건 · HJNC 선석 기준",
+    "berth_volume_note": "HJNC에서 수행한 적하 작업량 30,277 TEU. 해당 방향의 DGT 작업은 이 그래프에 포함하지 않았다.",
+    "berth_correlation_note": "종속변수: 두 터미널 총 야드 시간의 HJNC 항차별 평균. 각 칸의 n은 해당 선석·지표에서 계산 가능한 HJNC 항차수이다. * 반입 일정 기준 경과시간."
+  },
+  "reverse": {
+    "title": "DGT ↔ HJNC ITT",
+    "direction": "HJNC→DGT",
+    "sample": "20,143건",
+    "definition": "두 터미널의 장치 → 온샤시 합계",
+    "unit": "방문 건 · 항차 평균",
+    "comparison": "unified-itt-reverse-r.png",
+    "plots": [
+      {
+        "label": "입항 지연시간*",
+        "image": "unified-itt-reverse0.png",
+        "r": -0.047,
+        "n": 580
+      },
+      {
+        "label": "작업시작전 대기시간",
+        "image": "unified-itt-reverse1.png",
+        "r": 0.1497,
+        "n": 579
+      },
+      {
+        "label": "작업시간",
+        "image": "unified-itt-reverse2.png",
+        "r": 0.0225,
+        "n": 579
+      }
+    ],
+    "conclusion": "작업시작전 대기는 r=0.150, p=0.0003(579항차). 약한 양의 상관이 관측되었다.",
+    "note": "총 야드 시간 계산 20,143건. * 입·출항 지표는 예정 대비 지연과 구분한다.",
+    "berth": [
+      {
+        "image": "unified-itt-reverse-berth-volume.png",
+        "label": "HJNC 선석별 양하·적하 작업량"
+      },
+      {
+        "image": "unified-itt-reverse-berth-correlation.png",
+        "label": "HJNC 선석별 5개 독립변수와 총 야드 장치 기간의 상관계수"
+      }
+    ],
+    "berth_meta": "HJNC→DGT · 20,143건 · HJNC 선석 기준",
+    "berth_volume_note": "HJNC에서 수행한 양하 작업량 34,672 TEU. 해당 방향의 DGT 작업은 이 그래프에 포함하지 않았다.",
+    "berth_correlation_note": "종속변수: 두 터미널 총 야드 시간의 HJNC 항차별 평균. 각 칸의 n은 해당 선석·지표에서 계산 가능한 HJNC 항차수이다. * 반입 일정 기준 경과시간."
+  }
+}

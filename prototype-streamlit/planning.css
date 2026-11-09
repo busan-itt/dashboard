@@ -1,0 +1,25 @@
+<style>
+.initial-plan-content { max-width:1100px; color:#142f42; font-size:16px; line-height:1.85; }
+.initial-plan-content h2 { margin:0 0 28px; font-size:28px; line-height:1.45; }
+.initial-plan-content h3 { margin:0 0 18px; font-size:23px; line-height:1.5; }
+.initial-plan-content section { margin:32px 0; }
+.initial-plan-content p { margin:16px 0; }
+.initial-plan-content figure { margin:22px 0; }
+.initial-plan-content img { display:block; width:100%; height:auto; border-radius:12px; }
+.initial-plan-content figcaption { margin-top:10px; color:#607586; font-size:14px; }
+.initial-plan-content a { color:#185dac; overflow-wrap:anywhere; }
+.initial-plan-content .initial-plan-source { padding:8px 24px; margin:24px 0; border-left:4px solid #185dac; background:#e5eef5; border-radius:0 12px 12px 0; }
+.initial-plan-content ul { padding-left:24px; }
+.initial-plan-content .initial-plan-table { overflow-x:auto; background:#fff; border:1px solid #dce5eb; border-radius:12px; margin:24px 0; }
+.initial-plan-content table { width:100%; border-collapse:collapse; text-align:left; font-size:15px; }
+.initial-plan-content th,.initial-plan-content td { padding:15px 20px; border-bottom:1px solid #dce5eb; vertical-align:top; }
+.initial-plan-content th { background:#e5eef5; }
+.initial-plan-content tr:last-child td { border-bottom:0; }
+.initial-plan-content td span { color:#526573; }
+@media(max-width:720px) {
+ .initial-plan-content { font-size:15px; }
+ .initial-plan-content h2 { font-size:24px; }
+ .initial-plan-content h3 { font-size:21px; }
+ .initial-plan-content th,.initial-plan-content td { padding:12px; }
+}
+</style>
