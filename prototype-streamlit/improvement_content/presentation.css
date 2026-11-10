@@ -27,7 +27,7 @@
 .presentation-content .bn{width:92px;color:var(--sub);flex-shrink:0}
 .presentation-content .track{flex:1;height:14px;background:#F2F5F7;border-radius:4px;overflow:hidden}
 .presentation-content .bar{display:block;height:100%;background:#9FBBC9;border-radius:4px}
-.presentation-content .bar.hi{background:#6F98B0}
+.presentation-content .bar.hi{background:#F4A78D}
 .presentation-content .bv{width:70px;text-align:right;font-weight:500;flex-shrink:0}
 .presentation-content .take{margin-top:18px;padding:14px 18px;border-left:3px solid #192C3A;background:var(--card);border-radius:0;font-size:15px}
 .presentation-content ul.lim{margin:0;padding-left:18px;font-size:14px;color:var(--sub)}

@@ -35,7 +35,7 @@ plt.rcParams.update({
 })
 
 BLUE = "#9FBBC9"
-TEAL = "#6F98B0"
+TEAL = "#F4A78D"
 INK = "#192C3A"
 MUTED = "#526573"
 OTHER = "#D7E3EB"
