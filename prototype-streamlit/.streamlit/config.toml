@@ -2,11 +2,11 @@
 base = "light"
 showSidebarBorder = false
 primaryColor = "#192C3A"
-backgroundColor = "#F4EEE2"
-secondaryBackgroundColor = "#FBF8F1"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F5F7F9"
 textColor = "#192C3A"
 linkColor = "#192C3A"
-borderColor = "#D9D3C8"
+borderColor = "#E2E7EB"
 baseRadius = "0.5rem"
 buttonRadius = "0.5rem"
 chartCategoricalColors = ["#192C3A", "#F4A78D", "#526D82", "#CCD9DF", "#C3836F", "#839BA9"]
@@ -14,9 +14,9 @@ chartCategoricalColors = ["#192C3A", "#F4A78D", "#526D82", "#CCD9DF", "#C3836F",
 [theme.sidebar]
 backgroundColor = "#192C3A"
 secondaryBackgroundColor = "#263E4E"
-textColor = "#F4EEE2"
-primaryColor = "#F4EEE2"
-linkColor = "#F4EEE2"
+textColor = "#FFFFFF"
+primaryColor = "#FFFFFF"
+linkColor = "#FFFFFF"
 
 [client]
 toolbarMode = "minimal"

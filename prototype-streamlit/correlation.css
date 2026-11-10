@@ -6,11 +6,11 @@
 .st-key-correlation_report .page-heading p { font-size:16px; }
 .st-key-correlation_report .page-heading > span { font-size:12px; }
 .correlation-page { color:#192C3A; max-width:1440px; line-height:1.8; }
-.correlation-page .report-metrics { display:grid; grid-template-columns:1fr 1.3fr 1.2fr; gap:18px; margin:0 0 28px; padding:24px 0 8px; border-top:1px solid #D9D3C8; }
+.correlation-page .report-metrics { display:grid; grid-template-columns:1fr 1.3fr 1.2fr; gap:18px; margin:0 0 28px; padding:24px 0 8px; border-top:1px solid #E2E7EB; }
 .correlation-page .report-metrics > div { min-width:0; }
 .correlation-page .report-metrics span { display:block; color:#526573; font-size:15px; }
 .correlation-page .report-metrics strong { display:block; font-size:20px; margin-top:8px; }
-.correlation-page .report-note { border-left:4px solid #192C3A; padding:16px 22px; background:#F4EEE2; border-radius:0 10px 10px 0; }
+.correlation-page .report-note { border-left:4px solid #192C3A; padding:16px 22px; background:#FFFFFF; border-radius:0 10px 10px 0; }
 .correlation-page .report-section { margin:28px 0; }
 .correlation-page .report-section h2 { font-size:26px; margin:0 0 18px; }
 .correlation-page .report-section-title { display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; }
@@ -27,13 +27,13 @@
 .correlation-page .report-figure img { display:block; width:100%; height:auto; max-width:100%; object-fit:contain; }
 .correlation-page figcaption { font-size:14px; color:#526573; padding:12px 4px 0; }
 .correlation-page .report-caption { font-size:14px; color:#526573; margin:10px 0 20px; }
-.correlation-page .report-table { overflow-x:auto; background:#FBF8F1; border:1px solid #D9D3C8; border-radius:10px; margin:20px 0; }
+.correlation-page .report-table { overflow-x:auto; background:#FFFFFF; border:1px solid #E2E7EB; border-radius:10px; margin:20px 0; }
 .correlation-page table { width:100%; border-collapse:collapse; font-size:15px; line-height:1.6; }
-.correlation-page th,.correlation-page td { padding:12px 16px; border-bottom:1px solid #D9D3C8; text-align:left; white-space:nowrap; }
-.correlation-page th { color:#192C3A; background:#F4EEE2; font-weight:700; }
+.correlation-page th,.correlation-page td { padding:12px 16px; border-bottom:1px solid #E2E7EB; text-align:left; white-space:nowrap; }
+.correlation-page th { color:#192C3A; background:#FFFFFF; font-weight:700; }
 .correlation-page tr:last-child td { border-bottom:0; }
-.correlation-page blockquote { margin:20px 0; padding:20px 24px; background:#F4EEE2; border-left:4px solid #192C3A; font-size:21px; font-weight:700; }
-.correlation-page .report-source { color:#526573; font-size:14px; padding-top:20px; border-top:1px solid #D9D3C8; }
+.correlation-page blockquote { margin:20px 0; padding:20px 24px; background:#FFFFFF; border-left:4px solid #192C3A; font-size:21px; font-weight:700; }
+.correlation-page .report-source { color:#526573; font-size:14px; padding-top:20px; border-top:1px solid #E2E7EB; }
 @media(max-width:720px) {
  .correlation-page .report-metrics { grid-template-columns:1fr; }
  .st-key-correlation_report .portfolio-page { padding-top:18px; }

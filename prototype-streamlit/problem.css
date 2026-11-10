@@ -8,28 +8,28 @@
 .problem-section-heading>span { color:#192C3A; font-size:11px; font-weight:800; letter-spacing:.12em; }
 .problem-section-heading h2 { margin:7px 0 0; padding:0; color:#192C3A; font-size:clamp(20px,2vw,27px); font-weight:800; letter-spacing:-.035em; }
 .problem-stat-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:20px; }
-.problem-stat { padding:24px; background:#FBF8F1; border-radius:12px; }
+.problem-stat { padding:24px; background:#FFFFFF; border-radius:12px; }
 .problem-stat h3 { margin:0; padding:0; color:#526573; font-size:14px; font-weight:600; }
 .problem-stat>strong { display:block; margin:12px 0 6px; color:#192C3A; font-size:clamp(26px,3vw,40px); line-height:1.2; letter-spacing:-.04em; }
 .problem-stat>strong span { margin-left:3px; font-size:.65em; }
 .problem-stat p { font-size:12px; }
 .problem-page .problem-caption { margin-top:12px; font-size:12px; }
 .problem-process-grid,.problem-cause-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:20px; }
-.problem-process-card,.problem-cause-card { min-width:0; padding:26px; background:#FBF8F1; border-radius:12px; }
-.problem-type { display:inline-block; padding:4px 9px; border-radius:6px; background:#F4EEE2; color:#192C3A; font-size:12px; font-weight:800; }
+.problem-process-card,.problem-cause-card { min-width:0; padding:26px; background:#FFFFFF; border-radius:12px; }
+.problem-type { display:inline-block; padding:4px 9px; border-radius:6px; background:#FFFFFF; color:#192C3A; font-size:12px; font-weight:800; }
 .problem-process-card h3,.problem-cause-card h3 { margin:14px 0 6px; padding:0; color:#192C3A; font-size:20px; font-weight:700; }
 .problem-process-card .problem-english { margin-bottom:16px; color:#65727d; font-size:12px; }
 .problem-flow { display:flex; flex-wrap:wrap; align-items:center; gap:10px 20px; margin:20px 0 0; padding:0; list-style:none; }
-.problem-flow li { position:relative; padding:7px 10px; border-radius:6px; background:#F4EEE2; color:#192C3A; font-size:12px; line-height:1.6; }
+.problem-flow li { position:relative; padding:7px 10px; border-radius:6px; background:#FFFFFF; color:#192C3A; font-size:12px; line-height:1.6; }
 .problem-flow li:not(:last-child)::after { position:absolute; top:7px; right:-16px; color:#65727d; content:"→"; }
-.problem-flow .problem-flow-extra { background:#F4EEE2; color:#192C3A; font-weight:700; }
-.problem-callout { margin-top:18px; padding:18px 22px; border-left:3px solid #192C3A; background:#F4EEE2; }
+.problem-flow .problem-flow-extra { background:#FFFFFF; color:#192C3A; font-weight:700; }
+.problem-callout { margin-top:18px; padding:18px 22px; border-left:3px solid #192C3A; background:#FFFFFF; }
 .problem-callout>strong { display:block; margin-bottom:4px; color:#192C3A; font-size:15px; line-height:1.7; }
 .problem-table-wrap { margin-top:20px; overflow-x:auto; }
-.problem-evidence-table { width:100%; min-width:630px; border-collapse:collapse; background:#FBF8F1; font-size:13px; line-height:1.8; }
+.problem-evidence-table { width:100%; min-width:630px; border-collapse:collapse; background:#FFFFFF; font-size:13px; line-height:1.8; }
 .problem-evidence-table caption { padding-bottom:10px; color:#526573; font-size:12px; text-align:left; }
-.problem-evidence-table th,.problem-evidence-table td { padding:16px 18px; border-bottom:1px solid #D9D3C8; text-align:left; vertical-align:top; }
-.problem-evidence-table thead { background:#F4EEE2; color:#192C3A; }
+.problem-evidence-table th,.problem-evidence-table td { padding:16px 18px; border-bottom:1px solid #E2E7EB; text-align:left; vertical-align:top; }
+.problem-evidence-table thead { background:#FFFFFF; color:#192C3A; }
 .problem-evidence-table th:first-child { width:110px; }
 .problem-evidence-table thead th:nth-child(2) { width:170px; }
 .problem-evidence-table tbody th { color:#192C3A; font-weight:600; }
@@ -40,7 +40,7 @@
 .problem-cause-card p+p { margin-top:12px; }
 .problem-cause-card>a { display:inline-block; margin-top:18px; font-size:12px; line-height:1.8; }
 .problem-yard-section>p { margin-top:18px; }
-.problem-yard-finding { margin-top:18px; padding:22px 24px; border-left:3px solid #192C3A; background:#F4EEE2; }
+.problem-yard-finding { margin-top:18px; padding:22px 24px; border-left:3px solid #192C3A; background:#FFFFFF; }
 .problem-yard-finding blockquote { margin:0; padding:0; border:0; color:#192C3A; font-size:15px; font-weight:700; line-height:1.85; }
 .problem-yard-finding h3 { margin:12px 0 0; padding:0; color:#192C3A; font-size:24px; font-weight:800; }
 .problem-analysis-block { min-width:0; margin-top:30px; }
@@ -48,11 +48,11 @@
 .problem-analysis-block>h3 { margin:0 0 14px; padding:0; color:#192C3A; font-size:21px; font-weight:800; line-height:1.6; }
 .problem-analysis-block>h4 { margin:24px 0 12px; padding:0; color:#192C3A; font-size:18px; font-weight:700; line-height:1.6; }
 .problem-analysis-block>p+p { margin-top:14px; }
-.problem-analysis-figure { margin:28px 0; padding:20px; border-radius:12px; background:#FBF8F1; }
+.problem-analysis-figure { margin:28px 0; padding:20px; border-radius:12px; background:#FFFFFF; }
 .problem-analysis-figure>img { display:block; width:auto; max-width:100%; height:auto; max-height:calc(100vh - 184px); max-height:calc(100dvh - 184px); margin:0 auto; object-fit:contain; }
 .problem-analysis-block .problem-analysis-note { margin-top:18px; color:#65727d; font-size:12px; }
-.problem-analysis-conclusion { margin:0 0 18px; padding:18px 22px; border-left:3px solid #192C3A; background:#F4EEE2; color:#192C3A; font-size:15px; line-height:1.85; }
-.problem-page .problem-yard-goal { padding:18px 22px; border-left:3px solid #192C3A; background:#F4EEE2; color:#192C3A; }
+.problem-analysis-conclusion { margin:0 0 18px; padding:18px 22px; border-left:3px solid #192C3A; background:#FFFFFF; color:#192C3A; font-size:15px; line-height:1.85; }
+.problem-page .problem-yard-goal { padding:18px 22px; border-left:3px solid #192C3A; background:#FFFFFF; color:#192C3A; }
 @media (max-width:800px) {
   .problem-process-grid,.problem-cause-grid { grid-template-columns:1fr; }
   .problem-stat-grid { gap:10px; }

@@ -621,11 +621,11 @@ child_href = current_page.url_path if current_page is not active_parent else Non
 st.html(f'''<style>
   .stSidebar a[data-testid="stPageLink-NavLink"][href="{active_href}"],
   .stSidebar a[data-testid="stPageLink-NavLink"][href="{active_href}"]:hover {{
-    background: #F4EEE2; color: #192C3A; border-radius: 24px 0 0 24px;
+    background: #FFFFFF; color: #192C3A; border-radius: 24px 0 0 24px;
   }}
   .stSidebar a[data-testid="stPageLink-NavLink"][href="{active_href}"] span,
   .stSidebar a[data-testid="stPageLink-NavLink"][href="{active_href}"] p {{ color: #192C3A; }}
-  {f'.stSidebar .st-key-sidebar_submenu a[data-testid="stPageLink-NavLink"][href="{child_href}"] {{ color:#F4EEE2; font-weight:800; }}' if child_href else ''}
+  {f'.stSidebar .st-key-sidebar_submenu a[data-testid="stPageLink-NavLink"][href="{child_href}"] {{ color:#FFFFFF; font-weight:800; }}' if child_href else ''}
 </style>''')
 with st.sidebar:
     html('<div class="sidebar-brand"><span class="brand-mark">P</span><span><strong>DATA ANALYTICS</strong><small>Busan Port Analytics</small></span></div>')
