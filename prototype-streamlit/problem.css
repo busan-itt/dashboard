@@ -81,3 +81,55 @@
   .problem-process-card,.problem-cause-card { padding:22px; }
   .problem-callout { padding:16px 18px; }
 }
+/* Presentation page only: keep the diagrams central and supporting text quiet. */
+.problem-presentation { gap:40px; }
+.problem-presentation p { font-size:15px; line-height:1.75; }
+.problem-presentation .problem-section-heading>span { font-size:10px; font-weight:600; color:#647783; }
+.problem-presentation .problem-section-heading h2 { font-size:25px; line-height:1.45; }
+.problem-presentation .problem-stat-grid { margin-top:18px; gap:20px; }
+.problem-presentation .problem-stat { padding:14px 0; border-radius:0; border-top:1px solid #E2E7EB; }
+.problem-presentation .problem-stat h3 { min-height:42px; line-height:1.5; }
+.problem-presentation .problem-stat>strong { margin:6px 0 8px; font-size:36px; font-variant-numeric:tabular-nums; }
+.problem-presentation .problem-stat p, .problem-presentation .problem-caption { font-size:12px; }
+.problem-presentation .problem-process-card { padding:18px 20px; border-radius:6px; }
+.problem-presentation .problem-type { float:right; padding:0; font-size:12px; }
+.problem-presentation .problem-process-card h3 { margin:0 0 4px; }
+.problem-presentation .problem-english { font-size:11px; margin-bottom:8px; }
+.problem-presentation .problem-icon-flow { gap:18px; margin-top:20px; }
+.problem-presentation .process-step { padding:12px 5px; border:0; border-radius:3px; background:#F7F9FA; }
+.problem-presentation .process-step-extra { background:#FFF1EC; border-bottom:2px solid #F4A78D; }
+.problem-presentation .process-number { font-size:9px; color:#647783; }
+.problem-presentation .process-step:not(:last-child)::after { right:-15px; }
+.problem-presentation .problem-callout { padding:12px 18px; }
+.problem-presentation .problem-callout>strong { font-size:17px; }
+.problem-presentation .problem-table-wrap { margin-top:16px; }
+.problem-presentation .problem-evidence-table { font-size:14px; line-height:1.7; }
+.problem-presentation .problem-evidence-table th, .problem-presentation .problem-evidence-table td { padding:14px 12px; }
+.problem-presentation .problem-evidence-table th:first-child { width:120px; white-space:nowrap; }
+.problem-presentation .problem-evidence-table thead th:nth-child(2) { width:145px; }
+.problem-presentation .problem-evidence-table td>a { font-size:11px; color:#526573; }
+.problem-presentation .problem-cause-card { padding:20px; border-radius:6px; }
+.problem-presentation .problem-case { margin-top:14px; color:#526573; font-size:13px; }
+.problem-presentation .problem-case summary { cursor:pointer; text-underline-offset:4px; }
+.problem-presentation .problem-case p { padding-top:10px; font-size:13px; }
+.problem-presentation .problem-yard-finding { margin-top:0; padding:16px 20px; }
+.problem-presentation .problem-yard-finding h3 { font-size:28px; margin-top:8px; }
+.problem-presentation .problem-next { display:inline-block; margin-top:20px; font-size:14px; text-decoration:underline; }
+@media (min-width:651px) and (max-width:900px) {
+  .problem-presentation .problem-icon-flow { grid-template-columns:repeat(var(--step-count),minmax(0,1fr)); }
+  .problem-presentation .process-step { display:flex; text-align:center; }
+  .problem-presentation .process-icon { margin:5px 0 10px; }
+  .problem-presentation .process-step:not(:last-child)::after { top:62px; right:-15px; bottom:auto; transform:none; content:'→'; }
+}
+@media(max-width:650px) {
+  .problem-presentation .problem-section-heading h2 { font-size:22px; }
+  .problem-presentation .process-step { padding:10px 14px; }
+  .problem-presentation .problem-stat-grid { gap:12px; }
+  .problem-presentation .problem-stat h3 { min-height:0; }
+}
+.st-key-current_state { padding-top:4px; }
+.st-key-current_state h3 { margin-top:22px; font-size:24px; letter-spacing:-.035em; }
+.st-key-current_state [data-testid="stCaptionContainer"] p { line-height:1.7; }
+.st-key-current_state .state-conclusion { margin:6px 0 12px; padding:14px 20px; border-left:3px solid #192C3A; }
+.st-key-current_state .state-conclusion strong { font-size:23px; color:#192C3A; }
+.st-key-current_state .state-conclusion p { margin:8px 0 0; color:#526573; font-size:15px; }

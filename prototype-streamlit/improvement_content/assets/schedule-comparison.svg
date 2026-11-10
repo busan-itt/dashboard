@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 310" role="img">
+<title>기존 연결선 일정과 앞당김 요청 일정 비교</title>
+<rect width="1000" height="310" fill="#FFFFFF"/>
+<g font-family="Malgun Gothic, Noto Sans KR, sans-serif">
+<path d="M205 125H940M205 245H940" stroke="#CBD6DE" stroke-width="2"/>
+<path d="m934 120 6 5-6 5m0 110 6 5-6 5" fill="none" stroke="#9AABB5" stroke-width="2"/>
+<path d="M820 111V259" stroke="#A9B8C2" stroke-width="2" stroke-dasharray="5 5"/>
+<path d="M520 54H820m-8-5 8 5-8 5M528 49l-8 5 8 5" fill="none" stroke="#B77762" stroke-width="2"/>
+<text x="670" y="30" text-anchor="middle" fill="#192C3A" font-size="22">요청 앞당김 · 24·48·96시간</text>
+<text x="10" y="132" fill="#192C3A" font-size="24" font-weight="700">기존 일정</text>
+<text x="10" y="252" fill="#192C3A" font-size="24" font-weight="700">앞당김 요청</text>
+<circle cx="820" cy="125" r="7" fill="#3F617C"/>
+<circle cx="520" cy="245" r="7" fill="#C78770"/>
+<g transform="translate(791,78)" fill="none" stroke="#3F617C" stroke-width="2.5"><path d="M0 21h58l-7 13H9ZM10 21V8h34v13M20 8V2h13v6M0 39q7-6 14 0t14 0t14 0t14 0"/></g>
+<g transform="translate(491,198)" fill="none" stroke="#B77762" stroke-width="2.5"><path d="M0 21h58l-7 13H9ZM10 21V8h34v13M20 8V2h13v6M0 39q7-6 14 0t14 0t14 0t14 0"/></g>
+<text x="820" y="167" text-anchor="middle" fill="#526573" font-size="19">기존 연결선 일정</text>
+<text x="520" y="287" text-anchor="middle" fill="#526573" font-size="19">앞당긴 요청 일정</text>
+</g></svg>

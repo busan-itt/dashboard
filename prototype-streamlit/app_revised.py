@@ -58,20 +58,20 @@ def home_icon(name: str) -> str:
 
 
 def home() -> None:
-    summaries = home_summaries()
+    summaries = home_summaries(compact=True)
     summary_body = ''.join(
         f'<div class="home-summary-item"><h3>{escape(title)}</h3><p>{escape(description)}</p></div>'
         for title, description in summaries
     )
     destinations = (
-        ("dashboard", "대시보드", "분석 내용을 한눈에 확인합니다.", "dashboard", ()),
-        ("intro", "프로젝트 소개", "프로젝트 배경과 목표를 소개합니다.", "intro",
+        ("dashboard", "대시보드", "환적 경로별 체류시간과 주요 분석 결과", "dashboard", ()),
+        ("intro", "프로젝트 소개", "분석 배경과 부산신항 환적 현황", "intro",
          (("intro-problem", "문제제기"), ("intro-status", "현황 분석"))),
-        ("dashboard-summary", "분석 내용", "데이터와 분석 과정을 살펴봅니다.", "analysis", ()),
-        ("improvement", "개선안", "분석을 바탕으로 제안한 개선안을 확인합니다.", "improvement",
+        ("dashboard-summary", "분석 내용", "선박 운영시간과 야드 체류시간의 관계", "analysis", ()),
+        ("improvement", "개선안", "선석통합운영 제안과 시뮬레이션 결과", "improvement",
          (("intro-solution", "시뮬레이션"), ("simulation", "시뮬레이션 결과"),
           ("improvement-results", "개선안 결과"))),
-        ("attachments", "첨부", "사용한 데이터와 초기 개선안 기획을 확인합니다.", "attachments",
+        ("attachments", "첨부", "사용 데이터와 초기 기획 자료", "attachments",
          (("used-data", "사용한 데이터"), ("planning", "초기 개선안 기획"))),
     )
     navigation = []
@@ -89,12 +89,13 @@ def home() -> None:
             + '</article>'
         )
     html(f'''<div class="home-page">
-      <header class="home-heading"><h1>부산항 데이터 분석 프로젝트</h1>
-        <p>네 환적 경로의 체류시간 분석과 선석 공유 시뮬레이션 결과를 확인하세요.</p></header>
+      <header class="home-heading"><h1>부산신항의 선석통합운영을 통한 환적 체류시간 개선</h1>
+        <p>프로젝트 기간 · 2026.10 ~ 2026.11</p></header>
       <section class="home-summary" aria-labelledby="home-summary-title">
-        <div class="home-summary-label"><h2 id="home-summary-title">Analysis<br>Summary</h2>
-          <p>분석 핵심 요약</p><small>저장된 분석·시뮬레이션 결과</small></div>
+        <div class="home-summary-label"><small>ANALYSIS SUMMARY</small>
+          <h2 id="home-summary-title">분석 핵심 요약</h2></div>
         <div class="home-summary-content">{summary_body}</div>
+        <p class="home-summary-note">야드 비중은 공정별 평균시간 합계 기준입니다. 모형 결과는 선별 48시간 앞당김·전체 통합 조건이며, 실제 도입 성과가 아닙니다.</p>
       </section>
       <section class="home-explore" aria-labelledby="home-explore-title">
         <div class="home-explore-heading"><h2 id="home-explore-title">프로젝트 둘러보기</h2>
@@ -118,20 +119,18 @@ def dashboard_home() -> None:
 
 
 def attachments() -> None:
-    landing("ATTACHMENTS", "첨부", "사용한 데이터와 초기 개선안 기획을 확인합니다.",
-            (("used-data", "사용한 데이터"), ("planning", "초기 개선안 기획")))
+    from attachments_views import render_attachments
+    render_attachments()
 
 
 def used_data() -> None:
-    document_page("DATA SOURCES", "사용한 데이터", "첨부 / 사용한 데이터",
-                  card("CONTENT PLACEHOLDER", "사용한 데이터",
-                       "분석에 사용한 데이터의 출처, 수집 기간, 주요 항목을 정리할 페이지입니다."))
+    from attachments_views import render_used_data
+    render_used_data()
 
 
 def dashboard_summary() -> None:
-    landing("ANALYSIS", "분석 내용", "환적 경로별 상관관계 분석과 결론을 확인합니다.",
-            (("analysis-dgt-odt", "DGT_ODT"), ("analysis-hjnc-odt", "HJNC_ODT"),
-             ("analysis-itt", "DGT <-> HJNC ITT")))
+    from correlation_views import render_summary
+    render_summary()
 
 
 def correlation_report(key: str, title: str) -> None:
@@ -140,58 +139,8 @@ def correlation_report(key: str, title: str) -> None:
 
 
 def render_correlation_report(key: str, title: str) -> None:
-    st.html(ROOT / "correlation.css")
-    report_root = ROOT / "assets" / "correlation-analysis"
-    chart_root = report_root / "unified"
-    reports = json.loads((chart_root / "reports.json").read_text(encoding="utf-8"))
-    document_page("CORRELATION ANALYSIS", title, "독립변수와 야드 장치 기간의 관계")
-    selected_key = key
-    if key == "itt":
-        selected_key = st.radio(
-            "환적 방향", ("forward", "reverse"), horizontal=True,
-            format_func=lambda value: {"forward": "DGT → HJNC", "reverse": "HJNC → DGT"}[value],
-            key="analysis_itt_direction",
-        )
-    report = reports[selected_key]
-
-    def figure(filename: str, description: str) -> str:
-        encoded = b64encode((chart_root / filename).read_bytes()).decode("ascii")
-        return (f'<figure class="report-figure"><img src="data:image/png;base64,{encoded}" '
-                f'alt="{escape(description)}"></figure>')
-
-    summary = '<div class="correlation-page"><div class="report-metrics">' + ''.join(
-        f'<div><span>{label}</span><strong>{escape(value)}</strong></div>'
-        for label, value in (("기준 표본", report["sample"]), ("측정 구간", report["definition"]),
-                             ("분석 단위", report["unit"]))
-    ) + '</div><section class="report-section"><div class="report-section-title"><h2>독립변수별 상관관계</h2><span>공통 눈금 −1 ~ 1</span></div>'
-    summary += figure(report["comparison"], "Pearson r · 공통 눈금 −1 ~ 1")
-    summary += f'<p class="report-caption">{escape(report["note"])}</p></section></div>'
-    html(summary)
-
-    heading, selector = st.columns([3, 2], vertical_alignment="center")
-    with heading:
-        html('<div class="correlation-page"><h2 class="report-scatter-heading">관측값과 회귀선</h2></div>')
-    with selector:
-        selected_plot = st.selectbox(
-            "독립변수", range(len(report["plots"])),
-            format_func=lambda index: report["plots"][index]["label"],
-            key=f"analysis_variable_{selected_key}",
-        )
-    plot = report["plots"][selected_plot]
-    unit_class = "container" if selected_key == "hjnc" else "voyage"
-    body = f'<div class="correlation-page"><section class="report-section report-scatter"><div class="report-legend"><span><b class="report-dot {unit_class}"></b>실제 관측값</span><span><b class="report-line"></b>선형 회귀선</span></div>'
-    body += figure(plot["image"], f'{plot["label"]} · 실제 관측값과 선형 회귀선 · N={plot["n"]:,} · r={plot["r"]:.3f}')
-    body += '</section><section class="report-section"><h2>선석별 환적 작업 물동량</h2>'
-    body += f'<p class="report-caption">{escape(report["berth_meta"])}</p>'
-    body += figure(report["berth"][0]["image"], report["berth"][0]["label"])
-    body += f'<p>{escape(report["berth_volume_note"])}</p></section>'
-    body += '<section class="report-section"><h2>선석별 장치 기간 상관관계</h2>'
-    body += figure(report["berth"][1]["image"], report["berth"][1]["label"])
-    body += f'<p>{escape(report["berth_correlation_note"])}</p></section>'
-    body += '<section class="report-section"><h2>분석 결론</h2>'
-    body += f'<blockquote>{escape(report["conclusion"])}</blockquote>'
-    body += '<p class="report-caption">상관관계는 인과관계를 의미하지 않습니다.</p></section></div>'
-    html(body)
+    from correlation_views import render_report
+    render_report(key, title)
 
 
 def analysis_dgt_odt() -> None:
@@ -207,8 +156,34 @@ def analysis_itt() -> None:
 
 
 def intro() -> None:
-    landing("PROJECT OVERVIEW", "프로젝트 소개", "문제제기와 현황 분석을 각각의 페이지에서 확인합니다.",
-            (("intro-problem", "문제제기"), ("intro-status", "현황 분석")))
+    body = '''<div class="intro-overview">
+      <dl class="intro-facts">
+        <div><dt>분석 대상</dt><dd>DGT·HJNC의 자부두 환적과 양방향 타부두 환적</dd></div>
+        <div><dt>분석 목표</dt><dd>체류시간이 긴 구간을 찾고, 일정 조정과 선석 공유에 따른 변화 비교</dd></div>
+      </dl>
+      <nav class="intro-destinations" aria-label="프로젝트 소개 하위 페이지">
+        <a href="/intro-problem"><h2>문제제기</h2>
+          <p>부산항의 환적 구조와 타부두 환적이 발생하는 배경</p><span>자세히 보기 →</span></a>
+        <a href="/intro-status"><h2>현황 분석</h2>
+          <p>네 환적 경로의 전체 소요시간과 공정별 체류시간</p><span>자세히 보기 →</span></a>
+      </nav>
+      <section class="intro-flow" aria-labelledby="intro-flow-title">
+        <h2 id="intro-flow-title">분석 흐름</h2>
+        <!-- intro-analysis-flow -->
+        <p>시뮬레이션 결과는 실제 도입 성과와 구분해 비교.</p>
+      </section>
+    </div>'''
+    flow = b64encode((ROOT / 'assets' / 'intro-analysis-flow.svg').read_bytes()).decode('ascii')
+    mobile_flow = b64encode((ROOT / 'assets' / 'intro-analysis-flow-mobile.svg').read_bytes()).decode('ascii')
+    body = body.replace('<!-- intro-analysis-flow -->',
+                        f'<picture><source media="(max-width: 600px)" srcset="data:image/svg+xml;base64,{mobile_flow}">'
+                        f'<img src="data:image/svg+xml;base64,{flow}" '
+                        'alt="분석 흐름: 환적 경로 비교 → 야드 체류 분석 → 일정 조정·선석 공유 → 야드 체류 감소율과 다른 선박의 추가 지연 비교"></picture>')
+    document_page(
+        "PROJECT OVERVIEW", "프로젝트 소개",
+        "부산신항의 환적 체류시간을 분석하고, 선석통합운영의 개선 효과를 시뮬레이션으로 비교한 프로젝트",
+        body,
+    )
 
 
 def analysis_figure(filename: str, description: str) -> str:
@@ -256,16 +231,15 @@ def process_flow(kind: str) -> str:
 
 def intro_problem() -> None:
     st.html(ROOT / "problem.css")
-    body = '''<div class="problem-page">
+    body = '''<div class="problem-page problem-presentation">
       <section class="problem-section" aria-labelledby="problem-background">
         <div class="problem-section-heading"><span>01 / BACKGROUND</span>
-          <h2 id="problem-background">환적 비중이 높은 부산항, 터미널마다 다른 ITT 의존도</h2></div>
-        <p class="problem-lead">부산항은 환적 비중이 높은 항만입니다. 터미널별 자부두 환적(ODT)과
-          타부두 환적(ITT) 비율을 분석한 결과, ITT 의존도에는 큰 차이가 존재합니다.</p>
+          <h2 id="problem-background">부산항과 부산신항의 환적 현황</h2></div>
+        <p class="problem-lead">부산항은 환적 비중이 높고, 부산신항은 부산항 환적의 상당 부분을 처리.</p>
         <div class="problem-stat-grid">
           <article class="problem-stat"><h3>부산항 환적 비중</h3><strong>약 57<span>%</span></strong>
             <p>2025년 부산항 전체 물동량 대비</p></article>
-          <article class="problem-stat"><h3>부산신항 환적 비중</h3><strong>약 84.3<span>%</span></strong>
+          <article class="problem-stat"><h3>부산항 환적 중 신항 처리 비중</h3><strong>약 84.3<span>%</span></strong>
             <p>2025년 부산항 전체 환적 대비</p></article>
           <article class="problem-stat"><h3>부산신항 ITT 비율</h3><strong>40<span>%</span></strong>
             <p>2025년 · 신항7부두 제외<br>전체 컨테이너 물동량 대비</p></article>
@@ -276,44 +250,39 @@ def intro_problem() -> None:
 
       <section class="problem-section" aria-labelledby="problem-process">
         <div class="problem-section-heading"><span>02 / PROCESS</span>
-          <h2 id="problem-process">ODT와 ITT, 무엇이 다른가?</h2></div>
+          <h2 id="problem-process">자부두와 타부두 환적의 차이</h2></div>
         <div class="problem-process-grid">
           <article class="problem-process-card"><span class="problem-type">ODT</span>
             <h3>자부두 환적</h3><p class="problem-english">On-Dock Transshipment</p>
-            <p>양하와 적하를 동일한 터미널에서 처리합니다.</p>
+            <p>같은 터미널에서 양하와 적하</p>
             <!-- odt-process --></article>
           <article class="problem-process-card"><span class="problem-type">ITT</span>
             <h3>타부두 환적</h3><p class="problem-english">Inter-Terminal Transshipment</p>
-            <p>컨테이너를 다른 터미널로 옮긴 뒤 적하합니다.</p>
+            <p>다른 터미널로 이동한 뒤 적하</p>
             <!-- itt-process --></article>
         </div>
-        <aside class="problem-callout"><strong>결정적 차이: 양하와 적하를 같은 터미널에서 처리하는가?</strong>
-          <p>ITT에서는 부두 간 이동에 따라 추가 컨테이너 작업이 발생합니다.</p></aside>
+        <aside class="problem-callout"><strong>ITT에는 부두 간 운송과 추가 작업이 발생</strong>
+          <p>양하와 적하를 서로 다른 터미널에서 처리하기 때문.</p></aside>
       </section>
 
       <section class="problem-section" aria-labelledby="problem-impact">
         <div class="problem-section-heading"><span>03 / WHY ODT</span>
-          <h2 id="problem-impact">부산항은 왜 ODT를 지향하는가?</h2></div>
-        <p>부두 사이의 추가 운송을 줄여 환적 비용과 시간을 낮추고, 선사의 부산항 이용을 유도하기 위해서입니다.
-          해양수산부와 부산항만공사도 ITT와 분산 운영으로 발생하는 문제를 개선 대상으로 제시하고 있습니다.</p>
+          <h2 id="problem-impact">부두 간 이동에 따른 비용과 운영 부담</h2></div>
+        <p>추가 운송은 비용과 시간을 늘리고, 분산 운영은 선석 관리와 항만 생산성에도 부담.</p>
         <div class="problem-table-wrap"><table class="problem-evidence-table">
           <caption>기관별로 제시한 문제와 근거 자료</caption>
           <thead><tr><th scope="col">기관</th><th scope="col">명시한 문제</th><th scope="col">근거</th></tr></thead>
           <tbody>
-            <tr><th scope="row">해양수산부</th><td><strong>추가 물류비 발생</strong></td><td>2023년 BPA 집계를 인용해 부산항 ITT
-              연간 232만 TEU와 추가 물류비 551억 원을 제시했습니다. <strong>2025년 수치는 아닙니다.</strong>
+            <tr><th scope="row">해양수산부</th><td><strong>추가 물류비 발생</strong></td><td>2023년 BPA 집계: ITT 연간 232만 TEU · 추가 물류비 551억 원. <strong>2025년 수치와 구분.</strong>
               <a href="https://www.mof.go.kr/doc/ko/selectDoc.do?bbsSeq=10&amp;docSeq=59556&amp;menuSeq=971"
                 target="_blank" rel="noopener noreferrer">해양수산부 보도자료 · 2024.12.11.</a></td></tr>
-            <tr><th scope="row">해양수산부</th><td><strong>선석 관리의 비효율</strong></td><td>소규모·분산 운영의 문제를 지적하고,
-              단일 운영사가 해운동맹 물량을 처리하면 선석 관리 효율화와 ITT 최소화가 가능하다고 설명합니다.
+            <tr><th scope="row">해양수산부</th><td><strong>선석 관리의 비효율</strong></td><td>소규모·분산 운영에 따른 비효율. 통합 처리를 개선 방향으로 제시.
               <a href="https://www.mof.go.kr/doc/ko/selectDoc.do?bbsSeq=10&amp;docSeq=59556&amp;menuSeq=971"
                 target="_blank" rel="noopener noreferrer">해양수산부 보도자료 · 2024.12.11.</a></td></tr>
-            <tr><th scope="row">부산항만공사</th><td><strong>항만 생산성 저하</strong></td><td>북항·신항의 이원화와 다수 운영사 체제로 인한
-              타부두 환적화물 이동, 그에 따른 생산성 저하를 개선 대상으로 명시했습니다.
+            <tr><th scope="row">부산항만공사</th><td><strong>항만 생산성 저하</strong></td><td>북항·신항 이원화와 다수 운영사 체제에 따른 타부두 이동 및 생산성 저하.
               <a href="https://www.busanpa.com/board/view.bpa?boardId=BBS_0000031&amp;dataSid=27954&amp;menuCd=DOM_000000105002001000"
                 target="_blank" rel="noopener noreferrer">부산항 컨테이너 물류효율 획기적으로 개선한다 · 2022.8.11.</a></td></tr>
-            <tr><th scope="row">부산항만공사</th><td><strong>비용·시간 측면의 경쟁력 저하</strong></td><td>타부두 환적이 비용과 시간 측면에서
-              부산항의 경쟁력을 저해해 왔다고 명시했습니다.
+            <tr><th scope="row">부산항만공사</th><td><strong>비용·시간 측면의 경쟁력 저하</strong></td><td>타부두 환적에 따른 추가 비용과 시간 부담.
               <a href="https://www.busanpa.com/board/view.bpa?boardId=BBS_0000031&amp;dataSid=34129&amp;menuCd=DOM_000000105002001000"
                 target="_blank" rel="noopener noreferrer">ITT 자동운송시스템 개발 완료 · 2025.9.9.</a></td></tr>
           </tbody></table></div>
@@ -321,21 +290,18 @@ def intro_problem() -> None:
 
       <section class="problem-section" aria-labelledby="problem-causes">
         <div class="problem-section-heading"><span>04 / STRUCTURAL CAUSES</span>
-          <h2 id="problem-causes">그럼에도 ITT를 해야 하는 이유</h2></div>
-        <p>ITT는 터미널의 분리 운영과 선사의 기항 터미널 분산으로 발생합니다.</p>
+          <h2 id="problem-causes">타부두 환적이 발생하는 배경</h2></div>
+        <p>컨테이너를 내리는 배와 싣는 배의 이용 터미널이 다르면 부두 간 이동이 필요.</p>
         <div class="problem-cause-grid">
-          <article class="problem-cause-card"><h3>다수 운영사가 터미널을 나누어 운영</h3>
-            <p>부산항의 여러 터미널은 각각 다른 회사가 나누어 운영합니다. 컨테이너를 내린 배와
-              그 컨테이너를 이어서 운송할 배가 서로 다른 터미널을 이용하면, 컨테이너를 다른 터미널로 옮겨야 합니다.
-              해양수산부는 이러한 분산 운영 구조를 ITT 발생 원인으로 설명합니다.</p>
+          <article class="problem-cause-card"><h3>터미널의 분리 운영</h3>
+            <p>운영사별로 터미널이 나뉘어 있어, 서로 다른 터미널을 이용하는 선박 사이에는 컨테이너 운송이 필요.</p>
             <a href="https://www.mof.go.kr/doc/ko/selectDoc.do?bbsSeq=10&amp;docSeq=59556&amp;menuSeq=971"
               target="_blank" rel="noopener noreferrer">해양수산부 · 2024.12.11.</a></article>
-          <article class="problem-cause-card"><h3>해운동맹의 이용 터미널 분산·변경</h3>
-            <p>선사는 배를 운항하는 회사이고, 해운동맹은 선사들이 협력해 운송 서비스를 제공하는 체계입니다.
-              같은 동맹에 속하거나 서로 협력하더라도 이용하는 터미널은 다를 수 있습니다.</p>
-            <p>2017년에는 2M 동맹의 이용 터미널이 기존 2부두에서 1·3부두로 나뉘었고,
-              협력 관계인 HMM은 주로 4부두를 이용했습니다. KMI는 연계 운송을 하는 선사들의 이용 터미널이
-              떨어져 있는 것을 ITT 증가 요인으로 제시했습니다.</p>
+          <article class="problem-cause-card"><h3>선사별 이용 터미널의 분산</h3>
+            <p>같은 해운동맹에 속한 선사라도 이용 터미널은 다를 수 있음.</p>
+            <details class="problem-case"><summary>과거 사례 · 2017년</summary>
+            <p>2017년 사례: 2M은 기존 2부두에서 1·3부두로 분산, 협력 관계인 HMM은 주로 4부두 이용.
+              KMI는 이용 터미널의 분산을 ITT 증가 요인으로 제시.</p></details>
             <a href="https://www.nkis.re.kr/subject_view1.do?eoSeq=66004&amp;otpId=KMI00052780&amp;otpSeq=0"
               target="_blank" rel="noopener noreferrer">KMI 연구보고서 · 2017 · 국가정책연구포털 수록 초록</a></article>
         </div>
@@ -343,86 +309,27 @@ def intro_problem() -> None:
 
       <section class="problem-section problem-yard-section" aria-labelledby="problem-yard-focus">
         <div class="problem-section-heading"><span>05 / ANALYSIS FOCUS</span>
-          <h2 id="problem-yard-focus">선행 분석: 야드 장치 기간에 집중</h2></div>
-        <p>우리 팀은 선행 분석으로 다음 현상을 발견했습니다.</p>
+          <h2 id="problem-yard-focus">분석 초점: 야드 체류시간</h2></div>
         <aside class="problem-yard-finding">
-          <blockquote>타부두 환적이든 자부두 환적이든, 환적 총 리드타임에서 가장 시간을 많이 잡아먹는 것</blockquote>
-          <h3>⇒ ‘야드 장치 기간’</h3>
+          <blockquote>자부두·타부두 모두 환적 시간의 대부분을 차지한 구간</blockquote>
+          <h3>야드 장치 기간</h3>
         </aside>
-        <p>우리 팀은 자부두 환적(ODT)과 타부두 환적(ITT)의 소요시간을 공정별로 나누어,
-          어느 구간에서 가장 많은 시간이 소요되는지 살펴보았다.</p>
-        <p>분석 대상은 <strong>DGT ODT, HJNC ODT, DGT → HJNC ITT, HJNC → DGT ITT</strong>이다.
-          전체 소요시간은 컨테이너의 최초 반입부터 최종 반출까지이며,
-          야드 장치 기간은 야드에 장치된 시점부터 온샤시 시점까지로 정의하였다.</p>
-
+        <p>자부두·타부두 환적을 공정별로 비교한 뒤, 야드 체류시간을 중심으로 후속 분석.</p>
+        <p>분석 대상: <strong>DGT ODT, HJNC ODT, DGT → HJNC ITT, HJNC → DGT ITT</strong><br>
+          전체 소요시간: 최초 반입부터 최종 반출까지<br>
+          야드 장치 기간: 야드 장치부터 온샤시 시점까지</p>
+        <a class="problem-next" href="/intro-status">현황 분석 →</a>
       </section>
     </div>'''
     body = body.replace("<!-- odt-process -->", process_flow("odt"))
     body = body.replace("<!-- itt-process -->", process_flow("itt"))
-    document_page("01 / INTRODUCTION", "문제 제기", "부산항의 환적 구조와 ITT가 발생하는 배경을 살펴봅니다.", body)
+    document_page("01 / INTRODUCTION", "문제 제기", "부산항의 환적 구조와 타부두 환적이 발생하는 배경", body)
 
 
 def intro_status() -> None:
     st.html(ROOT / "problem.css")
-    body = '''<div class="problem-page"><div class="problem-analysis-content">
-        <p>우리 팀은 자부두 환적(ODT)과 타부두 환적(ITT)의 소요시간을 공정별로 나누어,
-          어느 구간에서 가장 많은 시간이 소요되는지 살펴보았다.</p>
-        <p>분석 대상은 <strong>DGT ODT, HJNC ODT, DGT → HJNC ITT, HJNC → DGT ITT</strong>이다.
-          전체 소요시간은 컨테이너의 최초 반입부터 최종 반출까지이며,
-          야드 장치 기간은 야드에 장치된 시점부터 온샤시 시점까지로 정의하였다.</p>
-        <section class="problem-analysis-block" aria-labelledby="problem-analysis-total">
-          <h3 id="problem-analysis-total">1. 분석 대상과 전체 소요시간</h3>
-          <p>분석 건수: DGT ODT 122건, HJNC ODT 1,490건, DGT → HJNC ITT 17,389건, HJNC → DGT ITT 20,143건</p>
-          <p>각 경로의 전체 소요시간을 평균과 중앙값으로 비교하였다.
-            ITT의 전체 소요시간에는 출발·도착 터미널에서의 체류시간과 터미널 간 이동시간이 포함된다.</p>
-          <!-- analysis-total-figure -->
-        </section>
-
-        <section class="problem-analysis-block" aria-labelledby="problem-analysis-stages">
-          <h3 id="problem-analysis-stages">2. 공정별 소요시간 비교</h3>
-          <p>ODT는 동일 터미널 내의 반입부터 반출까지를 세 구간으로 구분하였다.
-            ITT는 출발·도착 터미널의 작업 과정과 터미널 간 이동을 나누어 분석하였다.</p>
-          <p>야드 체류는 일 단위, 나머지 공정은 분 단위의 가로 막대로 나누어 비교하였다.
-            두 영역의 단위와 눈금이 다르므로, 같은 영역 안에서 경로별 시간을 비교한다.</p>
-          <h4>자부두 환적(ODT)</h4>
-          <!-- analysis-odt-stages-figure -->
-          <p>ODT에서는 DGT와 HJNC 모두 <strong>야드 장치부터 온샤시까지 평균 약 8일</strong>이 소요되었다.
-            반면 나머지 공정은 평균 수분에서 수십 분 수준이었다.</p>
-          <h4>타부두 환적(ITT)</h4>
-          <!-- analysis-itt-stages-figure -->
-          <p>ITT에서도 두 터미널의 야드 장치 기간은 각각 수일에 달했다.
-            터미널 간 이동시간은 두 방향 모두 평균 약 10분으로,
-            <strong>시간이 집중되는 구간은 출발·도착 터미널의 야드 장치 구간</strong>이었다.</p>
-        </section>
-
-        <section class="problem-analysis-block" aria-labelledby="problem-analysis-share">
-          <h3 id="problem-analysis-share">3. 야드 장치 구간이 차지하는 시간 비중</h3>
-          <p>야드 장치 구간의 비중을 확인하기 위해, 각 분석에서
-            <strong>공정별 평균시간 합계 대비 야드 장치 구간 평균시간 합계의 비중</strong>을 계산하였다.
-            ITT는 두 터미널의 야드 장치 시간을 합산하였다.</p>
-          <!-- analysis-share-figure -->
-          <p>분석된 네 경로에서 야드 장치 구간은 평균 공정시간 합계의 <strong>약 99.26~99.86%</strong>를 차지하였다.
-            ODT와 ITT 모두 야드 장치 구간에 대부분의 시간이 집중되어 있음을 확인하였다.</p>
-        </section>
-
-        <section class="problem-analysis-block" aria-labelledby="problem-analysis-direction">
-          <h3 id="problem-analysis-direction">4. 선행 분석에서 도출한 문제와 분석 방향</h3>
-          <blockquote class="problem-analysis-conclusion"><strong>자부두 환적과 타부두 환적 모두,
-            환적 과정에서 가장 많은 시간을 차지하는 구간은 ‘야드 장치 기간’이었다.</strong></blockquote>
-          <p class="problem-yard-goal">따라서 우리 팀은 <strong>‘야드 장치 기간’에 집중하여
-            컨테이너의 전체 환적 소요시간을 줄이는 방안</strong>을 검토하고자 한다.</p>
-          <p>후속 분석에서는 야드 장치 기간과 관련된 요인을 살펴보고,
-            체류시간을 단축할 수 있는 개선 방향을 도출할 예정이다.</p>
-        </section>
-    </div></div>'''
-    for marker, filename, description in (
-        ("analysis-total-figure", "01-total-duration-v5.png", "네 환적 경로의 전체 소요시간. 평균은 블루, 중앙값은 코랄 가로 막대"),
-        ("analysis-odt-stages-figure", "02a-odt-stage-duration-v7.png", "DGT ODT와 HJNC ODT의 공정별 평균 소요시간. 야드 체류는 일, 나머지 공정은 분 단위"),
-        ("analysis-itt-stages-figure", "02b-itt-stage-duration-v7.png", "양방향 ITT의 공정별 평균 소요시간. 야드 체류는 일, 나머지 공정은 분 단위"),
-        ("analysis-share-figure", "03-yard-share-v5.png", "네 환적 경로의 야드 장치 시간 비중. 약 99.26~99.86%"),
-    ):
-        body = body.replace(f"<!-- {marker} -->", analysis_figure(filename, description))
-    document_page("02 / CURRENT STATE", "현황 분석", "환적 경로별 전체 소요시간과 공정별 분석 결과를 살펴봅니다.", body)
+    from current_state import render_current_state
+    render_current_state()
 
 
 def intro_solution() -> None:
