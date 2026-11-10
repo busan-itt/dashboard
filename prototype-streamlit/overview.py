@@ -11,7 +11,7 @@ BLUE, CORAL = '#3F617C', '#F4A78D'
 
 
 def snapshot():
-    routes = json.loads((ROOT/'output/preliminary-analysis-20261109/figure-data.json').read_text(encoding='utf-8'))
+    routes = json.loads((ROOT/'assets/preliminary-analysis/figure-data.json').read_text(encoding='utf-8'))
     reports = json.loads((ROOT/'assets/correlation-analysis/unified/reports.json').read_text(encoding='utf-8'))
     simulation = json.loads((ROOT/'improvement_content/data/simulation_all_results.json').read_text(encoding='utf-8'))
     scenarios = {r['scenario']: r for r in simulation['rows'] if r['policy'] == '선별' and r['hours'] == 48}
@@ -127,4 +127,4 @@ def render_dashboard():
     with st.expander('집계 기준과 출처'):
         st.write('현황: 팀의 저장된 경로별 집계. 야드 시간은 장치부터 온샤시까지이며 ITT는 두 터미널 합계입니다. 전체 평균과 공정별 평균 합계는 절삭·반올림으로 미세한 차이가 있습니다.')
         st.write('시뮬레이션: 2025년 자료를 사용한 저장 결과 중 선별 48시간 조건입니다. 현황 분석과 시뮬레이션은 표본·집계 기준이 다릅니다.')
-        st.markdown(f'[시뮬레이션 원본 노트북]({simulation["source_url"]}) · [현황 집계 자료](https://github.com/busan-itt/dashboard/blob/main/prototype-streamlit/output/preliminary-analysis-20261109/figure-data.json)')
+        st.markdown(f'[시뮬레이션 원본 노트북]({simulation["source_url"]}) · [현황 집계 자료](https://github.com/busan-itt/dashboard/blob/main/prototype-streamlit/assets/preliminary-analysis/figure-data.json)')

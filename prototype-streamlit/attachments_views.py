@@ -16,7 +16,7 @@ def render_attachments():
 
 
 def render_used_data():
-    routes = json.loads((ROOT/'output/preliminary-analysis-20261109/figure-data.json').read_text(encoding='utf-8'))
+    routes = json.loads((ROOT/'assets/preliminary-analysis/figure-data.json').read_text(encoding='utf-8'))
     reports = json.loads((ROOT/'assets/correlation-analysis/unified/reports.json').read_text(encoding='utf-8'))
     simulation = json.loads((ROOT/'improvement_content/data/simulation_all_results.json').read_text(encoding='utf-8'))
     with st.container(key='attachment_data'):
@@ -33,7 +33,7 @@ def render_used_data():
         st.subheader('발표에 사용한 집계 파일')
         st.caption('아래 파일은 화면에 사용한 집계·저장 결과이며, 컨테이너별 원자료는 아님.')
         for title, description, path in (
-            ('환적 경로별 현황','평균·중앙값, 분석 건수와 야드 체류 비중',ROOT/'output/preliminary-analysis-20261109/figure-data.json'),
+            ('환적 경로별 현황','평균·중앙값, 분석 건수와 야드 체류 비중',ROOT/'assets/preliminary-analysis/figure-data.json'),
             ('상관분석 결과','표본·측정 구간·상관계수와 기존 분석 결론',ROOT/'assets/correlation-analysis/unified/reports.json'),
             ('시뮬레이션 저장 결과',f'{len(simulation["rows"])}개 조건의 체류 감소율·추가 지연 등',ROOT/'improvement_content/data/simulation_all_results.json'),
         ):

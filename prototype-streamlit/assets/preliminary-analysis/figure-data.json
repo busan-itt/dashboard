@@ -1,0 +1,46 @@
+[
+  {
+    "route": "DGT ODT",
+    "total_n": 122,
+    "stage_n": 122,
+    "reported_total_mean_h": 203.43,
+    "reported_total_median_h": 152.95,
+    "stage_mean_sum_h": 203.42805555555555,
+    "yard_mean_sum_h": 202.57333333333332,
+    "yard_share_pct": 99.57984053876541,
+    "other_share_pct": 0.4201594612345888
+  },
+  {
+    "route": "HJNC ODT",
+    "total_n": 1490,
+    "stage_n": 1490,
+    "reported_total_mean_h": 196.18,
+    "reported_total_median_h": 169.23,
+    "stage_mean_sum_h": 196.1797222222222,
+    "yard_mean_sum_h": 195.8975,
+    "yard_share_pct": 99.85614098183781,
+    "other_share_pct": 0.14385901816220104
+  },
+  {
+    "route": "DGT → HJNC ITT",
+    "total_n": 17389,
+    "stage_n": 17389,
+    "reported_total_mean_h": 217.4,
+    "reported_total_median_h": 175.45,
+    "stage_mean_sum_h": 217.39444444444445,
+    "yard_mean_sum_h": 216.60416666666666,
+    "yard_share_pct": 99.63647747310317,
+    "other_share_pct": 0.3635225268968337
+  },
+  {
+    "route": "HJNC → DGT ITT",
+    "total_n": 20143,
+    "stage_n": 20143,
+    "reported_total_mean_h": 178.96,
+    "reported_total_median_h": 144.17,
+    "stage_mean_sum_h": 178.95805555555555,
+    "yard_mean_sum_h": 177.63888888888889,
+    "yard_share_pct": 99.26286265093155,
+    "other_share_pct": 0.7371373490684502
+  }
+]

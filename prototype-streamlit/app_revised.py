@@ -8,7 +8,6 @@ from __future__ import annotations
 from base64 import b64encode
 from html import escape
 from pathlib import Path
-import json
 
 import streamlit as st
 from improvement_content import views as improvement_views
@@ -33,13 +32,6 @@ def document_page(kicker: str, title: str, description: str, body: str = "") -> 
 def card(kicker: str, title: str, description: str, extra: str = "") -> str:
     return (f'<article class="portfolio-card"><small>{escape(kicker)}</small>'
             f'<h2>{escape(title)}</h2><p>{escape(description)}</p>{extra}</article>')
-
-
-def landing(kicker: str, title: str, description: str, links: tuple[tuple[str, str], ...]) -> None:
-    nav = '<nav class="section-links" aria-label="하위 페이지">' + ''.join(
-        f'<a href="/{escape(path)}">{escape(label)}</a>' for path, label in links
-    ) + '</nav>'
-    document_page(kicker, title, description, nav)
 
 
 def home_icon(name: str) -> str:
@@ -184,15 +176,6 @@ def intro() -> None:
         "부산신항의 환적 체류시간을 분석하고, 선석통합운영의 개선 효과를 시뮬레이션으로 비교한 프로젝트",
         body,
     )
-
-
-def analysis_figure(filename: str, description: str) -> str:
-    chart_path = ROOT / "assets" / "preliminary-analysis" / filename
-    encoded = b64encode(chart_path.read_bytes()).decode("ascii")
-    image_id = f'problem-chart-{chart_path.stem}'
-    return (f'<figure class="problem-analysis-figure">'
-            f'<img id="{image_id}" src="data:image/png;base64,{encoded}" '
-            f'alt="{escape(description)}"></figure>')
 
 
 def process_flow(kind: str) -> str:

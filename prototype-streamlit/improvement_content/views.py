@@ -1,7 +1,6 @@
 """Supplied HTML pages, with live selection of saved simulation conditions."""
 from pathlib import Path
 from base64 import b64encode
-import json
 import re
 import streamlit as st
 
