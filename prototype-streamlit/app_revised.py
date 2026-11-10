@@ -435,7 +435,7 @@ st.html(f'''<style>
   {f'.stSidebar .st-key-sidebar_submenu a[data-testid="stPageLink-NavLink"][href="{child_href}"] {{ color:#FFFFFF; font-weight:800; }}' if child_href else ''}
 </style>''')
 with st.sidebar:
-    html('<div class="sidebar-brand"><span class="brand-mark">P</span><span><strong>DATA ANALYTICS</strong><small>Busan Port Analytics</small></span></div>')
+    html('<div class="sidebar-brand"><span class="brand-mark">B</span><span><strong>Port Insights</strong><small>Team: Bnct</small></span></div>')
     st.caption("PROJECT")
     for parent, children in groups:
         st.page_link(parent, label=parent.title, icon=parent.icon, width="stretch")
