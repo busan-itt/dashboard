@@ -548,7 +548,7 @@ def intro_status() -> None:
         </section>
     </div></div>'''
     for marker, filename, description in (
-        ("analysis-total-figure", "01-total-duration-v4.png", "네 환적 경로의 전체 소요시간 평균과 중앙값"),
+        ("analysis-total-figure", "01-total-duration-v5.png", "네 환적 경로의 전체 소요시간. 평균은 블루, 중앙값은 코랄 가로 막대"),
         ("analysis-odt-stages-figure", "02a-odt-stage-duration-v7.png", "DGT ODT와 HJNC ODT의 공정별 평균 소요시간. 야드 체류는 일, 나머지 공정은 분 단위"),
         ("analysis-itt-stages-figure", "02b-itt-stage-duration-v7.png", "양방향 ITT의 공정별 평균 소요시간. 야드 체류는 일, 나머지 공정은 분 단위"),
         ("analysis-share-figure", "03-yard-share-v5.png", "네 환적 경로의 야드 장치 시간 비중. 약 99.26~99.86%"),

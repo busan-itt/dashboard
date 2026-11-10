@@ -126,36 +126,31 @@ def align_category_labels(fig, axes, left_edges, right_edges):
 
 
 def overall():
-    fig, ax = plt.subplots(figsize=(12.8, 5.2))
-    fig.subplots_adjust(left=.20, right=.96, top=.825, bottom=.16)
-    fig.text(.035, .98, "환적 전체 소요시간", fontsize=24, weight="bold", va="top")
-    fig.text(.035, .86, "최초 반입부터 최종 반출까지 · 타부두 환적은 터미널 간 이동 포함", color=MUTED)
+    """Side-by-side horizontal bars make both means and medians readable."""
+    fig, ax = plt.subplots(figsize=(12.8, 6.4))
+    fig.subplots_adjust(left=.20, right=.96, top=.81, bottom=.14)
+    fig.text(.035, .975, "환적 전체 소요시간", fontsize=24, weight="bold", va="top")
+    fig.text(.035, .89, "같은 경로의 평균과 중앙값을 나란히 비교 · 최초 반입부터 최종 반출까지", color=MUTED)
     positions = np.arange(len(ROUTES))
-    means = [route["mean_h"] for route in ROUTES]
-    medians = [route["median_h"] for route in ROUTES]
-    ax.barh(positions, means, height=.48, color=BLUE, zorder=2)
-    ax.scatter(medians, positions, marker="D", s=68, color="white", edgecolor=INK,
-               linewidth=1.5, zorder=3)
-    for y, route in zip(positions, ROUTES):
-        ax.text(route["mean_h"] + 3, y, f'{route["mean_h"]:.2f}', va="center", weight="bold")
-        ax.annotate(f'{route["median_h"]:.2f}', (route["median_h"], y),
-                    xytext=(0, 17), textcoords="offset points", ha="center", fontsize=10,
-                    color=MUTED)
-    ax.set_yticks(positions, [r["name"] for r in ROUTES])
+    for offset, key, color, label in [(-.18, "mean_h", "#9FBBC9", "평균"),
+                                      (.18, "median_h", "#F4A78D", "중앙값")]:
+        values = [route[key] for route in ROUTES]
+        ax.barh(positions + offset, values, height=.29, color=color, label=label, zorder=2)
+        for y, value in zip(positions + offset, values):
+            ax.text(value + 3, y, f"{value:.2f}시간", va="center", fontsize=12,
+                    weight="bold" if key == "mean_h" else "normal", color=INK)
+    ax.set_yticks(positions, [r["name"] for r in ROUTES], fontsize=13)
+    ax.set_ylim(len(ROUTES)-.5, -.5)
+    ax.set_xlim(0, 255)
+    ax.set_xticks([0, 50, 100, 150, 200, 250])
     ax.tick_params(axis="both", length=0, pad=12)
-    ax.invert_yaxis()
-    ax.set_ylim(3.33, -.33)
-    ax.set_xlim(0, 245)
-    ax.set_xticks([0, 50, 100, 150, 200])
     ax.set_xlabel("소요시간 (시간)", labelpad=12)
     ax.set_axisbelow(True)
     ax.grid(axis="x", color="#E6ECF1", linewidth=.8)
-    fig.legend(handles=[Line2D([0], [0], color=BLUE, linewidth=7, label="평균"),
-                        Line2D([0], [0], marker="D", color="none", markerfacecolor="white",
-                               markeredgecolor=INK, markersize=7, label="중앙값")],
-               loc="upper right", bbox_to_anchor=(.97, .98), ncol=2, frameon=False)
+    ax.axhline(1.5, color="#E2E7EB", lw=1)
+    fig.legend(loc="upper right", bbox_to_anchor=(.965,.985), ncol=2, frameon=False)
     align_category_labels(fig, [ax], [.035], [.96])
-    save(fig, "01-total-duration-v4")
+    save(fig, "01-total-duration-v5")
 
 
 def stage_detail():
@@ -181,7 +176,7 @@ def stage_detail():
                 rows = [stage for stage in route["stages"] if (stage[2] != "other") == yard]
                 for i, (label, sec, kind) in enumerate(rows):
                     value = sec / (86400 if yard else 60)
-                    color = BLUE if kind == "yard1" else TEAL if kind == "yard2" else "#6F98B0"
+                    color = "#F4A78D" if kind != "other" else "#9FBBC9"
                     ax.barh(i, value, height=.40, color=color, zorder=2)
                     ax.text(value + limit * .025, i, duration(sec), va="center", fontsize=10,
                             color=INK, weight="bold" if yard else "normal")
