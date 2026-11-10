@@ -1,0 +1,431 @@
+{
+  "source_url": "https://github.com/busan-itt/simulation/blob/9c6d506d3c80e56a55bc132f3e28ba48439c7bac/%EC%B5%9C%EC%A2%85%20%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98.ipynb",
+  "commit": "9c6d506d3c80e56a55bc132f3e28ba48439c7bac",
+  "baseline_mean_h_rounded": 227.2,
+  "rows": [
+    {
+      "policy": "전체",
+      "hours": 6,
+      "scenario": "A",
+      "reduction_pct": 0.6,
+      "other_delay_h": 0.003,
+      "realization_pct": null,
+      "ci_lower_pct": 0.38,
+      "ci_upper_pct": 0.86
+    },
+    {
+      "policy": "전체",
+      "hours": 6,
+      "scenario": "B",
+      "reduction_pct": 0.69,
+      "other_delay_h": 0,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "전체",
+      "hours": 6,
+      "scenario": "C",
+      "reduction_pct": 0.67,
+      "other_delay_h": 0,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "전체",
+      "hours": 12,
+      "scenario": "A",
+      "reduction_pct": 1.54,
+      "other_delay_h": 0.035,
+      "realization_pct": null,
+      "ci_lower_pct": 1.12,
+      "ci_upper_pct": 2.11
+    },
+    {
+      "policy": "전체",
+      "hours": 12,
+      "scenario": "B",
+      "reduction_pct": 1.54,
+      "other_delay_h": 0.007,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "전체",
+      "hours": 12,
+      "scenario": "C",
+      "reduction_pct": 1.5,
+      "other_delay_h": 0.003,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "전체",
+      "hours": 24,
+      "scenario": "A",
+      "reduction_pct": 3.06,
+      "other_delay_h": 0.145,
+      "realization_pct": null,
+      "ci_lower_pct": 2.16,
+      "ci_upper_pct": 4.11
+    },
+    {
+      "policy": "전체",
+      "hours": 24,
+      "scenario": "B",
+      "reduction_pct": 3.08,
+      "other_delay_h": 0.017,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "전체",
+      "hours": 24,
+      "scenario": "C",
+      "reduction_pct": 3.05,
+      "other_delay_h": 0.003,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "전체",
+      "hours": 48,
+      "scenario": "A",
+      "reduction_pct": 5.94,
+      "other_delay_h": 0.232,
+      "realization_pct": null,
+      "ci_lower_pct": 4.14,
+      "ci_upper_pct": 8.02
+    },
+    {
+      "policy": "전체",
+      "hours": 48,
+      "scenario": "B",
+      "reduction_pct": 5.89,
+      "other_delay_h": 0.039,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "전체",
+      "hours": 48,
+      "scenario": "C",
+      "reduction_pct": 5.85,
+      "other_delay_h": 0.008,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "전체",
+      "hours": 72,
+      "scenario": "A",
+      "reduction_pct": 7.88,
+      "other_delay_h": 0.327,
+      "realization_pct": null,
+      "ci_lower_pct": 5.45,
+      "ci_upper_pct": 10.86
+    },
+    {
+      "policy": "전체",
+      "hours": 72,
+      "scenario": "B",
+      "reduction_pct": 8.01,
+      "other_delay_h": 0.045,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "전체",
+      "hours": 72,
+      "scenario": "C",
+      "reduction_pct": 7.95,
+      "other_delay_h": 0.009,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "전체",
+      "hours": 96,
+      "scenario": "A",
+      "reduction_pct": 9.3,
+      "other_delay_h": 0.337,
+      "realization_pct": null,
+      "ci_lower_pct": 6.74,
+      "ci_upper_pct": 12.57
+    },
+    {
+      "policy": "전체",
+      "hours": 96,
+      "scenario": "B",
+      "reduction_pct": 9.33,
+      "other_delay_h": 0.059,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "전체",
+      "hours": 96,
+      "scenario": "C",
+      "reduction_pct": 9.32,
+      "other_delay_h": 0.015,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "전체",
+      "hours": 168,
+      "scenario": "A",
+      "reduction_pct": 11.07,
+      "other_delay_h": 0.467,
+      "realization_pct": null,
+      "ci_lower_pct": 7.75,
+      "ci_upper_pct": 15.32
+    },
+    {
+      "policy": "전체",
+      "hours": 168,
+      "scenario": "B",
+      "reduction_pct": 11.21,
+      "other_delay_h": 0.071,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "전체",
+      "hours": 168,
+      "scenario": "C",
+      "reduction_pct": 11.15,
+      "other_delay_h": 0.021,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "선별",
+      "hours": 6,
+      "scenario": "A",
+      "reduction_pct": 1.32,
+      "other_delay_h": 0.049,
+      "realization_pct": null,
+      "ci_lower_pct": 0.98,
+      "ci_upper_pct": 1.66
+    },
+    {
+      "policy": "선별",
+      "hours": 6,
+      "scenario": "B",
+      "reduction_pct": 1.34,
+      "other_delay_h": 0.002,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "선별",
+      "hours": 6,
+      "scenario": "C",
+      "reduction_pct": 1.35,
+      "other_delay_h": 0,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "선별",
+      "hours": 12,
+      "scenario": "A",
+      "reduction_pct": 2.39,
+      "other_delay_h": 0.038,
+      "realization_pct": null,
+      "ci_lower_pct": 1.83,
+      "ci_upper_pct": 2.95
+    },
+    {
+      "policy": "선별",
+      "hours": 12,
+      "scenario": "B",
+      "reduction_pct": 2.78,
+      "other_delay_h": 0.012,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "선별",
+      "hours": 12,
+      "scenario": "C",
+      "reduction_pct": 2.82,
+      "other_delay_h": 0.001,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "선별",
+      "hours": 24,
+      "scenario": "A",
+      "reduction_pct": 5.6,
+      "other_delay_h": 0.176,
+      "realization_pct": 90.2,
+      "ci_lower_pct": 4.33,
+      "ci_upper_pct": 6.96
+    },
+    {
+      "policy": "선별",
+      "hours": 24,
+      "scenario": "B",
+      "reduction_pct": 5.59,
+      "other_delay_h": 0.02,
+      "realization_pct": 99.7,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "선별",
+      "hours": 24,
+      "scenario": "C",
+      "reduction_pct": 5.58,
+      "other_delay_h": 0.001,
+      "realization_pct": 99.9,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "선별",
+      "hours": 48,
+      "scenario": "A",
+      "reduction_pct": 10.54,
+      "other_delay_h": 0.316,
+      "realization_pct": 93.3,
+      "ci_lower_pct": 7.97,
+      "ci_upper_pct": 13.05
+    },
+    {
+      "policy": "선별",
+      "hours": 48,
+      "scenario": "B",
+      "reduction_pct": 10.46,
+      "other_delay_h": 0.036,
+      "realization_pct": 99.5,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "선별",
+      "hours": 48,
+      "scenario": "C",
+      "reduction_pct": 10.45,
+      "other_delay_h": 0.006,
+      "realization_pct": 100,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "선별",
+      "hours": 72,
+      "scenario": "A",
+      "reduction_pct": 13.87,
+      "other_delay_h": 0.349,
+      "realization_pct": null,
+      "ci_lower_pct": 10.59,
+      "ci_upper_pct": 17.29
+    },
+    {
+      "policy": "선별",
+      "hours": 72,
+      "scenario": "B",
+      "reduction_pct": 14.25,
+      "other_delay_h": 0.032,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "선별",
+      "hours": 72,
+      "scenario": "C",
+      "reduction_pct": 14.25,
+      "other_delay_h": 0.006,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "선별",
+      "hours": 96,
+      "scenario": "A",
+      "reduction_pct": 16.83,
+      "other_delay_h": 0.44,
+      "realization_pct": 92.2,
+      "ci_lower_pct": 12.91,
+      "ci_upper_pct": 20.7
+    },
+    {
+      "policy": "선별",
+      "hours": 96,
+      "scenario": "B",
+      "reduction_pct": 17.02,
+      "other_delay_h": 0.042,
+      "realization_pct": 99.7,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "선별",
+      "hours": 96,
+      "scenario": "C",
+      "reduction_pct": 17,
+      "other_delay_h": 0.007,
+      "realization_pct": 99.9,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "선별",
+      "hours": 168,
+      "scenario": "A",
+      "reduction_pct": 21.4,
+      "other_delay_h": 0.522,
+      "realization_pct": null,
+      "ci_lower_pct": 16.51,
+      "ci_upper_pct": 26.31
+    },
+    {
+      "policy": "선별",
+      "hours": 168,
+      "scenario": "B",
+      "reduction_pct": 21.57,
+      "other_delay_h": 0.038,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    },
+    {
+      "policy": "선별",
+      "hours": 168,
+      "scenario": "C",
+      "reduction_pct": 21.54,
+      "other_delay_h": 0.006,
+      "realization_pct": null,
+      "ci_lower_pct": null,
+      "ci_upper_pct": null
+    }
+  ],
+  "sharing_results": "[반복 100회] 시나리오별 KPI\n                      A        B        C\n평균 대기(h)           0.96     0.06     0.00\nP95 대기(h)          6.83     0.00     0.00\n대기 발생 호출(%)       11.30     1.74     0.12\n타부두 이동 호출(%)       0.00    10.63    11.80\n타부두 이동 물량(천TEU)    0.00  2520.02  2601.92\n평균 선석 이용률(%)      57.68    57.96    58.12\n최대 터미널 가동률(%)    142.10   133.28   129.47\n가동률 편차(표준편차 %p)   27.67    19.96    16.47\n가동률 변동계수           0.25     0.18     0.15\n\n터미널별 평균 대기(h)\n          A 평균대기h  B 평균대기h  C 평균대기h\nterminal                           \nBCT          0.61     0.04     0.01\nBNCT         0.24     0.08     0.00\nDGT          0.10     0.04     0.00\nHJNC         0.87     0.04     0.00\nHPNT         0.75     0.06     0.00\nPNC          1.76     0.10     0.00\nPNIT         2.63     0.06     0.00\n\n터미널별 선석(안벽) 이용률(%)\n             A     B     C\nterminal                  \nPNIT      67.4  63.0  61.3\nPNC       69.2  66.0  64.6\nHJNC      62.6  59.5  58.6\nHPNT      54.1  54.8  52.1\nBNCT      53.4  58.5  60.6\nBCT       56.8  56.0  61.1\nDGT       40.1  47.9  48.7\n\n터미널별 가동률(%) = 연간 물량 / 연간 하역능력\n              A      B      C\nterminal                     \nPNIT      142.1  133.3  129.5\nPNC       133.3  127.6  123.9\nHJNC      120.4  111.2  110.5\nHPNT      129.2  128.9  123.2\nBNCT      100.7  112.2  114.8\nBCT        90.7   87.1  102.1\nDGT        56.6   77.6   77.1\n\n터미널별 연간 물량(천TEU)과 변화\n               A       B       C    B-A    C-A\nterminal                                      \nPNIT      2969.9  2785.4  2706.0 -184.5 -263.9\nPNC       5054.0  4837.8  4696.4 -216.1 -357.5\nHJNC      2782.1  2568.7  2552.4 -213.4 -229.7\nHPNT      2492.8  2488.1  2377.1   -4.7 -115.7\nBNCT      2456.5  2736.7  2800.7  280.2  344.2\nBCT       1768.5  1698.0  1990.7  -70.4  222.2\nDGT       1104.0  1512.9  1504.4  408.9  400.4\n\n접안이 0.5h 넘게 앞당겨진 선박: B 1116척, C 1151척 / 7041척, 최대 앞당김 B 41.8h, C 42.0h\n",
+  "uncertainty_results": "정책  요청 앞당김(h)  감소율(%)  반복 5%  반복 95%  부트스트랩 하한  부트스트랩 상한  확실 달성 목표(%)\n선별         24    5.60   5.51    5.70      4.33      6.96            3\n선별         48   10.54  10.50   10.59      7.97     13.05            5\n선별         96   16.83  16.67   16.94     12.91     20.70           10\n선별        168   21.40  21.28   21.53     16.51     26.31           15\n전체         24    3.06   2.98    3.15      2.16      4.11            1\n전체         48    5.94   5.86    6.03      4.14      8.02            3\n전체         96    9.30   9.26    9.35      6.74     12.57            5\n전체        168   11.07  10.99   11.20      7.75     15.32            5\n\n반복 간 범위(5~95%)는 ±0.1%p 안팎으로 작고, 불확실성은 대부분 어떤 선박이 표본에 들어가느냐(부트스트랩 구간)에서 나온다.\n",
+  "holdout_results": "실현 비율 예측 (학습 상반기 509척 → 검증 하반기 597척)\n  하반기 R² = 0.076 (상수 모형 -0.061), 평균절대오차 0.117 (상수 모형 0.132)\n  하반기 상관계수 = 0.350\n  20/40회 완료\n  40/40회 완료\n[4차 셀 31] 40회 반복 완료, 158초 | 하반기 후보 배 425척\n\n[하반기 검증] 요청 앞당김 48h, 시나리오 A/C\n\n시나리오 A\n             그룹  앞당긴 배  하반기 감소율(%)  상반기 감소율(%)  배당 절감(박스·h)  다른 선박 지연(h)\n          H2 전체  597.0       4.710         0.0      370.000        0.120\nH2 선별(순이득>0 전부)  425.0       9.330         0.0     1027.000        0.126\n        무작위 75%  319.0       7.107         0.0     1042.667        0.104\n       예측순위 75%  319.0       8.930         0.0     1310.000        0.098\n       박스순위 75%  319.0       8.990         0.0     1319.000        0.096\n       예측순위 50%  212.0       8.290         0.0     1831.000        0.109\n        무작위 50%  212.0       4.820         0.0     1063.333        0.088\n       박스순위 50%  212.0       8.280         0.0     1828.000        0.110\n        무작위 25%  106.0       2.200         0.0      970.333        0.048\n       박스순위 25%  106.0       6.800         0.0     3001.000        0.088\n       예측순위 25%  106.0       6.790         0.0     2998.000        0.084\n\n시나리오 C\n             그룹  앞당긴 배  하반기 감소율(%)  상반기 감소율(%)  배당 절감(박스·h)  다른 선박 지연(h)\n          H2 전체  597.0       4.390        -0.3      344.000        0.000\nH2 선별(순이득>0 전부)  425.0       9.150        -0.3     1008.000        0.002\n        무작위 75%  319.0       6.843        -0.3     1003.667        0.000\n       예측순위 75%  319.0       8.980        -0.3     1317.000        0.001\n       박스순위 75%  319.0       8.980        -0.3     1317.000        0.000\n       예측순위 50%  212.0       8.390        -0.3     1852.000        0.000\n        무작위 50%  212.0       4.757        -0.3     1050.667        0.000\n       박스순위 50%  212.0       8.390        -0.3     1852.000        0.000\n        무작위 25%  106.0       2.130        -0.3      939.333        0.000\n       박스순위 25%  106.0       6.800        -0.3     3001.000        0.000\n       예측순위 25%  106.0       6.790        -0.3     2998.000        0.000\n",
+  "ml_results": "[점유시간 예측] 하반기 검증 (상반기로 학습) - MAE(h), R²\n  기준(터미널 중앙값)    MAE 8.83h  R² 0.108\n  그래디언트 부스팅      MAE 4.29h  R² 0.563\n  중요 특성(하반기 순열 중요도): load 0.318, discharge 0.245, route_c 0.151, carrier_c 0.036, beam 0.005\n  평균 점유시간 실제 22.1h, 예측 21.6h | 예측 표준편차 11.6h vs 실제 13.7h (예측은 평균쪽으로 모인다)\n\n[선박 길이 예측] 선박 단위 5-겹 검증 - MAE(m), R²\n  무작위(현재 방식)     MAE 85.6m  R² -0.646\n  그래디언트 부스팅      MAE 22.0m  R² 0.820\n  결측 300건(선박 58척)을 예측값으로 보완, 예측 평균 226m (알려진 선박 평균 258m)\n"
+}

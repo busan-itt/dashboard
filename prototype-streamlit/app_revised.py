@@ -197,7 +197,8 @@ def home() -> None:
          (("intro-problem", "문제제기"), ("intro-status", "현황 분석"))),
         ("dashboard-summary", "분석 내용", "데이터와 분석 과정을 살펴봅니다.", "analysis", ()),
         ("improvement", "개선안", "분석을 바탕으로 제안한 개선안을 확인합니다.", "improvement",
-         (("intro-solution", "개선안 소개"), ("simulation", "시뮬레이션"))),
+         (("intro-solution", "시뮬레이션"), ("simulation", "시뮬레이션 결과"),
+          ("improvement-results", "개선안 결과"))),
         ("attachments", "첨부", "사용한 데이터와 초기 개선안 기획을 확인합니다.", "attachments",
          (("used-data", "사용한 데이터"), ("planning", "초기 개선안 기획"))),
     )
@@ -525,26 +526,19 @@ def intro_status() -> None:
 
 
 def intro_solution() -> None:
-    with st.container(key="improvement_introduction"):
-        html('<div class="page-heading improvement-content-heading"><span>IMPROVEMENT</span>'
-             '<h1>개선안 소개</h1><p>선석 공유와 연결선 일정 조정의 제안 내용 및 결과를 확인합니다.</p></div>')
-        improvement_views.introduction()
-        html('<div id="improvement-results"></div>')
-        improvement_views.project_conclusion()
+    improvement_views.render_section("s2")
 
 
 def improvement() -> None:
-    landing("IMPROVEMENT", "개선안", "개선안 소개와 시뮬레이션을 각각의 페이지에서 확인합니다.",
-            (("intro-solution", "개선안 소개"), ("simulation", "시뮬레이션")))
+    improvement_views.render_section("s1")
 
 
 def simulation() -> None:
-    with st.container(key="improvement_simulation"):
-        html('<div class="page-heading improvement-content-heading"><span>SIMULATION</span>'
-             '<h1>시뮬레이션</h1><p>검증 방법과 조건을 살펴보고, 저장된 결과를 비교합니다.</p></div>')
-        improvement_views.methodology()
-        html('<div id="simulation-results"></div>')
-        improvement_views.simulation()
+    improvement_views.render_section("s3")
+
+
+def improvement_results() -> None:
+    improvement_views.render_section("s4")
 
 
 def planning() -> None:
@@ -589,8 +583,9 @@ intro_pages = [
     st.Page(intro_status, title="현황 분석", url_path="intro-status"),
 ]
 improvement_pages = [
-    st.Page(intro_solution, title="개선안 소개", url_path="intro-solution"),
-    st.Page(simulation, title="시뮬레이션", url_path="simulation"),
+    st.Page(intro_solution, title="시뮬레이션", url_path="intro-solution"),
+    st.Page(simulation, title="시뮬레이션 결과", url_path="simulation"),
+    st.Page(improvement_results, title="개선안 결과", url_path="improvement-results"),
 ]
 analysis_pages = [
     st.Page(analysis_dgt_odt, title="DGT_ODT", url_path="analysis-dgt-odt"),

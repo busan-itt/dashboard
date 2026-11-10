@@ -1,38 +1,24 @@
 # 개선안·시뮬레이션 통합 모듈
 
-메인 앱 `../app_revised.py`에서 다음과 같이 불러옵니다. 별도 파일 복사나 `improvement-part` 참조는 필요하지 않습니다.
+## 현재 화면: 첨부 발표 자료 반영
 
-```python
-from improvement_content import views as improvement_views
-```
+`port-analytics-improvement.zip`의 개선안 관련 내용만 반영했습니다. ZIP의 전체 앱·홈·분석·공통 스타일은 가져오지 않았습니다. 현재 `views.py`는 `assets/presentation.html`의 네 영역과 `presentation.css`를 사용하며, 화면 색상은 앱의 코랄·네이비 팔레트에 맞췄습니다.
 
-## 페이지와 함수 대응
+| 실제 페이지 | 화면 영역 |
+|---|---|
+| 개선안 `/improvement` | `render_section("s1")` |
+| 시뮬레이션 `/intro-solution` | `render_section("s2")` |
+| 시뮬레이션 결과 `/simulation` | `render_section("s3")`, 정책·시간에 따른 동적 KPI·막대그래프 |
+| 개선안 결과 `/improvement-results` | `render_section("s4")` |
 
-| 실제 페이지 | 호출 함수 | 내용 |
-|---|---|---|
-| 개선안 소개 `/intro-solution` | `introduction()` | 가정, 현황 수치, A·B·C 운영 방식, 제안서 원본 다운로드 |
-| 개선안 소개 `#improvement-results` | `project_conclusion()` | 대표 조건 KPI, 가장 큰 체류 감소 결과, 보완 과제, 최종 개선안 |
-| 시뮬레이션 `/simulation` | `methodology()` | 검증 순서, 전체·선별 조정, 조건, 1~6차 기록 |
-| 시뮬레이션 `#simulation-results` | `simulation()` | 조정 방식·시간 선택, KPI, 비교 그래프, 모든 결과 보기 |
+`data/simulation_all_results.json`은 첨부본의 42개 저장 조건을 그대로 보관합니다. 결과 비교에서는 실현율까지 비교 가능한 24·48·96시간의 18개 조건을 표시하며, 결론은 첨부 HTML에 정리된 168시간의 최대 감소 결과도 보여줍니다. 정적인 HTML 결론과 JSON은 자료 갱신 시 함께 확인해야 합니다. 세션 키는 `live_policy`, `live_hours`입니다.
 
-네 함수는 각각 제목 패널을 그립니다. 기존 통합본의 페이지 링크와 스타일을 유지했습니다. 카드 스타일은 주로 `.pv` 영역에 적용됩니다.
+기존 `observed_routes.json`과 나머지 JSON·제안서·SVG는 변경하지 않았습니다. [수치표.md](수치표.md)는 기존 `simulation_results.json`의 18개 조건 참고표입니다. 이전 화면의 전체 결과 버튼·CSV·제안서 다운로드는 이번 첨부 발표 화면에 포함되어 있지 않습니다.
 
-## 데이터 관리
+## 자료 관리
 
-- `data/simulation_results.json`: 저장된 결과의 기준 데이터입니다. 현재 18개 조건(정책 2 × 시간 24·48·96 × 시나리오 A·B·C), 기준 평균 야드 체류 227.2시간, 반복 100회, 최소 연결 간격 24시간입니다. 조건을 추가하면 선택 범위·표·조건 수가 데이터에 따라 바뀝니다. 새 조건의 정책·시간별로 A·B·C 행이 모두 있어야 합니다.
-- `data/observed_routes.json`: **기존 통합본을 유지**합니다. 통합 전 폴더의 다른 버전으로 덮어쓰지 않습니다.
-- `data/proposal.json`, `data/제안서.ipynb`: 제안서 화면과 원본 다운로드에 사용합니다.
-- `assets/`: 터미널 배치도와 환적 흐름 SVG입니다.
-- [수치표.md](수치표.md): 현재 JSON의 18개 조건을 정리한 참고표입니다. JSON을 바꿀 때 함께 갱신하세요. 약 평균 체류는 `227.2 × (1 − 감소율 / 100)`, 접안 지연(분)은 `other_delay_h × 60`입니다.
+화면은 `from improvement_content import views as improvement_views`로 연결합니다. JSON·HTML·CSS 경로는 `views.py` 위치를 기준으로 찾으므로 `prototype-streamlit` 폴더만으로 실행할 수 있습니다.
 
-전체 정책의 실현율은 JSON에 정밀값이 없습니다. `views.py`의 `ROUNDED_REAL`에 있는 24·48·96시간의 정수 반올림 값을 표시하며, 다른 시간에 대응하는 값이 없으면 `—`로 표시합니다. 수치표의 전체 정책 실현율 `-`는 원본 JSON 값이 없음을 뜻합니다.
+전체 정책의 실현율은 첨부 코드의 정수 반올림 보정값(24·48·96시간)을 사용합니다. 최대 감소 조건인 168시간은 실현율 자료가 없어 결론에 해당 값을 표시하지 않습니다. 평균 체류는 반올림된 기준 227.2시간으로 계산한 근사치입니다.
 
-## 위젯·세션 키
-
-`result_policy`, `result_hours`, `show_all_results`, `show_all_results_button`, `method_scenario`, `method_terminal`을 사용합니다. 다른 화면에 위젯을 추가할 때 같은 키가 겹치지 않도록 합니다.
-
-## 자료 검토 사항
-
-현재 포함된 결과는 18개 조건입니다. 이전 설명에 언급된 168시간·42개 조건 자료는 포함되어 있지 않습니다. 해당 결과를 확보한 뒤 데이터와 실현율 표시를 함께 검토해야 합니다.
-
-원본 README에는 대시보드 DGT→HJNC 평균 체류 216.6시간과 제안서 282.81시간의 차이, 향후 보완 과제 4개 문구의 원문 대조 필요성이 기록되어 있습니다. 이 값은 이번 통합에서 임의로 수정하지 않았습니다. 발표 시에는 야드 체류와 전체 환적시간의 정의·표본·산출 근거를 확인하세요.
+시뮬레이션 결과는 저장된 출력이며 실제 모델을 다시 실행하지 않습니다. 정적인 발표 자료와 데이터의 수치·조건·출처를 함께 검토한 뒤 갱신하세요.
