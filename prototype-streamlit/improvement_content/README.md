@@ -2,7 +2,7 @@
 
 ## 현재 화면: 첨부 발표 자료 반영
 
-`port-analytics-improvement.zip`의 개선안 관련 내용만 반영했습니다. ZIP의 전체 앱·홈·분석·공통 스타일은 가져오지 않았습니다. 현재 `views.py`는 `assets/presentation.html`의 네 영역과 `presentation.css`를 사용하며, 화면 색상은 앱의 코랄·네이비 팔레트에 맞췄습니다.
+`port-analytics-improvement.zip`의 개선안 관련 내용만 반영했습니다. ZIP의 전체 앱·홈·분석·공통 스타일은 가져오지 않았습니다. 현재 `views.py`는 `assets/presentation.html`의 네 영역과 `presentation.css`를 사용하며, 화면은 네이비·크림을 기본으로 하고 그래프에 코랄·슬레이트·미스트를 사용합니다.
 
 | 실제 페이지 | 화면 영역 |
 |---|---|

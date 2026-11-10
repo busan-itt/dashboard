@@ -1,5 +1,5 @@
 <style>
-.initial-plan-content { max-width:1100px; color:#1D3557; font-size:16px; line-height:1.85; }
+.initial-plan-content { max-width:1100px; color:#192C3A; font-size:16px; line-height:1.85; }
 .initial-plan-content h2 { margin:0 0 28px; font-size:28px; line-height:1.45; }
 .initial-plan-content h3 { margin:0 0 18px; font-size:23px; line-height:1.5; }
 .initial-plan-content section { margin:32px 0; }
@@ -7,13 +7,13 @@
 .initial-plan-content figure { margin:22px 0; }
 .initial-plan-content img { display:block; width:100%; height:auto; border-radius:12px; }
 .initial-plan-content figcaption { margin-top:10px; color:#607586; font-size:14px; }
-.initial-plan-content a { color:#1D3557; overflow-wrap:anywhere; }
-.initial-plan-content .initial-plan-source { padding:8px 24px; margin:24px 0; border-left:4px solid #1D3557; background:#F8F9FA; border-radius:0 12px 12px 0; }
+.initial-plan-content a { color:#192C3A; overflow-wrap:anywhere; }
+.initial-plan-content .initial-plan-source { padding:8px 24px; margin:24px 0; border-left:4px solid #192C3A; background:#F4EEE2; border-radius:0 12px 12px 0; }
 .initial-plan-content ul { padding-left:24px; }
-.initial-plan-content .initial-plan-table { overflow-x:auto; background:#fff; border:1px solid #E2E5EA; border-radius:12px; margin:24px 0; }
+.initial-plan-content .initial-plan-table { overflow-x:auto; background:#FBF8F1; border:1px solid #D9D3C8; border-radius:12px; margin:24px 0; }
 .initial-plan-content table { width:100%; border-collapse:collapse; text-align:left; font-size:15px; }
-.initial-plan-content th,.initial-plan-content td { padding:15px 20px; border-bottom:1px solid #E2E5EA; vertical-align:top; }
-.initial-plan-content th { background:#F8F9FA; }
+.initial-plan-content th,.initial-plan-content td { padding:15px 20px; border-bottom:1px solid #D9D3C8; vertical-align:top; }
+.initial-plan-content th { background:#F4EEE2; }
 .initial-plan-content tr:last-child td { border-bottom:0; }
 .initial-plan-content td span { color:#526573; }
 @media(max-width:720px) {

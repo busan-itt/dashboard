@@ -1,4 +1,4 @@
-.presentation-content{--bg:#F8F9FA;--card:#fff;--tx:#0A0F1F;--sub:#5d6b78;--line:#e2e6ea;--pri:#1D3557;--tint:#FFF0ED;color:var(--tx);font-family:system-ui,-apple-system,"Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.55;background:var(--bg);border-radius:12px;container-type:inline-size}
+.presentation-content{--bg:#F4EEE2;--card:#FBF8F1;--tx:#192C3A;--sub:#5d6b78;--line:#D9D3C8;--pri:#192C3A;--tint:#F4EEE2;color:var(--tx);font-family:system-ui,-apple-system,"Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.55;background:var(--bg);border-radius:12px;container-type:inline-size}
 .presentation-content *{box-sizing:border-box}
 .presentation-content section{max-width:1040px;margin:0 auto;padding:32px 24px;min-height:560px}
 .presentation-content .tag{font-size:12px;color:var(--pri);font-weight:500;letter-spacing:.02em}
@@ -25,11 +25,11 @@
 .presentation-content .mlabel{font-size:13px;font-weight:600;margin-bottom:10px}
 .presentation-content .brow{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:13px}
 .presentation-content .bn{width:92px;color:var(--sub);flex-shrink:0}
-.presentation-content .track{flex:1;height:14px;background:var(--bg);border-radius:4px;overflow:hidden}
-.presentation-content .bar{display:block;height:100%;background:#b5bec8;border-radius:4px}
-.presentation-content .bar.hi{background:#FF6F61}
+.presentation-content .track{flex:1;height:14px;background:#CCD9DF;border-radius:4px;overflow:hidden}
+.presentation-content .bar{display:block;height:100%;background:#526D82;border-radius:4px}
+.presentation-content .bar.hi{background:#F4A78D}
 .presentation-content .bv{width:70px;text-align:right;font-weight:500;flex-shrink:0}
-.presentation-content .take{margin-top:18px;padding:14px 18px;border-left:3px solid #FF6F61;background:var(--card);border-radius:0;font-size:15px}
+.presentation-content .take{margin-top:18px;padding:14px 18px;border-left:3px solid #192C3A;background:var(--card);border-radius:0;font-size:15px}
 .presentation-content ul.lim{margin:0;padding-left:18px;font-size:14px;color:var(--sub)}
 .presentation-content ul.lim li{margin:4px 0}
 @media(max-width:720px){.presentation-content .g4,.presentation-content .g3,.presentation-content .g2,.presentation-content .tl{grid-template-columns:1fr 1fr}.presentation-content .flow{flex-direction:column}.presentation-content .arrow{transform:rotate(90deg)}}
