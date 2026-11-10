@@ -15,9 +15,9 @@ from matplotlib import colormaps
 from matplotlib.colors import LinearSegmentedColormap
 
 ROOT = Path(__file__).resolve().parents[1]
-BLUE = "#6F98B0"
+BLUE = "#3F617C"
 CORAL = "#F4A78D"
-HEATMAP = LinearSegmentedColormap.from_list("blue_white_coral", ["#6F98B0", "#FFFFFF", CORAL])
+HEATMAP = LinearSegmentedColormap.from_list("blue_white_coral", ["#3F617C", "#FFFFFF", CORAL])
 
 
 def rgb(code):

@@ -9,7 +9,7 @@ linkColor = "#192C3A"
 borderColor = "#E2E7EB"
 baseRadius = "0.5rem"
 buttonRadius = "0.5rem"
-chartCategoricalColors = ["#6F98B0", "#F4A78D", "#56829B", "#88A7B9", "#7FA6BB", "#789AAC"]
+chartCategoricalColors = ["#3F617C", "#F4A78D", "#34556F", "#66839A", "#5C7D95", "#56768E"]
 
 [theme.sidebar]
 backgroundColor = "#192C3A"

@@ -18,12 +18,12 @@ from improvement_content import views as improvement_views
 
 ROOT = Path(__file__).parent
 TERMINALS = (
-    ("PNC", 198_000, 84, 31.8, 67.0, "#6F98B0"),
+    ("PNC", 198_000, 84, 31.8, 67.0, "#3F617C"),
     ("PNIT", 174_000, 76, 29.4, 62.0, "#F4A78D"),
-    ("HJNC", 163_000, 71, 28.8, 59.0, "#56829B"),
-    ("HPNT", 149_000, 66, 27.9, 64.0, "#88A7B9"),
-    ("BNCT", 139_000, 61, 27.1, 57.0, "#7FA6BB"),
-    ("BCT", 118_000, 54, 25.8, 53.0, "#789AAC"),
+    ("HJNC", 163_000, 71, 28.8, 59.0, "#34556F"),
+    ("HPNT", 149_000, 66, 27.9, 64.0, "#66839A"),
+    ("BNCT", 139_000, 61, 27.1, 57.0, "#5C7D95"),
+    ("BCT", 118_000, 54, 25.8, 53.0, "#56768E"),
 )
 CARGO_FACTORS = {"전체 화물": 1.0, "수입": 0.34, "수출": 0.31, "환적": 0.35}
 MONTHS = pd.period_range("2025-11", periods=12, freq="M").strftime("%Y.%m").tolist()
@@ -118,11 +118,11 @@ def dashboard() -> None:
         html(f'<div class="panel-head"><span>THROUGHPUT TREND</span><h2>월별 물동량 추이</h2>'
              f'<p><strong>{state["volume"]:,} TEU</strong>　선택 기간 누적 물동량</p></div>')
         chart = pd.DataFrame({"월": state["months"], "선택 기간": state["current"], "이전 기간": state["previous"]})
-        st.line_chart(chart, x="월", y=["선택 기간", "이전 기간"], color=["#6F98B0", "#F4A78D"], height=300)
+        st.line_chart(chart, x="월", y=["선택 기간", "이전 기간"], color=["#3F617C", "#F4A78D"], height=300)
     with right, st.container(key="status_panel"):
         html('<div class="panel-head"><span>YARD STATUS</span><h2>작업 상태 분포</h2><p>샘플 기준</p></div>')
-        status = [("완료", 46, "#6F98B0"), ("작업 중", 29, "#F4A78D"),
-                  ("대기", 17, "#56829B"), ("점검", 8, "#94ADBC")]
+        status = [("완료", 46, "#3F617C"), ("작업 중", 29, "#F4A78D"),
+                  ("대기", 17, "#34556F"), ("점검", 8, "#7891A4")]
         legend = "".join(f'<div><i style="background:{color}"></i><span>{name}</span><strong>{share}%</strong></div>'
                          for name, share, color in status)
         html('<div class="donut"><span><strong>100%</strong><small>상태 분포</small></span></div>'

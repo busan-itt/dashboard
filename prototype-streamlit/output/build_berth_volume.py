@@ -12,7 +12,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 CHARTS = ROOT/'assets/correlation-analysis/unified'
-BLUE, CORAL, INK = '#6F98B0', '#F4A78D', '#192C3A'
+BLUE, CORAL, INK = '#3F617C', '#F4A78D', '#192C3A'
 
 
 def build():

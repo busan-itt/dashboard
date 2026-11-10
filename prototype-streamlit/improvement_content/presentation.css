@@ -26,7 +26,7 @@
 .presentation-content .brow{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:13px}
 .presentation-content .bn{width:92px;color:var(--sub);flex-shrink:0}
 .presentation-content .track{flex:1;height:14px;background:#F2F5F7;border-radius:4px;overflow:hidden}
-.presentation-content .bar{display:block;height:100%;background:#6F98B0;border-radius:4px}
+.presentation-content .bar{display:block;height:100%;background:#3F617C;border-radius:4px}
 .presentation-content .bar.hi{background:#F4A78D}
 .presentation-content .bv{width:70px;text-align:right;font-weight:500;flex-shrink:0}
 .presentation-content .take{margin-top:18px;padding:14px 18px;border-left:3px solid #192C3A;background:var(--card);border-radius:0;font-size:15px}
