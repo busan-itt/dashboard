@@ -18,9 +18,9 @@ from improvement_content import views as improvement_views
 
 ROOT = Path(__file__).parent
 TERMINALS = (
-    ("PNC", 198_000, 84, 31.8, 67.0, "#192C3A"),
+    ("PNC", 198_000, 84, 31.8, 67.0, "#526D82"),
     ("PNIT", 174_000, 76, 29.4, 62.0, "#F4A78D"),
-    ("HJNC", 163_000, 71, 28.8, 59.0, "#526D82"),
+    ("HJNC", 163_000, 71, 28.8, 59.0, "#8AA3B4"),
     ("HPNT", 149_000, 66, 27.9, 64.0, "#CCD9DF"),
     ("BNCT", 139_000, 61, 27.1, 57.0, "#C3836F"),
     ("BCT", 118_000, 54, 25.8, 53.0, "#839BA9"),
@@ -118,11 +118,11 @@ def dashboard() -> None:
         html(f'<div class="panel-head"><span>THROUGHPUT TREND</span><h2>월별 물동량 추이</h2>'
              f'<p><strong>{state["volume"]:,} TEU</strong>　선택 기간 누적 물동량</p></div>')
         chart = pd.DataFrame({"월": state["months"], "선택 기간": state["current"], "이전 기간": state["previous"]})
-        st.line_chart(chart, x="월", y=["선택 기간", "이전 기간"], color=["#192C3A", "#CCD9DF"], height=300)
+        st.line_chart(chart, x="월", y=["선택 기간", "이전 기간"], color=["#526D82", "#CCD9DF"], height=300)
     with right, st.container(key="status_panel"):
         html('<div class="panel-head"><span>YARD STATUS</span><h2>작업 상태 분포</h2><p>샘플 기준</p></div>')
-        status = [("완료", 46, "#192C3A"), ("작업 중", 29, "#F4A78D"),
-                  ("대기", 17, "#526D82"), ("점검", 8, "#CCD9DF")]
+        status = [("완료", 46, "#526D82"), ("작업 중", 29, "#F4A78D"),
+                  ("대기", 17, "#8AA3B4"), ("점검", 8, "#CCD9DF")]
         legend = "".join(f'<div><i style="background:{color}"></i><span>{name}</span><strong>{share}%</strong></div>'
                          for name, share, color in status)
         html('<div class="donut"><span><strong>100%</strong><small>상태 분포</small></span></div>'
@@ -352,6 +352,40 @@ def analysis_figure(filename: str, description: str) -> str:
             f'alt="{escape(description)}"></figure>')
 
 
+def process_flow(kind: str) -> str:
+    """Accessible process diagrams with local, decorative SVG line icons."""
+    ship = '<path d="M4 19h32l-4 9H10Z"/><path d="M9 19V9h19v10M14 9V5h6v4M14 14h4m5 0h2M4 32q4-4 8 0t8 0t8 0t8 0"/>'
+    crane = '<path d="M7 33V5h4v28M7 6h27L11 15M7 33H3m8 0h5M30 7v8"/><rect x="22" y="24" width="14" height="9" rx="1"/>'
+    yard = '<rect x="4" y="23" width="15" height="10" rx="1"/><rect x="21" y="23" width="15" height="10" rx="1"/><rect x="12" y="11" width="15" height="10" rx="1"/><path d="M9 26v4m5-4v4m12-4v4m5-4v4M17 14v4m5-4v4"/>'
+    truck = '<rect x="3" y="12" width="21" height="16" rx="1"/><path d="M24 19h8l5 6v3H24M29 20v5h7M3 28h34M8 16v7m5-7v7m5-7v7"/><circle cx="10" cy="30" r="3"/><circle cx="30" cy="30" r="3"/>'
+    icons = {
+        "arrival": ship, "departure": ship, "yard": yard, "truck": truck,
+        "unload": crane + '<path d="M30 15v6m-3-3 3 3 3-3"/>',
+        "load": crane + '<path d="M30 21v-6m-3 3 3-3 3 3"/>',
+    }
+    middle = [("yard", "야드·선측 장치", "동일 터미널", False)] if kind == "odt" else [
+        ("yard", "출발 부두 장치", "A부두 야드", False),
+        ("truck", "부두 간 이동", "트럭으로 운송", True),
+        ("yard", "도착 부두 장치", "B부두 야드", True),
+    ]
+    steps = [("arrival", "입항", "모선 도착", False), ("unload", "양하", "컨테이너 내리기", False),
+             *middle, ("load", "적하", "연결선에 싣기", False), ("departure", "출항", "연결선 출발", False)]
+    items = []
+    for index, (icon, label, detail, extra) in enumerate(steps, 1):
+        stroke = "#C3836F" if extra else "#526D82"
+        svg = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" '
+               f'fill="none" stroke="{stroke}" stroke-width="1.7" stroke-linecap="round" '
+               f'stroke-linejoin="round">{icons[icon]}</svg>')
+        encoded = b64encode(svg.encode("utf-8")).decode("ascii")
+        icon_image = f'<img src="data:image/svg+xml;base64,{encoded}" alt="" width="48" height="48">'
+        items.append(f'<li class="process-step{" process-step-extra" if extra else ""}">'
+                     f'<span class="process-number">{index:02d}</span><span class="process-icon">{icon_image}</span>'
+                     f'<strong>{label}</strong><small>{detail}</small></li>')
+    name = "자부두" if kind == "odt" else "타부두"
+    return (f'<ol class="problem-icon-flow" style="--step-count:{len(steps)}" '
+            f'aria-label="{name} 환적 처리 순서">{"".join(items)}</ol>')
+
+
 def intro_problem() -> None:
     st.html(ROOT / "problem.css")
     body = '''<div class="problem-page">
@@ -379,16 +413,11 @@ def intro_problem() -> None:
           <article class="problem-process-card"><span class="problem-type">ODT</span>
             <h3>자부두 환적</h3><p class="problem-english">On-Dock Transshipment</p>
             <p>양하와 적하를 동일한 터미널에서 처리합니다.</p>
-            <ol class="problem-flow" aria-label="자부두 환적 처리 순서">
-              <li>입항(모선)</li><li>양하</li><li>동일 터미널 야드·선측 장치</li><li>적하</li><li>출항</li>
-            </ol></article>
+            <!-- odt-process --></article>
           <article class="problem-process-card"><span class="problem-type">ITT</span>
             <h3>타부두 환적</h3><p class="problem-english">Inter-Terminal Transshipment</p>
             <p>컨테이너를 다른 터미널로 옮긴 뒤 적하합니다.</p>
-            <ol class="problem-flow" aria-label="타부두 환적 처리 순서">
-              <li>입항(모선)</li><li>양하</li><li>A부두 야드</li><li class="problem-flow-extra">차량(트럭)을 통한 부두 간 이동</li>
-              <li>B부두 야드</li><li>적하</li><li>출항</li>
-            </ol></article>
+            <!-- itt-process --></article>
         </div>
         <aside class="problem-callout"><strong>결정적 차이: 양하와 적하를 같은 터미널에서 처리하는가?</strong>
           <p>ITT에서는 부두 간 이동에 따라 추가 컨테이너 작업이 발생합니다.</p></aside>
@@ -460,6 +489,8 @@ def intro_problem() -> None:
 
       </section>
     </div>'''
+    body = body.replace("<!-- odt-process -->", process_flow("odt"))
+    body = body.replace("<!-- itt-process -->", process_flow("itt"))
     document_page("01 / INTRODUCTION", "문제 제기", "부산항의 환적 구조와 ITT가 발생하는 배경을 살펴봅니다.", body)
 
 
