@@ -483,7 +483,8 @@ def intro_status() -> None:
           <h3 id="problem-analysis-stages">2. 공정별 소요시간 비교</h3>
           <p>ODT는 동일 터미널 내의 반입부터 반출까지를 세 구간으로 구분하였다.
             ITT는 출발·도착 터미널의 작업 과정과 터미널 간 이동을 나누어 분석하였다.</p>
-          <p>분 단위 작업과 수일의 체류시간을 함께 비교하기 위해 그래프의 가로축에는 로그 눈금을 사용하였다.</p>
+          <p>야드 체류는 일 단위, 나머지 공정은 분 단위의 가로 막대로 나누어 비교하였다.
+            두 영역의 단위와 눈금이 다르므로, 같은 영역 안에서 경로별 시간을 비교한다.</p>
           <h4>자부두 환적(ODT)</h4>
           <!-- analysis-odt-stages-figure -->
           <p>ODT에서는 DGT와 HJNC 모두 <strong>야드 장치부터 온샤시까지 평균 약 8일</strong>이 소요되었다.
@@ -517,8 +518,8 @@ def intro_status() -> None:
     </div></div>'''
     for marker, filename, description in (
         ("analysis-total-figure", "01-total-duration-v4.png", "네 환적 경로의 전체 소요시간 평균과 중앙값"),
-        ("analysis-odt-stages-figure", "02a-odt-stage-duration-v6.png", "DGT ODT와 HJNC ODT의 공정별 평균 소요시간"),
-        ("analysis-itt-stages-figure", "02b-itt-stage-duration-v6.png", "DGT에서 HJNC 및 HJNC에서 DGT ITT의 공정별 평균 소요시간"),
+        ("analysis-odt-stages-figure", "02a-odt-stage-duration-v7.png", "DGT ODT와 HJNC ODT의 공정별 평균 소요시간. 야드 체류는 일, 나머지 공정은 분 단위"),
+        ("analysis-itt-stages-figure", "02b-itt-stage-duration-v7.png", "양방향 ITT의 공정별 평균 소요시간. 야드 체류는 일, 나머지 공정은 분 단위"),
         ("analysis-share-figure", "03-yard-share-v5.png", "네 환적 경로의 야드 장치 시간 비중. 약 99.26~99.86%"),
     ):
         body = body.replace(f"<!-- {marker} -->", analysis_figure(filename, description))

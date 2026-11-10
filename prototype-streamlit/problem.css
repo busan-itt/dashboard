@@ -15,14 +15,14 @@
 .problem-stat p { font-size:12px; }
 .problem-page .problem-caption { margin-top:12px; font-size:12px; }
 .problem-process-grid,.problem-cause-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:20px; }
-.problem-process-card,.problem-cause-card { min-width:0; padding:26px; background:#FFFFFF; border-radius:12px; }
+.problem-process-card,.problem-cause-card { min-width:0; padding:26px; border:1px solid #E2E7EB; background:#FFFFFF; border-radius:12px; }
 .problem-type { display:inline-block; padding:4px 9px; border-radius:6px; background:#FFFFFF; color:#192C3A; font-size:12px; font-weight:800; }
 .problem-process-card h3,.problem-cause-card h3 { margin:14px 0 6px; padding:0; color:#192C3A; font-size:20px; font-weight:700; }
 .problem-process-card .problem-english { margin-bottom:16px; color:#65727d; font-size:12px; }
 .problem-flow { display:flex; flex-wrap:wrap; align-items:center; gap:10px 20px; margin:20px 0 0; padding:0; list-style:none; }
-.problem-flow li { position:relative; padding:7px 10px; border-radius:6px; background:#FFFFFF; color:#192C3A; font-size:12px; line-height:1.6; }
+.problem-flow li { position:relative; padding:9px 12px; border:1px solid #E2E7EB; border-radius:6px; background:#F5F7F9; color:#192C3A; font-size:13px; line-height:1.6; }
 .problem-flow li:not(:last-child)::after { position:absolute; top:7px; right:-16px; color:#65727d; content:"→"; }
-.problem-flow .problem-flow-extra { background:#FFFFFF; color:#192C3A; font-weight:700; }
+.problem-flow .problem-flow-extra { background:#F4A78D; border-color:#F4A78D; color:#192C3A; font-weight:700; }
 .problem-callout { margin-top:18px; padding:18px 22px; border-left:3px solid #192C3A; background:#FFFFFF; }
 .problem-callout>strong { display:block; margin-bottom:4px; color:#192C3A; font-size:15px; line-height:1.7; }
 .problem-table-wrap { margin-top:20px; overflow-x:auto; }

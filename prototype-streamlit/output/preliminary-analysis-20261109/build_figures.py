@@ -14,7 +14,6 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
-from matplotlib.ticker import FixedLocator, FixedFormatter
 import numpy as np
 
 plt.rcParams.update({
@@ -26,20 +25,20 @@ plt.rcParams.update({
     "axes.spines.right": False,
     "axes.spines.left": False,
     "axes.edgecolor": "#D9E1E6",
-    "text.color": "#142F42",
+    "text.color": "#192C3A",
     "axes.labelcolor": "#526573",
     "xtick.color": "#526573",
-    "ytick.color": "#142F42",
+    "ytick.color": "#192C3A",
     "figure.facecolor": "white",
     "axes.facecolor": "white",
     "savefig.facecolor": "white",
 })
 
-BLUE = "#185DAC"
-TEAL = "#187A72"
-INK = "#142F42"
+BLUE = "#192C3A"
+TEAL = "#F4A78D"
+INK = "#192C3A"
 MUTED = "#526573"
-OTHER = "#A7B5C2"
+OTHER = "#CCD9DF"
 
 
 def seconds(days=0, hours=0, minutes=0, secs=0):
@@ -104,7 +103,10 @@ def duration(value):
 
 def save(fig, name):
     fig.savefig(ROOT / f"{name}.png", dpi=180, bbox_inches="tight", pad_inches=.04)
-    fig.savefig(ROOT / f"{name}.svg", bbox_inches="tight", pad_inches=.04)
+    svg_path = ROOT / f"{name}.svg"
+    fig.savefig(svg_path, bbox_inches="tight", pad_inches=.04)
+    svg_path.write_text("\n".join(line.rstrip() for line in svg_path.read_text(encoding="utf-8").splitlines())
+                        + "\n", encoding="utf-8")
     plt.close(fig)
 
 
@@ -157,50 +159,43 @@ def overall():
 
 
 def stage_detail():
-    colors = {"yard1": BLUE, "yard2": TEAL, "other": OTHER}
+    """Compare durations on separate linear day/minute axes, never a shared scale."""
     for routes, title, filename in [
-        (ROUTES[:2], "자부두 환적(ODT)의 공정별 평균 소요시간", "02a-odt-stage-duration-v6"),
-        (ROUTES[2:], "타부두 환적(ITT)의 공정별 평균 소요시간", "02b-itt-stage-duration-v6"),
+        (ROUTES[:2], "자부두 환적(ODT) · 공정별 평균 소요시간", "02a-odt-stage-duration-v7"),
+        (ROUTES[2:], "타부두 환적(ITT) · 공정별 평균 소요시간", "02b-itt-stage-duration-v7"),
     ]:
-        fig, axes = plt.subplots(1, 2, figsize=(14, 6.4))
-        fig.subplots_adjust(left=.17, right=.97, bottom=.20, top=.76, wspace=.68)
-        fig.text(.035, .96, title, fontsize=24, weight="bold", va="top")
-        fig.text(.035, .875, "가로축: 로그 눈금",
+        fig = plt.figure(figsize=(15, 8.2))
+        fig.text(.035, .965, title, fontsize=22, weight="bold", va="top", color=INK)
+        fig.text(.035, .909, "야드 체류와 나머지 공정을 분리해 비교 · 두 경로는 영역별로 같은 눈금 사용",
                  fontsize=12, color=MUTED)
-        for ax, route in zip(axes, routes):
-            ax.set_title(route["name"], loc="left", fontsize=17, weight="bold", pad=18)
-            ax.set_xscale("log")
-            ax.set_xlim(1, 30000)
-            positions = np.arange(len(route["stages"]))
-            for y, (label, value, kind) in zip(positions, route["stages"]):
-                is_yard = kind != "other"
-                ax.scatter(value / 60, y, color=colors[kind], s=115 if is_yard else 75, zorder=3)
-                ax.annotate(duration(value), (value / 60, y),
-                            xytext=(-11 if is_yard else 10, 0), textcoords="offset points",
-                            ha="right" if is_yard else "left", va="center", fontsize=12,
-                            weight="bold" if is_yard else "normal", color=INK)
-            ax.set_yticks(positions, [s[0] for s in route["stages"]], fontsize=12)
-            ax.set_ylim(len(positions) - .5, -.5)
-            for tick, (_, _, kind) in zip(ax.get_yticklabels(), route["stages"]):
-                if kind != "other":
-                    tick.set_color(colors[kind])
-                    tick.set_weight("bold")
-            ax.xaxis.set_major_locator(FixedLocator([1, 10, 60, 1440, 14400]))
-            ax.xaxis.set_major_formatter(FixedFormatter(["1분", "10분", "1시간", "1일", "10일"]))
-            ax.xaxis.set_minor_locator(FixedLocator([]))
-            ax.tick_params(axis="both", length=0, pad=9, labelsize=12)
-            ax.set_axisbelow(True)
-            ax.grid(axis="x", color="#E6ECF1", linewidth=.8)
-        legend_items = [(BLUE, "야드 장치 구간"), (OTHER, "그 외 공정")]
-        if len(routes[0]["stages"]) > 3:
-            legend_items = [(BLUE, "출발 터미널 야드 장치"), (TEAL, "도착 터미널 야드 장치"),
-                            (OTHER, "그 외 공정")]
-        fig.legend(handles=[Line2D([0], [0], marker="o", color="none", markerfacecolor=color,
-                                   markeredgecolor=color, markersize=8, label=label)
-                            for color, label in legend_items],
-                   loc="lower left", bbox_to_anchor=(.03, .065), frameon=False,
-                   ncol=len(legend_items), fontsize=12)
-        align_category_labels(fig, axes, [.035, .535], [.48, .98])
+        for col, route in enumerate(routes):
+            edge = .035 + col * .5
+            fig.text(edge, .846, route["name"], fontsize=17, weight="bold", color=INK)
+            fig.text(edge, .798, "야드 체류  |  일 단위", fontsize=12, weight="bold", color=INK)
+            fig.text(edge, .485, "나머지 공정  |  분 단위", fontsize=12, weight="bold", color=INK)
+            for yard, bottom, height, limit, ticks in [
+                (True, .59, .17, 10, [0, 2, 4, 6, 8, 10]),
+                (False, .15, .275, 45, [0, 15, 30, 45]),
+            ]:
+                ax = fig.add_axes([edge + .16, bottom, .275, height])
+                rows = [stage for stage in route["stages"] if (stage[2] != "other") == yard]
+                for i, (label, sec, kind) in enumerate(rows):
+                    value = sec / (86400 if yard else 60)
+                    color = BLUE if kind == "yard1" else TEAL if kind == "yard2" else "#526D82"
+                    ax.barh(i, value, height=.40, color=color, zorder=2)
+                    ax.text(value + limit * .025, i, duration(sec), va="center", fontsize=10,
+                            color=INK, weight="bold" if yard else "normal")
+                ax.set_xlim(0, limit * 1.25)
+                ax.set_xticks(ticks, [str(n) for n in ticks], fontsize=10)
+                ax.set_xlabel("일" if yard else "분", fontsize=10, loc="right")
+                ax.set_yticks(range(len(rows)), [r[0] for r in rows], fontsize=10)
+                ax.set_ylim(len(rows) - .55, -.55)
+                ax.tick_params(length=0, pad=8)
+                ax.set_axisbelow(True)
+                ax.grid(axis="x", color="#E6ECF1", lw=.8)
+        fig.text(.035, .035,
+                 "읽는 방법: 위·아래 영역은 단위와 눈금이 다릅니다. 같은 영역 안에서 경로별 시간을 비교하세요.",
+                 fontsize=11, color=MUTED)
         save(fig, filename)
 
 
@@ -224,7 +219,7 @@ def yard_share():
                 ax.barh(y, share, left=left, height=.48, color=color, zorder=2)
                 if share > 10:
                     ax.text(left + share / 2, y, f'{share:.1f}%', ha="center", va="center",
-                            color="white", fontsize=12, weight="bold")
+                            color=INK if color != BLUE else "white", fontsize=12, weight="bold")
             left += share
         yard_pct = (first + second) / total * 100
         ax.text(102.5, y, f'야드 합계 약 {yard_pct:.2f}%', va="center", fontsize=12, weight="bold")
