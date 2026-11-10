@@ -154,7 +154,7 @@ header[data-testid="stHeader"] [data-testid="stExpandSidebarButton"]:hover {
 .kpi-card p { min-height:20px; margin:0 0 14px; color:#192C3A; font-size:12px; }
 .kpi-card i { display:block; width:70%; height:5px; background:#192C3A; }
 
-.donut { display:grid; width:min(200px,80%); aspect-ratio:1; place-items:center; margin:20px auto; border-radius:50%; background:conic-gradient(#526D82 0 46%,#F4A78D 46% 75%,#8AA3B4 75% 92%,#CCD9DF 92%); }
+.donut { display:grid; width:min(200px,80%); aspect-ratio:1; place-items:center; margin:20px auto; border-radius:50%; background:conic-gradient(#9FBBC9 0 46%,#6F98B0 46% 75%,#1F4E68 75% 92%,#D7E3EB 92%); }
 .donut>span { display:grid; width:63%; aspect-ratio:1; align-content:center; border-radius:50%; background:#FFFFFF; text-align:center; }
 .donut strong { color:#192C3A; font-size:24px; }
 .donut small { color:var(--soft); font-size:11px; }

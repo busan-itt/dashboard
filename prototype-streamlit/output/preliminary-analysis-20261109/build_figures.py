@@ -34,11 +34,11 @@ plt.rcParams.update({
     "savefig.facecolor": "white",
 })
 
-BLUE = "#526D82"
-TEAL = "#F4A78D"
+BLUE = "#9FBBC9"
+TEAL = "#6F98B0"
 INK = "#192C3A"
 MUTED = "#526573"
-OTHER = "#CCD9DF"
+OTHER = "#D7E3EB"
 
 
 def seconds(days=0, hours=0, minutes=0, secs=0):
@@ -181,7 +181,7 @@ def stage_detail():
                 rows = [stage for stage in route["stages"] if (stage[2] != "other") == yard]
                 for i, (label, sec, kind) in enumerate(rows):
                     value = sec / (86400 if yard else 60)
-                    color = BLUE if kind == "yard1" else TEAL if kind == "yard2" else "#8AA3B4"
+                    color = BLUE if kind == "yard1" else TEAL if kind == "yard2" else "#6F98B0"
                     ax.barh(i, value, height=.40, color=color, zorder=2)
                     ax.text(value + limit * .025, i, duration(sec), va="center", fontsize=10,
                             color=INK, weight="bold" if yard else "normal")
@@ -219,7 +219,7 @@ def yard_share():
                 ax.barh(y, share, left=left, height=.48, color=color, zorder=2)
                 if share > 10:
                     ax.text(left + share / 2, y, f'{share:.1f}%', ha="center", va="center",
-                            color=INK if color != BLUE else "white", fontsize=12, weight="bold")
+                            color=INK, fontsize=12, weight="bold")
             left += share
         yard_pct = (first + second) / total * 100
         ax.text(102.5, y, f'야드 합계 약 {yard_pct:.2f}%', va="center", fontsize=12, weight="bold")
