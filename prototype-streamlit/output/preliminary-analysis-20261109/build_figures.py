@@ -34,11 +34,11 @@ plt.rcParams.update({
     "savefig.facecolor": "white",
 })
 
-BLUE = "#9FBBC9"
+BLUE = "#6F98B0"
 TEAL = "#F4A78D"
 INK = "#192C3A"
 MUTED = "#526573"
-OTHER = "#D7E3EB"
+OTHER = "#94ADBC"
 
 
 def seconds(days=0, hours=0, minutes=0, secs=0):
@@ -132,7 +132,7 @@ def overall():
     fig.text(.035, .975, "환적 전체 소요시간", fontsize=24, weight="bold", va="top")
     fig.text(.035, .89, "같은 경로의 평균과 중앙값을 나란히 비교 · 최초 반입부터 최종 반출까지", color=MUTED)
     positions = np.arange(len(ROUTES))
-    for offset, key, color, label in [(-.18, "mean_h", "#9FBBC9", "평균"),
+    for offset, key, color, label in [(-.18, "mean_h", "#6F98B0", "평균"),
                                       (.18, "median_h", "#F4A78D", "중앙값")]:
         values = [route[key] for route in ROUTES]
         ax.barh(positions + offset, values, height=.29, color=color, label=label, zorder=2)
@@ -176,7 +176,7 @@ def stage_detail():
                 rows = [stage for stage in route["stages"] if (stage[2] != "other") == yard]
                 for i, (label, sec, kind) in enumerate(rows):
                     value = sec / (86400 if yard else 60)
-                    color = "#F4A78D" if kind != "other" else "#9FBBC9"
+                    color = "#F4A78D" if kind != "other" else "#6F98B0"
                     ax.barh(i, value, height=.40, color=color, zorder=2)
                     ax.text(value + limit * .025, i, duration(sec), va="center", fontsize=10,
                             color=INK, weight="bold" if yard else "normal")

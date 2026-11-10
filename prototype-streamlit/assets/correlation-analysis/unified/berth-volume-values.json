@@ -1,0 +1,28 @@
+{
+  "dgt": {
+    "title": "DGT ODT · 선석별 양하·적하 물동량",
+    "scope": "자부두 환적 표본 · 양하와 적하를 각각 집계 · 총 작업량 416 TEU",
+    "source": "Published unified-dgt-berth-0.png: B1 95, B2 185, B3 136 TEU in total; unloading and loading each 208 TEU.",
+    "series": {
+      "unload": {"B1": 48, "B2": 109, "B3": 51},
+      "load": {"B1": 47, "B2": 76, "B3": 85}
+    }
+  },
+  "hjnc": {
+    "title": "HJNC ODT · 선석별 양하·적하 물동량",
+    "scope": "자부두 환적 표본 · 양하와 적하를 각각 집계 · 총 작업량 5,868 TEU",
+    "source": "unified-berth-values.json / hjnc_volume"
+  },
+  "forward": {
+    "title": "DGT → HJNC · HJNC 선석별 적하 물동량",
+    "scope": "HJNC 적하 작업만 집계 · DGT 양하 작업은 포함하지 않음",
+    "source": "Published unified-itt-forward-berth-volume.png",
+    "series": {"load": {"1B": 7944.5, "2B": 9930, "3B": 7246.5, "4B": 5156}}
+  },
+  "reverse": {
+    "title": "HJNC → DGT · HJNC 선석별 양하 물동량",
+    "scope": "HJNC 양하 작업만 집계 · DGT 적하 작업은 포함하지 않음",
+    "source": "Published unified-itt-reverse-berth-volume.png",
+    "series": {"unload": {"1B": 14582.25, "2B": 7415.5, "3B": 8944, "4B": 3730}}
+  }
+}

@@ -3,6 +3,7 @@
 Input snapshots are the charts originally published with this app. Palette
 mapping preserves their size, axes, labels, observation locations and r/n text.
 The original RdBu heatmap is remapped at the same positions on its [-1, 1] scale.
+Workload plots are rebuilt separately with the approved horizontal layout.
 Requires numpy, matplotlib and Pillow; these are authoring dependencies only.
 """
 from pathlib import Path
@@ -14,7 +15,7 @@ from matplotlib import colormaps
 from matplotlib.colors import LinearSegmentedColormap
 
 ROOT = Path(__file__).resolve().parents[1]
-BLUE = "#9FBBC9"
+BLUE = "#6F98B0"
 CORAL = "#F4A78D"
 HEATMAP = LinearSegmentedColormap.from_list("blue_white_coral", ["#6F98B0", "#FFFFFF", CORAL])
 
@@ -83,6 +84,8 @@ def main():
     with zipfile.ZipFile(ROOT / "output/correlation-chart-originals.zip") as archive:
         for name in archive.namelist():
             assert Path(name).name == name and name.endswith(".png")
+            if name in {"unified-dgt-berth-0.png", "unified-hjnc-berth-volume.png", "unified-itt-forward-berth-volume.png", "unified-itt-reverse-berth-volume.png"}:
+                continue
             result, changed = retheme_bytes(archive.read(name), name)
             assert changed > 0, name
             (target/name).write_bytes(result)
@@ -91,3 +94,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    from build_berth_volume import build
+    build()

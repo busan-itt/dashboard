@@ -20,8 +20,8 @@
 .correlation-page .report-scatter { margin-top:8px; }
 .correlation-page .report-legend { display:flex; gap:24px; color:#607586; font-size:14px; }
 .correlation-page .report-legend span { display:flex; align-items:center; gap:8px; }
-.correlation-page .report-dot { display:inline-block; width:9px; height:9px; background:#9FBBC9; border-radius:50%; }
-.correlation-page .report-dot.voyage { background:#9FBBC9; border-radius:0; transform:rotate(45deg); }
+.correlation-page .report-dot { display:inline-block; width:9px; height:9px; background:#6F98B0; border-radius:50%; }
+.correlation-page .report-dot.voyage { background:#6F98B0; border-radius:0; transform:rotate(45deg); }
 .correlation-page .report-line { display:inline-block; width:24px; height:2px; background:#F4A78D; }
 .correlation-page .report-figure { background:white; border-radius:12px; padding:0; margin:14px 0; overflow:hidden; }
 .correlation-page .report-figure img { display:block; width:100%; height:auto; max-width:100%; object-fit:contain; }
