@@ -25,6 +25,7 @@ Streamlit 버전은 `requirements.txt`의 1.66.1을 사용합니다. 앱은 CSS�
 ```text
 prototype-streamlit/
 ├─ app_revised.py              # 메인, 메뉴와 페이지 연결
+├─ overview.py                 # 홈 핵심 요약·실제 분석 대시보드
 ├─ app_prototype.py            # 이전 시안
 ├─ requirements.txt
 ├─ *.css                       # 공통·페이지별 스타일
@@ -49,7 +50,7 @@ prototype-streamlit/
 - 시뮬레이션(`/intro-solution`): 검증 과정과 조건을 표시합니다.
 - 시뮬레이션 결과(`/simulation`): 전체·선별 정책과 24·48·96시간의 저장된 결과를 비교합니다. 화면에서 모델을 다시 실행하지 않습니다.
 - 개선안 결과(`/improvement-results`): 대표 KPI, 42개 조건 중 최대 체류 감소 결과, 보완 과제를 표시합니다.
-- 현황·상관관계 페이지는 포함된 팀 분석 자료를 표시합니다. 기존 대시보드의 운영 지표는 UI 동작 확인용 샘플입니다. AI 요약 등 일부 페이지에는 자리 표시 문안이 남아 있습니다.
+- 홈과 대시보드는 저장된 실제 경로별 현황·상관분석·시뮬레이션 결과를 요약합니다. 임의 월별 물동량·야드 점유율·생산성 지표는 제거했습니다. 대시보드의 환적 구분 선택은 현황 그래프와 표에 적용되며, 대표 시뮬레이션은 선별 48시간 조건을 별도로 표시합니다. 사용한 데이터·출처 전용 페이지에는 아직 자리 표시 문안이 남아 있습니다.
 
 개선안 자료의 상세 설명은 [improvement_content/README.md](improvement_content/README.md), 전체 수치는 [수치표](improvement_content/수치표.md)를 참고하세요.
 
@@ -62,3 +63,5 @@ prototype-streamlit/
 `output/retheme_correlation_charts.py`는 `output/correlation-chart-originals.zip`에 보관한 원래 분석 이미지의 색상을 변환하고, 선석별 물동량 4개 그래프는 별도 생성기를 호출해 가로 막대로 다시 그립니다. 산점도의 점 위치, 축, 표본 수와 상관계수는 유지합니다. 생성 작업에는 numpy·matplotlib·Pillow가 필요하며 앱 실행에는 필요하지 않습니다. 기존 분석 생성기를 다시 실행했다면 이 색상 변환도 다시 실행하세요. 프로젝트 소개 그래프는 `output/preliminary-analysis-20261109/build_figures.py`에서 생성합니다.
 
 선석별 물동량은 `output/build_berth_volume.py`로 다시 생성합니다. 자부두는 양하(블루)·적하(코랄)를 나란히 비교하며, 타부두는 방향별로 실제 집계된 HJNC 작업만 단일 가로 막대로 표시합니다. 수치는 기존 `unified-berth-values.json`과 공개된 기존 그래프에서 보존한 `berth-volume-values.json`을 사용합니다. 합계가 아닌 개별 작업량을 막대 끝에 표시하며, 단위는 TEU입니다.
+
+홈·대시보드는 `output/preliminary-analysis-20261109/figure-data.json`, `assets/correlation-analysis/unified/reports.json`, `improvement_content/data/simulation_all_results.json`을 직접 읽습니다. 원자료를 다시 분석하거나 실시간 모델을 실행하지 않습니다. 현황의 경로별 통계와 시뮬레이션 기준 평균 227.2시간은 구분해 표시합니다. 그래프의 시간 축은 0~255시간, 대표 시뮬레이션 비교는 0~12%와 0~22분으로 고정합니다.
