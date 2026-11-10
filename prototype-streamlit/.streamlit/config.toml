@@ -1,15 +1,22 @@
 [theme]
 base = "light"
-primaryColor = "#247cd5"
-backgroundColor = "#eef3f6"
-secondaryBackgroundColor = "#ffffff"
-textColor = "#24323d"
 showSidebarBorder = false
+primaryColor = "#FF6F61"
+backgroundColor = "#F8F9FA"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#0A0F1F"
+linkColor = "#1D3557"
+borderColor = "#E2E5EA"
+baseRadius = "0.5rem"
+buttonRadius = "0.5rem"
+chartCategoricalColors = ["#1D3557", "#FF6F61", "#FFA69E", "#64748B", "#94A3B8", "#0A0F1F"]
 
 [theme.sidebar]
-backgroundColor = "#142f42"
-textColor = "#d7e0ee"
-primaryColor = "#247cd5"
+backgroundColor = "#1D3557"
+secondaryBackgroundColor = "#29466B"
+textColor = "#F8F9FA"
+primaryColor = "#FFA69E"
+linkColor = "#FFA69E"
 
 [client]
 toolbarMode = "minimal"

@@ -18,12 +18,12 @@ from improvement_content import views as improvement_views
 
 ROOT = Path(__file__).parent
 TERMINALS = (
-    ("PNC", 198_000, 84, 31.8, 67.0, "#185dac"),
-    ("PNIT", 174_000, 76, 29.4, 62.0, "#0084c7"),
-    ("HJNC", 163_000, 71, 28.8, 59.0, "#1b8b67"),
-    ("HPNT", 149_000, 66, 27.9, 64.0, "#6d78b8"),
-    ("BNCT", 139_000, 61, 27.1, 57.0, "#d47a21"),
-    ("BCT", 118_000, 54, 25.8, 53.0, "#c84d4d"),
+    ("PNC", 198_000, 84, 31.8, 67.0, "#1D3557"),
+    ("PNIT", 174_000, 76, 29.4, 62.0, "#FF6F61"),
+    ("HJNC", 163_000, 71, 28.8, 59.0, "#FFA69E"),
+    ("HPNT", 149_000, 66, 27.9, 64.0, "#64748B"),
+    ("BNCT", 139_000, 61, 27.1, 57.0, "#94A3B8"),
+    ("BCT", 118_000, 54, 25.8, 53.0, "#0A0F1F"),
 )
 CARGO_FACTORS = {"전체 화물": 1.0, "수입": 0.34, "수출": 0.31, "환적": 0.35}
 MONTHS = pd.period_range("2025-11", periods=12, freq="M").strftime("%Y.%m").tolist()
@@ -118,11 +118,11 @@ def dashboard() -> None:
         html(f'<div class="panel-head"><span>THROUGHPUT TREND</span><h2>월별 물동량 추이</h2>'
              f'<p><strong>{state["volume"]:,} TEU</strong>　선택 기간 누적 물동량</p></div>')
         chart = pd.DataFrame({"월": state["months"], "선택 기간": state["current"], "이전 기간": state["previous"]})
-        st.line_chart(chart, x="월", y=["선택 기간", "이전 기간"], color=["#247cd5", "#aab6bd"], height=300)
+        st.line_chart(chart, x="월", y=["선택 기간", "이전 기간"], color=["#1D3557", "#FFA69E"], height=300)
     with right, st.container(key="status_panel"):
         html('<div class="panel-head"><span>YARD STATUS</span><h2>작업 상태 분포</h2><p>샘플 기준</p></div>')
-        status = [("완료", 46, "#185dac"), ("작업 중", 29, "#1b8b67"),
-                  ("대기", 17, "#d47a21"), ("점검", 8, "#c84d4d")]
+        status = [("완료", 46, "#1D3557"), ("작업 중", 29, "#FFA69E"),
+                  ("대기", 17, "#94A3B8"), ("점검", 8, "#0A0F1F")]
         legend = "".join(f'<div><i style="background:{color}"></i><span>{name}</span><strong>{share}%</strong></div>'
                          for name, share, color in status)
         html('<div class="donut"><span><strong>100%</strong><small>상태 분포</small></span></div>'
@@ -626,11 +626,11 @@ child_href = current_page.url_path if current_page is not active_parent else Non
 st.html(f'''<style>
   .stSidebar a[data-testid="stPageLink-NavLink"][href="{active_href}"],
   .stSidebar a[data-testid="stPageLink-NavLink"][href="{active_href}"]:hover {{
-    background: #eef3f6; color: #142f42; border-radius: 24px 0 0 24px;
+    background: #F8F9FA; color: #1D3557; border-radius: 24px 0 0 24px;
   }}
   .stSidebar a[data-testid="stPageLink-NavLink"][href="{active_href}"] span,
-  .stSidebar a[data-testid="stPageLink-NavLink"][href="{active_href}"] p {{ color: #142f42; }}
-  {f'.stSidebar .st-key-sidebar_submenu a[data-testid="stPageLink-NavLink"][href="{child_href}"] {{ color:#fff; font-weight:800; }}' if child_href else ''}
+  .stSidebar a[data-testid="stPageLink-NavLink"][href="{active_href}"] p {{ color: #1D3557; }}
+  {f'.stSidebar .st-key-sidebar_submenu a[data-testid="stPageLink-NavLink"][href="{child_href}"] {{ color:#FFA69E; font-weight:800; }}' if child_href else ''}
 </style>''')
 with st.sidebar:
     html('<div class="sidebar-brand"><span class="brand-mark">P</span><span><strong>DATA ANALYTICS</strong><small>Busan Port Analytics</small></span></div>')

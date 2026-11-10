@@ -30,47 +30,47 @@ ROUNDED_REAL = {24: dict(zip("ABC", [88, 100, 100])),
                 48: dict(zip("ABC", [85, 100, 100])),
                 96: dict(zip("ABC", [78, 98, 100]))}
 
-# 패널·카드·그래프용 스타일. 기존 대시보드 색(#0a2e4a, #185dac, #d9e1e6)을 쓰고 .pv 안에서만 적용한다
+# 패널·카드·그래프용 스타일. 코랄·네이비 팔레트을 쓰고 .pv 안에서만 적용한다
 PV_CSS = """
 .improvement-content-heading{padding-top:32px}
-.pv{color:#24323d}
-.pv .panel{background:#f5f8fa;border-radius:14px;padding:40px clamp(20px,11%,110px) 34px}
-.pv .kick{margin-bottom:6px;color:#4f7391;font-size:13px}
-.pv h2{margin:0 0 6px;color:#0a2e4a;font-size:26px;line-height:1.4;font-weight:700}
+.pv{color:#0A0F1F}
+.pv .panel{background:#F8F9FA;border-radius:14px;padding:40px clamp(20px,11%,110px) 34px}
+.pv .kick{margin-bottom:6px;color:#1D3557;font-size:13px}
+.pv h2{margin:0 0 6px;color:#0A0F1F;font-size:26px;line-height:1.4;font-weight:700}
 .pv .sub{margin:0 0 22px;color:#526573;font-size:15px}
-.pv .sec{margin:26px 0 10px;color:#24323d;font-size:14px;font-weight:700}
+.pv .sec{margin:26px 0 10px;color:#0A0F1F;font-size:14px;font-weight:700}
 .pv .grid{display:grid;gap:14px}
 .pv .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .pv .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .pv .g4{grid-template-columns:repeat(4,minmax(0,1fr))}
-.pv .card{background:#fff;border:1px solid #d9e1e6;border-radius:12px;padding:18px 20px}
-.pv .card b{display:block;margin:2px 0 6px;color:#0a2e4a;font-size:16px}
+.pv .card{background:#fff;border:1px solid #E2E5EA;border-radius:12px;padding:18px 20px}
+.pv .card b{display:block;margin:2px 0 6px;color:#0A0F1F;font-size:16px}
 .pv .cap{color:#526573;font-size:14px;line-height:1.55}
 .pv .g4 .card{padding:16px 16px}
 .pv .g4 .cap{font-size:13px}
-.pv .num{margin:4px 0;color:#0a2e4a;font-size:34px;font-weight:700;line-height:1.2}
+.pv .num{margin:4px 0;color:#0A0F1F;font-size:34px;font-weight:700;line-height:1.2}
 .pv .num small{margin-left:4px;color:#526573;font-size:15px;font-weight:400}
 .pv .flow{display:flex;gap:10px;align-items:stretch;margin-bottom:6px}
-.pv .step{flex:1;display:flex;align-items:center;justify-content:center;padding:16px;background:#e6f0fa;border-radius:10px;color:#0a2e4a;font-size:15px;font-weight:600;text-align:center}
+.pv .step{flex:1;display:flex;align-items:center;justify-content:center;padding:16px;background:#FFF0ED;border-radius:10px;color:#0A0F1F;font-size:15px;font-weight:600;text-align:center}
 .pv .arrow{align-self:center;color:#526573}
-.pv .badge{display:inline-block;margin-bottom:6px;padding:2px 10px;border-radius:99px;background:#e6f0fa;color:#185dac;font-size:13px;font-weight:600}
+.pv .badge{display:inline-block;margin-bottom:6px;padding:2px 10px;border-radius:99px;background:#FFF0ED;color:#1D3557;font-size:13px;font-weight:600}
 .pv .badge.off{background:#e9eef2;color:#526573}
-.pv .mt{margin-bottom:12px;color:#0a2e4a;font-size:15px;font-weight:700}
+.pv .mt{margin-bottom:12px;color:#0A0F1F;font-size:15px;font-weight:700}
 .pv .brow{display:flex;align-items:center;gap:12px;margin:10px 0;font-size:14px}
 .pv .bn{width:104px;color:#526573}
-.pv .track{flex:1;height:16px;background:#eef3f6;border-radius:4px;overflow:hidden}
+.pv .track{flex:1;height:16px;background:#F8F9FA;border-radius:4px;overflow:hidden}
 .pv .bar{display:block;height:100%;background:#aab5bf;border-radius:4px}
-.pv .bar.hi{background:#185dac}
-.pv .bv{width:84px;text-align:right;color:#0a2e4a;font-weight:600}
-.pv .take{margin-top:16px;padding:14px 18px;border-left:3px solid #0a2e4a;background:#fff;font-size:15px;color:#0a2e4a}
+.pv .bar.hi{background:#FF6F61}
+.pv .bv{width:84px;text-align:right;color:#0A0F1F;font-weight:600}
+.pv .take{margin-top:16px;padding:14px 18px;border-left:3px solid #FF6F61;background:#fff;font-size:15px;color:#0A0F1F}
 .pv .foot{margin-top:12px;color:#526573;font-size:13px;line-height:1.6}
 .pv ul.lim{margin:0;padding-left:20px;color:#3b4b58;font-size:15px;line-height:1.8}
 .pv ul.lim b{display:inline;font-size:inherit}
 .pv table{width:100%;border-collapse:collapse;font-size:14px}
-.pv th{padding:10px 12px;border-bottom:2px solid #d9e1e6;color:#526573;font-weight:600;text-align:right}
-.pv td{padding:9px 12px;border-bottom:1px solid #eef3f6;text-align:right}
+.pv th{padding:10px 12px;border-bottom:2px solid #E2E5EA;color:#526573;font-weight:600;text-align:right}
+.pv td{padding:9px 12px;border-bottom:1px solid #F8F9FA;text-align:right}
 .pv th:nth-child(-n+3),.pv td:nth-child(-n+3){text-align:left}
-.pv tr.sel td{background:#e6f0fa;color:#0a2e4a;font-weight:600}
+.pv tr.sel td{background:#FFF0ED;color:#0A0F1F;font-weight:600}
 @media(max-width:760px){.pv .g3,.pv .g4{grid-template-columns:repeat(2,minmax(0,1fr))}.pv .flow{flex-direction:column}.pv .arrow{transform:rotate(90deg)}}
 """
 
@@ -126,9 +126,9 @@ def scenario_map(scenario, terminal):
         if name is None:
             continue
         panel_rect = group.find("s:rect", ns)
-        panel_rect.set("fill", "#155e84" if name == terminal else "#dceeff" if name in candidates else "#f3f5f6")
+        panel_rect.set("fill", "#1D3557" if name == terminal else "#FFA69E" if name in candidates else "#f3f5f6")
         for label in labels:
-            label.set("fill", "#ffffff" if name == terminal else "#153f59" if name in candidates else "#8698a3")
+            label.set("fill", "#ffffff" if name == terminal else "#0A0F1F" if name in candidates else "#8698a3")
     # 배치도 안의 안내 문구를 선택한 시나리오에 맞게 바꾼다
     for text in svg.findall(".//s:text", ns):
         if text.text == "부산 신항 · 현재 선석 운영":
