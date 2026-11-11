@@ -28,7 +28,7 @@ python -m streamlit run app_revised.py
 
 실행 후 터미널에 표시된 로컬 주소를 브라우저에서 엽니다. 기본 주소는 `http://localhost:8501`입니다.
 
-앱 폴더에서 실행해야 `.streamlit/config.toml`의 테마 설정이 적용됩니다. 실행 패키지는 Streamlit 1.66.1, pandas 2 이상·4 미만, Altair 6 이상·7 미만입니다.
+앱 폴더에서 실행해야 `.streamlit/config.toml`의 테마 설정이 적용됩니다. 실행 패키지는 검증된 버전인 Streamlit 1.66.1, pandas 3.1.1, Altair 6.3.0으로 고정합니다.
 
 ## 폴더 구성
 
