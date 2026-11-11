@@ -1,0 +1,4 @@
+# 앱 실행 패키지
+-r requirements.txt
+# AI 요약 생성 스크립트(generate_summary.py)에서만 사용 (배포 앱에는 필요 없음)
+anthropic

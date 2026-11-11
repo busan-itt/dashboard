@@ -6,6 +6,8 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
+from summary_facts import build_facts, load_ai_summaries
+
 ROOT = Path(__file__).parent
 BLUE, CORAL = '#3F617C', '#F4A78D'
 
@@ -20,6 +22,10 @@ def snapshot():
 
 def home_summaries(*, compact=False):
     routes, reports, simulation, scenarios = snapshot()
+    # 저장된 AI 요약이 현재 데이터와 일치하면 그것을 사용하고, 아니면 아래 템플릿 문장으로 대체
+    ai_items = load_ai_summaries(build_facts(routes, reports, simulation, scenarios), compact=compact)
+    if ai_items:
+        return ai_items
     low, high = min(r['yard_share_pct'] for r in routes), max(r['yard_share_pct'] for r in routes)
     a, c = scenarios['A'], scenarios['C']
     max_r = max(abs(p['r']) for report in reports.values() for p in report['plots'])
