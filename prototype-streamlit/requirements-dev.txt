@@ -1,2 +1,0 @@
-# 앱 실행 패키지(anthropic 포함)
--r requirements.txt

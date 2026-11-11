@@ -6,8 +6,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-from summary_facts import build_facts
-from summary_live import get_ai_summaries
+from auto_summary import build_summaries
 
 ROOT = Path(__file__).parent
 BLUE, CORAL = '#3F617C', '#F4A78D'
@@ -22,28 +21,9 @@ def snapshot():
 
 
 def home_summaries(*, compact=False):
+    # 저장된 분석 결과의 값으로 요약 문장을 조건에 따라 만든다 (규칙은 auto_summary.py 참고)
     routes, reports, simulation, scenarios = snapshot()
-    # 분석 데이터가 바뀌면 AI 요약도 새로 만들어 쓰고, 쓸 수 있는 AI 요약이 없으면 아래 템플릿 문장으로 대체
-    ai_items = get_ai_summaries(build_facts(routes, reports, simulation, scenarios), compact=compact)
-    if ai_items:
-        return ai_items
-    low, high = min(r['yard_share_pct'] for r in routes), max(r['yard_share_pct'] for r in routes)
-    a, c = scenarios['A'], scenarios['C']
-    max_r = max(abs(p['r']) for report in reports.values() for p in report['plots'])
-    after = simulation['baseline_mean_h_rounded']*(1-c['reduction_pct']/100)
-    if compact:
-        return (
-            ('환적 시간의 대부분은 야드 체류', f'네 경로 모두 야드 비중 {low:.2f}~{high:.2f}%. 연결선을 기다리는 시간 포함.'),
-            ('선박 운영시간과의 상관관계는 약함', '분석한 운영시간 지표만으로는 야드 체류 차이를 설명하기 어려움.'),
-            (f"시뮬레이션에서 야드 체류 {c['reduction_pct']:.2f}% 감소", f'일정 조정·선석 공유 적용 시 평균 {simulation["baseline_mean_h_rounded"]:.1f}시간 → 약 {after:.1f}시간.'),
-            ('선석 공유로 다른 선박의 지연 감소', f'같은 일정 조정 조건에서 추가 접안 지연 {a["other_delay_h"]*60:.2f}분(기존 운영) → {c["other_delay_h"]*60:.2f}분(전체 통합).'),
-        )
-    return (
-        ('환적 시간은 야드 체류에 집중', f"분석한 네 경로에서 야드 장치 구간은 공정별 평균시간 합계의 {low:.2f}~{high:.2f}%를 차지했습니다. 정상적인 연결선 대기도 포함됩니다."),
-        ('선박 운영시간과의 선형 관계는 약함', f"화면에 제시한 주요 상관분석의 최대 |r|은 {max_r:.3f}입니다. 검토한 운영시간 지표만으로 야드 체류 차이를 설명하기 어렵습니다."),
-        ('선별 일정 조정과 선석 공유를 함께 검토', f"선별 48시간 앞당김·전체 통합(C) 시뮬레이션에서 체류가 {c['reduction_pct']:.2f}% 감소했습니다. 모형 기준 평균 {simulation['baseline_mean_h_rounded']:.1f} → 약 {after:.1f}시간입니다."),
-        ('선석 공유는 다른 선박의 추가 지연을 완화', f"같은 선별 48시간 조정에서 다른 선박 접안 지연은 A {a['other_delay_h']*60:.2f}분 → C {c['other_delay_h']*60:.2f}분이었습니다. 실제 도입 성과가 아닌 모형 비교 결과입니다."),
-    )
+    return build_summaries(routes, reports, simulation, scenarios, compact=compact)
 
 
 def grouped_duration(frame, metric='평균'):
