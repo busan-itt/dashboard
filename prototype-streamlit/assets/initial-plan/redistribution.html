@@ -75,8 +75,16 @@
     <details class="initial-plan-source"><summary>예측과 재배분을 연결할 때의 조건</summary><p>과거 물동량, 전월 부하율, 환적 비중, 처리능력, 선박 기항 수와 계절성을 입력 후보로 둡니다. 과거로 학습하고 이후 기간으로 성능을 확인해야 하며, 짧은 월별 자료에서는 복잡한 모델이 오히려 불안정할 수 있습니다. 예측 결과를 최대 부하율·편차·ITT 부담을 줄이는 배정 조건과 연결하는 구상입니다.</p></details>
     <p class="initial-plan-note">이 목록은 초기 제안의 모델 후보이며, 해당 물동량 예측 모델을 모두 구현하거나 성능을 검증했다는 뜻은 아닙니다. 최종 시뮬레이션에서 별도로 수행한 점유시간·선박 길이 예측 실험과도 구분합니다.</p>
   </section>
+  <section aria-labelledby="redistribution-decision">
+    <div class="initial-plan-heading"><span>07 / DECISION</span><h2 id="redistribution-decision">최종안으로 채택하지 않은 이유</h2></div>
+    <div class="initial-plan-limits">
+      <div><h3>필요 자료 확보의 한계</h3><p>실제 재배분이 가능한 물량을 정하고 효과를 비교하는 데 필요한 물동량·선사별 기항·비용 자료를 충분히 확보하지 못했습니다. 터미널별 부하율 비교만으로는 ITT 증가와 추가 이동 비용까지 반영한 개선 효과를 검증하기 어려웠습니다.</p></div>
+      <div><h3>선사 계약과 터미널 운영 제약</h3><p>처리 여력이 남는 터미널이 있어도 선사 계약과 기항 일정, 터미널별 운영 조건 때문에 물량을 자유롭게 옮기기 어렵습니다. 이를 충분히 반영하지 않은 재배분은 실제 적용 가능성을 판단하는 데 한계가 있었습니다.</p></div>
+    </div>
+    <aside class="initial-plan-conclusion"><strong>자료와 운영 제약을 충분히 반영한 검증이 어려워 최종안으로 채택하지 않음</strong><p>물동량 재배분의 효과가 없다고 결론 낸 것은 아닙니다. 실제 이동 가능한 물량과 추가 비용을 확인할 자료, 선사·운영사와의 조건 검토가 더 필요해 초기 검토안으로 남겼습니다.</p></aside>
+  </section>
   <section aria-labelledby="redistribution-connection">
-    <div class="initial-plan-heading"><span>07 / CONNECTION</span><h2 id="redistribution-connection">두 초기안에서 최종 개선안으로</h2></div>
+    <div class="initial-plan-heading"><span>08 / CONNECTION</span><h2 id="redistribution-connection">두 초기안에서 최종 개선안으로</h2></div>
     <div class="initial-plan-limits">
       <div><h3>초기 개선안 1 · 내부도로</h3><p>이미 발생한 타부두 환적의 이동 경로와 비용을 줄일 수 있는지 검토했습니다.</p></div>
       <div><h3>초기 개선안 2 · 물동량 재배분</h3><p>기항과 연결 조건을 고려해 사전에 물량을 분산하고, 터미널 편중과 ITT 발생 가능성을 줄일 수 있는지 살펴보려 했습니다.</p></div>
