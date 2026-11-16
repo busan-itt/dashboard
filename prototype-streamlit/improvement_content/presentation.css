@@ -102,11 +102,26 @@
 .presentation-content #s2 .method-details summary { cursor:pointer; }
 .presentation-content #s2 .method-details p { margin:12px 0 0; line-height:1.8; }
 .presentation-content #s2 .method-next { display:inline-block; margin-top:4px; color:#192C3A; font-size:14px; text-underline-offset:4px; }
+.presentation-content #s2 .method-priority { list-style:none; margin:0; padding:0; }
+.presentation-content #s2 .method-priority li { display:flex; gap:16px; padding:16px 0; border-top:1px solid #E2E7EB; }
+.presentation-content #s2 .method-priority li>span { flex:0 0 30px; padding-top:2px; color:#3F617C; font-size:14px; font-weight:750; }
+.presentation-content #s2 .method-priority strong { color:#192C3A; font-size:16px; }
+.presentation-content #s2 .method-priority p { margin:6px 0 0; color:#526573; font-size:14px; line-height:1.8; word-break:keep-all; }
+.presentation-content #s2 .method-rule-note { padding:14px 18px; border-left:3px solid #3F617C; background:#F5F7F9; font-size:13px; }
+.presentation-content #s2 .method-assumptions { margin:8px 0 0; }
+.presentation-content #s2 .method-assumptions>div { display:grid; grid-template-columns:120px minmax(0,1fr); gap:16px; padding:12px 0; border-bottom:1px solid #EDF1F4; }
+.presentation-content #s2 .method-assumptions dt { color:#192C3A; font-weight:700; }
+.presentation-content #s2 .method-assumptions dd { margin:0; line-height:1.8; word-break:keep-all; }
+.presentation-content #s2 .method-facilities { overflow-x:auto; margin-top:16px; }
+.presentation-content #s2 .method-facilities table { border-collapse:collapse; width:100%; font-size:13px; }
+.presentation-content #s2 .method-facilities th, .presentation-content #s2 .method-facilities td { padding:10px 12px; border-bottom:1px solid #E2E7EB; text-align:left; }
+.presentation-content #s2 .method-facilities thead { color:#192C3A; background:#F5F7F9; }
 @container(max-width:550px) {
  .presentation-content #s2 h1 { font-size:26px; }
  .presentation-content #s2 .method-process { grid-template-columns:1fr; gap:10px; }
  .presentation-content #s2 .method-process>span { display:none; }
  .presentation-content #s2 .method-conditions { grid-template-columns:1fr; gap:8px; }
+ .presentation-content #s2 .method-assumptions>div { grid-template-columns:1fr; gap:5px; }
 }
 /* 시뮬레이션 결과 */
 .st-key-simulation_results .results-heading { margin-bottom:14px; }

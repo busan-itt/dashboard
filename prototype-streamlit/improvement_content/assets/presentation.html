@@ -74,6 +74,52 @@ ul.lim{margin:0;padding-left:18px;font-size:14px;color:var(--sub)}ul.lim li{marg
  <div><span>반복 실험</span><strong>100<small>회</small></strong></div>
 </div>
 <p class="foot">2025년 자료 · 선석은 7개 터미널 · 환적 체류는 DGT·HJNC 표본</p>
+<h2 class="method-title">선박 배정 우선순위</h2>
+<ol class="method-priority">
+ <li><span>01</span><div><strong>도착 시각이 빠른 배부터 배정 검토</strong><p>접안 준비 시각 순으로 검토하고, 같으면 기존 계획 접안 시각이 빠른 배를 먼저 검토합니다. 일정 조정 후에는 변경된 도착 시각으로 순서를 다시 정합니다.</p></div></li>
+ <li><span>02</span><div><strong>가장 이른 접안 가능 시간 탐색</strong><p>A·B·C별 이용 가능한 터미널에서 선박이 들어갈 안벽 공간과 점유시간을 확인합니다. 도착 즉시 또는 앞선 배의 점유가 끝나는 시각부터 찾습니다.</p></div></li>
+ <li><span>03</span><div><strong>같은 시각이면 원래 터미널 우선</strong><p>동일한 접안 가능 시각에 원래 터미널과 다른 터미널을 모두 이용할 수 있을 때 원래 터미널을 선택합니다. 다른 터미널에서 더 일찍 접안할 수 있으면 그 시각을 먼저 선택합니다.</p></div></li>
+ <li><span>04</span><div><strong>배정이 끝난 선박은 다시 바꾸지 않음</strong><p>한 척씩 배정해 점유 기록을 반영합니다. 배정 전체를 재조합해 최적해를 구하는 방식은 아닙니다.</p></div></li>
+</ol>
+<p class="foot method-rule-note">선별 조정은 ‘어떤 배의 일정을 앞당길지’ 정하는 기준이며, 접안 순서에서 무조건 먼저 보내는 우선권은 아닙니다.</p>
+<h2 class="method-title">모형에 적용한 운영 조건</h2>
+<p class="foot method-rule-note">안벽 길이와 시간대별 점유를 기준으로 배정합니다. 별도의 동시 접안 척수 상한은 적용하지 않았으며, 선박 사이의 교체 간격은 0시간으로 가정했습니다.</p>
+<details class="method-details"><summary>입력 자료와 선석 배정 조건</summary>
+ <dl class="method-assumptions">
+  <div><dt>비교 기준</dt><dd>같은 입항 수요에 대해 A는 자기 터미널, B는 지정 인접 터미널까지, C는 신항 7개 터미널을 이용합니다. B의 인접 범위를 이웃의 이웃까지 넓히지 않습니다.</dd></div>
+  <div><dt>접안 준비 시각</dt><dd>PORT-MIS에서 박지 대기가 확인되고 실제 입항이 계획 접안보다 이른 경우 실제 입항 시각을 사용합니다. 나머지는 기존 계획 접안 시각을 사용합니다.</dd></div>
+  <div><dt>점유시간</dt><dd>기존 출항 시각에서 접안 시각을 뺀 시간을 사용하며, 0 이하인 기록은 제외합니다. 터미널을 바꿔도 같은 점유시간을 적용합니다.</dd></div>
+  <div><dt>필요 안벽 길이</dt><dd>선박 길이의 1.0배를 사용합니다. 선박 사이 추가 여유 길이는 넣지 않았습니다.</dd></div>
+  <div><dt>선박 길이 결측</dt><dd>같은 터미널의 관측 길이에서 무작위로 채우고, 남은 결측은 중앙값으로 보완합니다. 같은 반복의 기준·조정 실행과 A·B·C에 같은 길이를 적용합니다.</dd></div>
+  <div><dt>선석 수 제한</dt><dd>터미널별 선석 수 정보는 보유하지만, 대표 실행에서는 별도의 동시 접안 척수 제한을 사용하지 않았습니다. 안벽 길이와 점유 겹침은 확인합니다.</dd></div>
+  <div><dt>동시 후보 선택</dt><dd>같은 시각의 원래 터미널 우선 선택 후, 다른 후보 간 동률은 터미널 코드 순으로 정합니다. 거리나 비용 최적화 순서는 아닙니다.</dd></div>
+ </dl>
+</details>
+<details class="method-details"><summary>일정 조정과 반복 검증 조건</summary>
+ <dl class="method-assumptions">
+  <div><dt>조정 대상</dt><dd>전체 조정은 앞당길 수 있는 모든 연결선, 선별 조정은 싣는 환적 박스 수가 내리는 환적 박스 수보다 많은 연결선입니다.</dd></div>
+  <div><dt>앞당김 상한</dt><dd>연결선별 기존 최소 연결 간격에서 24시간을 뺀 범위로 제한합니다. 요청 시간과 상한 중 작은 값을 적용하며, 실제 접안은 재배정 결과에 따라 달라집니다.</dd></div>
+  <div><dt>시간 조건</dt><dd>발표 화면은 24·48·96시간을 비교합니다. 전체 저장 결과는 6·12·24·48·72·96·168시간과 두 조정 정책, 세 운영 방식을 조합한 42개 조건입니다.</dd></div>
+  <div><dt>반복과 재현</dt><dd>주요 정책 비교는 100회 반복하며 기본 난수 시드는 20250101입니다. 반복마다 선박 길이 결측 보완값을 바꿉니다.</dd></div>
+  <div><dt>불확실성 확인</dt><dd>연결선 단위 군집 부트스트랩을 500회 수행합니다. 현재 대시보드 저장 자료에는 A의 구간 값이 있으며, B·C의 구간 값은 제시하지 않습니다.</dd></div>
+  <div><dt>추가 지연 판단</dt><dd>일정을 앞당기지 않은 선박의 평균 접안 변화가 0.1시간, 즉 6분 이하인지 평가합니다. 배정 과정에서 강제로 지연을 막는 제한이나 개별 선박의 최대 지연 기준은 아닙니다.</dd></div>
+  <div><dt>별도 하반기 검증</dt><dd>2025년 7월 1일을 기준으로 상·하반기를 나누고, 하반기 대상 선정 비교는 48시간 요청 조건에서 A·C를 40회 반복합니다.</dd></div>
+ </dl>
+</details>
+<details class="method-details"><summary>터미널별 안벽 길이와 선석 정보</summary>
+ <div class="method-facilities"><table><thead><tr><th scope="col">터미널</th><th scope="col">안벽 길이</th><th scope="col">선석 수 정보</th></tr></thead><tbody>
+  <tr><th scope="row">PNIT</th><td>1,200m</td><td>3개</td></tr>
+  <tr><th scope="row">PNC</th><td>2,000m</td><td>5개</td></tr>
+  <tr><th scope="row">HJNC</th><td>1,100m</td><td>4개</td></tr>
+  <tr><th scope="row">HPNT</th><td>1,150m</td><td>3개</td></tr>
+  <tr><th scope="row">BNCT</th><td>1,400m</td><td>4개</td></tr>
+  <tr><th scope="row">BCT</th><td>1,050m</td><td>3개</td></tr>
+  <tr><th scope="row">DGT</th><td>1,050m</td><td>3개</td></tr>
+ </tbody></table></div>
+ <p>원본 모형의 시설 입력값입니다. 선석 수 정보는 별도의 동시 접안 척수 상한으로 사용하지 않았습니다.</p>
+</details>
+<p class="foot">기상·도선·예선·크레인, 터미널 이동 비용과 하역 생산성 변화는 추가 검증이 필요합니다. 최소 연결 간격 가정만으로 실제 환적 연결이 보장되지는 않습니다.</p>
+<p class="foot"><a href="https://github.com/busan-itt/simulation/blob/9c6d506d3c80e56a55bc132f3e28ba48439c7bac/%EC%B5%9C%EC%A2%85%20%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98.ipynb" target="_blank" rel="noopener noreferrer">최종 시뮬레이션 원본 · 시설 입력값·배정 함수·4차 검증 조건</a></p>
 <details class="method-details"><summary>체류시간 계산 기준</summary><p>새 체류 = max(0, 기존 체류 + 연결선 접안 변화 − 모선 접안 변화)</p></details>
 <a class="method-next" href="/simulation">시뮬레이션 결과 →</a>
 </section>
