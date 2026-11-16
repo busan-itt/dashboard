@@ -137,6 +137,30 @@
   .results-kpis article { padding:10px 14px; }
   .results-kpis strong { font-size:24px; }
 }
+.team-section { margin-top:32px; max-width:960px; }
+.team-section>h2 { margin:0 0 16px; padding:0; color:#192C3A; font-size:24px; letter-spacing:-.035em; }
+.team-intro { margin:0 0 20px; color:#526573; font-size:14px; line-height:1.7; }
+.team-member-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.team-member { border:1px solid #E2E7EB; padding:24px; }
+.team-member header { display:flex; align-items:center; gap:12px; }
+.team-member h3 { margin:0; padding:0; color:#192C3A; font-size:22px; }
+.team-role { padding:4px 10px; border-radius:20px; background:#F0F4F7; color:#3F617C; font-size:12px; font-weight:700; }
+.team-member ul { margin:18px 0 0; }
+.team-member li { display:list-item; padding:9px 0; color:#465761; font-size:14px; line-height:1.7; word-break:keep-all; overflow-wrap:anywhere; }
+.team-tech-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.team-tech-group { min-width:0; margin:0; padding:20px; border:1px solid #D8E1E8; border-radius:16px; background:#FFFFFF; }
+.team-tech-group legend { width:auto; margin:0 0 0 -4px; padding:0 8px; color:#192C3A; font-size:15px; font-weight:750; }
+.team-tech-logos { display:flex; flex-wrap:wrap; align-items:flex-start; gap:20px 14px; min-height:88px; padding:8px 0 18px; }
+.team-tech-item { display:flex; flex-direction:column; align-items:center; gap:12px; width:72px; color:#192C3A; text-align:center; }
+.team-tech-item img { display:block; width:44px; height:44px; object-fit:contain; }
+.team-tech-item span { font-size:12px; font-weight:650; line-height:1.4; }
+.team-tech-group>p { margin:0; padding-top:14px; border-top:1px solid #EDF1F4; color:#526573; font-size:12px; line-height:1.9; overflow-wrap:anywhere; }
+@media(max-width:1000px) { .team-tech-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:700px) {
+  .team-member-grid { grid-template-columns:1fr; }
+  .team-member { padding:20px; }
+  .team-tech-grid { grid-template-columns:1fr; gap:18px; }
+}
 .attachment-destinations { margin-top:26px; max-width:960px; }
 .st-key-attachment_data h3 { font-size:23px; letter-spacing:-.03em; margin-top:12px; }
 .st-key-attachment_data .attachment-back { margin:12px 0 28px; }

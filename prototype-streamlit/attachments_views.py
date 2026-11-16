@@ -9,10 +9,11 @@ ROOT = Path(__file__).parent
 
 
 def render_attachments():
-    st.html('<header class="results-heading"><small>ATTACHMENTS</small><h1>첨부</h1><p>분석 자료와 초기 기획 문서</p></header>'
+    st.html('<header class="results-heading"><small>ATTACHMENTS</small><h1>첨부</h1><p>분석 자료, 초기 기획 문서와 팀 소개</p></header>'
             '<nav class="intro-destinations attachment-destinations" aria-label="첨부 자료">'
             '<a href="/used-data"><h2>사용한 데이터</h2><p>입력자료 범위, 분석 기준과 화면에 사용한 집계 파일</p><span>자료 보기 →</span></a>'
-            '<a href="/planning"><h2>초기 개선안 기획</h2><p>프로젝트 초기의 개선 아이디어와 기획 자료</p><span>자료 보기 →</span></a></nav>')
+            '<a href="/planning"><h2>초기 개선안 기획</h2><p>프로젝트 초기의 개선 아이디어와 기획 자료</p><span>자료 보기 →</span></a>'
+            '<a href="/team"><h2>팀원 소개 및 사용 기술</h2><p>팀원별 담당 역할과 프로젝트에 사용한 기술 및 프로그램</p><span>소개 보기 →</span></a></nav>')
 
 
 def render_used_data():

@@ -64,7 +64,8 @@ def home() -> None:
          (("intro-solution", "시뮬레이션"), ("simulation", "시뮬레이션 결과"),
           ("improvement-results", "개선안 결과"))),
         ("attachments", "첨부", "사용 데이터와 초기 기획 자료", "attachments",
-         (("used-data", "사용한 데이터"), ("planning", "초기 개선안 기획"))),
+         (("used-data", "사용한 데이터"), ("planning", "초기 개선안 기획"),
+          ("team", "팀원 소개 및 사용 기술"))),
     )
     navigation = []
     for path, title, description, icon, children in destinations:
@@ -95,6 +96,82 @@ def home() -> None:
         <div class="home-nav-grid">{''.join(navigation)}</div>
       </section>
     </div>''')
+
+
+def team_and_technology() -> None:
+    members = (
+        ("홍성진", "팀장", (
+            "프로젝트 기획 및 기획안 작성, 데이터 분석 가이드라인 제시",
+            "DGT 자부두 환적 분석, 팀원 분석 보고서 확인 및 검증",
+            "대시보드 작성, 중간·최종 발표",
+        )),
+        ("이주영", "팀원", (
+            "DGT·HJNC 자부두·타부두 EDA 및 환적 공정 타임라인 분석",
+            "신항 7개 부두 접안 조건 및 하역능력 조사",
+            "선석 통합운영 시뮬레이션 조건 정리, 개선제안서 작성",
+        )),
+        ("김경민", "팀원", (
+            "데이터 전처리·정합성 검증·병합",
+            "탐색적 데이터 분석, 기술통계 분석, 리드타임 분석, 그룹별 비교 분석",
+            "상관관계 분석, 회귀 추세 분석, 이상치·민감도 분석",
+            "선석 운영 분석, 데이터 시각화, 분석 결과 관리",
+        )),
+        ("남시윤", "팀원", (
+            "초기 기획 및 기획안 작성",
+            "타부두 환적 분석을 위한 데이터 추출 및 타부두 환적 분석",
+            "대시보드 초안 작성",
+        )),
+        ("박준형", "팀원", (
+            "데이터 정제 및 구축, 개선안 수정 및 작성",
+            "개선안 예측모델 시뮬레이션 시나리오 작성 및 결과 분석",
+            "GitHub 관리 및 정리, 대시보드 작성 및 디자인, 발표 자료(PPT) 제작",
+        )),
+        ("천회정", "팀원", ("대시보드 초안 작성 및 디자인",)),
+    )
+    technology_groups = (
+        ("프로그래밍 언어", (("python", "Python"),), "데이터 분석과 시뮬레이션 구현"),
+        ("데이터 처리·전처리", (("pandas", "pandas"), ("numpy", "NumPy")),
+         "Merge · GroupBy · Shift"),
+        ("탐색적·통계 분석", (("scikitlearn", "scikit-learn"),),
+         "EDA · Descriptive Statistics · Pearson Correlation · Linear Regression · Lead Time Analysis · Outlier Analysis · Sensitivity Analysis"),
+        ("데이터 시각화", (("matplotlib", "Matplotlib"), ("plotly", "Plotly"), ("altair", "Altair")),
+         "분석 결과와 시뮬레이션 결과 시각화"),
+        ("대시보드·분석 환경", (("streamlit", "Streamlit"), ("jupyter", "Jupyter Notebook")),
+         "웹 대시보드 구현과 노트북 기반 분석"),
+        ("소통·협업", (("github", "GitHub"), ("notion", "Notion"), ("discord", "Discord")),
+         "코드 관리 · 문서 정리 · 팀 커뮤니케이션"),
+    )
+    member_cards = ''.join(
+        f'<article class="portfolio-card team-member"><header><h3>{escape(name)}</h3>'
+        f'<span class="team-role">{escape(role)}</span></header>'
+        f'<ul>{"".join(f"<li>{escape(task)}</li>" for task in tasks)}</ul></article>'
+        for name, role, tasks in sorted(members, key=lambda member: member[0])
+    )
+    technology_cards = []
+    for category, tools, description in technology_groups:
+        logos = []
+        for icon, name in tools:
+            encoded = b64encode((ROOT / "assets" / "tech-icons" / f"{icon}.svg").read_bytes()).decode("ascii")
+            logos.append(
+                f'<div class="team-tech-item"><img src="data:image/svg+xml;base64,{encoded}" '
+                f'alt="" width="44" height="44"><span>{escape(name)}</span></div>'
+            )
+        technology_cards.append(
+            f'<fieldset class="team-tech-group"><legend>{escape(category)}</legend>'
+            f'<div class="team-tech-logos">{"".join(logos)}</div>'
+            f'<p>{escape(description)}</p></fieldset>'
+        )
+    body = f'''<section class="team-section" aria-labelledby="team-title">
+      <h2 id="team-title">팀원 소개</h2>
+      <p class="team-intro">Team Bnct · 부산신항의 환적 체류시간과 선석통합운영 개선안을 분석합니다.</p>
+      <div class="team-member-grid">{member_cards}</div>
+    </section>
+    <section class="team-section" aria-labelledby="technology-title">
+      <h2 id="technology-title">사용 기술 및 프로그램</h2>
+      <p class="team-intro">분석부터 시각화, 대시보드 구현과 협업까지</p>
+      <div class="team-tech-grid">{"".join(technology_cards)}</div>
+    </section>'''
+    document_page("TEAM & TECHNOLOGY", "팀원 소개 및 사용 기술", "팀원별 담당 역할과 프로젝트 분석·구현에 사용한 기술을 소개합니다.", body)
 
 
 def home_analysis() -> None:
@@ -383,8 +460,9 @@ analysis_pages = [
     st.Page(analysis_itt, title="DGT <-> HJNC ITT", url_path="analysis-itt"),
 ]
 used_data_page = st.Page(used_data, title="사용한 데이터", url_path="used-data")
-attachment_pages = (used_data_page, pages[10])
-current_page = st.navigation(pages + intro_pages + analysis_pages + improvement_pages + [used_data_page], position="hidden")
+team_page = st.Page(team_and_technology, title="팀원 소개 및 사용 기술", url_path="team")
+attachment_pages = (used_data_page, pages[10], team_page)
+current_page = st.navigation(pages + intro_pages + analysis_pages + improvement_pages + [used_data_page, team_page], position="hidden")
 groups = (
     (pages[0], ()),
     (pages[3], ()),

@@ -45,7 +45,7 @@ def share_chart(stages):
     bars = chart.mark_bar(size=30).encode(
         x=alt.X('시작:Q', title='공정별 평균시간 합계 대비 비중 (%)', scale=alt.Scale(domain=[0,100]), axis=alt.Axis(values=[0,25,50,75,100])),
         x2='끝:Q', y=alt.Y('경로:N', sort=[r['name'] for r in stages], title=None),
-        color=alt.Color('구간:N', scale=alt.Scale(domain=['첫 번째 터미널 야드','두 번째 터미널 야드','그 외 공정'], range=[BLUE,CORAL,'#7891A4']), legend=alt.Legend(title=None, orient='top', columns=1)),
+        color=alt.Color('구간:N', scale=alt.Scale(domain=['첫 번째 터미널 야드','두 번째 터미널 야드','그 외 공정'], range=[BLUE,CORAL,'#D62828']), legend=alt.Legend(title=None, orient='top', columns=1)),
         tooltip=['경로:N','구간:N',alt.Tooltip('비중:Q',format='.2f')],
     )
     labels = chart.mark_text(fontSize=13).encode(x='중앙:Q', y=alt.Y('경로:N', sort=[r['name'] for r in stages]), text='표시:N', color=alt.condition(alt.datum['구간']=='첫 번째 터미널 야드',alt.value('#FFFFFF'),alt.value('#192C3A')))
