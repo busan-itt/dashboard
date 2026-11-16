@@ -49,7 +49,15 @@ def share_chart(stages):
         tooltip=['경로:N','구간:N',alt.Tooltip('비중:Q',format='.2f')],
     )
     labels = chart.mark_text(fontSize=13).encode(x='중앙:Q', y=alt.Y('경로:N', sort=[r['name'] for r in stages]), text='표시:N', color=alt.condition(alt.datum['구간']=='첫 번째 터미널 야드',alt.value('#FFFFFF'),alt.value('#192C3A')))
-    return (bars+labels).properties(height=320).configure_view(stroke=None).configure_axis(labelFontSize=13,titleFontSize=13,titleFontWeight='normal',labelPadding=8,ticks=False,domain=False,gridColor='#E9EEF1').configure_legend(labelFontSize=13)
+    other_labels = chart.transform_filter(
+        alt.datum['구간'] == '그 외 공정'
+    ).transform_calculate(
+        비중표시="format(datum['비중'], '.2f') + '%'"
+    ).mark_text(align='left', dx=10, fontSize=15, fontWeight='bold', color='#D62828').encode(
+        x=alt.X('끝:Q', scale=alt.Scale(domain=[0,100])),
+        y=alt.Y('경로:N', sort=[r['name'] for r in stages]), text='비중표시:N',
+    )
+    return (bars+labels+other_labels).properties(height=320, padding={'right':75}).configure_view(stroke=None).configure_axis(labelFontSize=13,titleFontSize=13,titleFontWeight='normal',labelPadding=8,ticks=False,domain=False,gridColor='#E9EEF1').configure_legend(labelFontSize=13)
 
 
 def overall_chart(routes):

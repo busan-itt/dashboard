@@ -129,7 +129,7 @@ def team_and_technology() -> None:
         ("천회정", "팀원", ("대시보드 초안 작성 및 디자인",)),
     )
     technology_groups = (
-        ("프로그래밍 언어", (("python", "Python"),), "데이터 분석과 시뮬레이션 구현"),
+        ("프로그래밍 언어·데이터 형식", (("python", "Python"), ("json", "JSON")), "데이터 분석·시뮬레이션 구현 및 분석 결과 저장"),
         ("데이터 처리·전처리", (("pandas", "pandas"), ("numpy", "NumPy")),
          "Merge · GroupBy · Shift"),
         ("탐색적·통계 분석", (("scikitlearn", "scikit-learn"),),
@@ -145,7 +145,7 @@ def team_and_technology() -> None:
         f'<article class="portfolio-card team-member"><header><h3>{escape(name)}</h3>'
         f'<span class="team-role">{escape(role)}</span></header>'
         f'<ul>{"".join(f"<li>{escape(task)}</li>" for task in tasks)}</ul></article>'
-        for name, role, tasks in sorted(members, key=lambda member: member[0])
+        for name, role, tasks in sorted(members, key=lambda member: (member[1] != "팀장", member[0]))
     )
     technology_cards = []
     for category, tools, description in technology_groups:
