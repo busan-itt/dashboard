@@ -41,6 +41,14 @@
 .initial-plan-conclusion p { margin-top:6px; font-size:14px; }
 .initial-plan-next { margin-top:20px; }
 .initial-plan-next a { color:#192C3A; font-weight:700; text-underline-offset:4px; }
+.initial-plan-formula { margin:18px 0; padding:20px 24px; border-left:3px solid #3F617C; background:#F5F7F9; }
+.initial-plan-formula strong { display:block; font-size:16px; line-height:1.8; }
+.initial-plan-formula p { margin-top:8px; font-size:13px; }
+.initial-plan-steps { margin:18px 0; padding-left:26px; }
+.initial-plan-steps li { padding:12px 0 12px 6px; border-bottom:1px solid #E2E7EB; }
+.initial-plan-steps li::marker { color:#3F617C; font-weight:700; }
+.initial-plan-steps strong { display:block; margin-bottom:4px; font-size:15px; }
+.initial-plan-steps p { font-size:14px; }
 @media(max-width:720px) {
  .initial-plan-summary { padding:20px; }
  .initial-plan-content section { margin-top:28px; }

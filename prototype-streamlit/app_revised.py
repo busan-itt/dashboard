@@ -407,10 +407,15 @@ def improvement_results() -> None:
 def planning() -> None:
     st.html(ROOT / "planning.css")
     content_root = ROOT / "assets" / "initial-plan"
-    body = (content_root / "content.html").read_text(encoding="utf-8")
-    encoded = b64encode((content_root / "hjnc-pnc-road.png").read_bytes()).decode("ascii")
-    body = body.replace("{{ROAD_IMAGE}}", f"data:image/png;base64,{encoded}")
-    document_page("INITIAL PLAN", "초기 개선안 기획", "내부통행로 활용 아이디어와 KPI, 측정 한계를 정리합니다.", body)
+    html('<header class="results-heading"><small>INITIAL PLAN</small><h1>초기 개선안 기획</h1>'
+         '<p>내부도로 활용과 터미널 물동량 재배분, 두 가지 초기 아이디어를 정리합니다.</p></header>')
+    road_tab, redistribution_tab = st.tabs(["초기 개선안 1. 내부도로", "초기 개선안 2. 물동량 재배분"])
+    with road_tab:
+        body = (content_root / "content.html").read_text(encoding="utf-8")
+        encoded = b64encode((content_root / "hjnc-pnc-road.png").read_bytes()).decode("ascii")
+        st.html(body.replace("{{ROAD_IMAGE}}", f"data:image/png;base64,{encoded}"))
+    with redistribution_tab:
+        st.html((content_root / "redistribution.html").read_text(encoding="utf-8"))
 
 
 def sources() -> None:
