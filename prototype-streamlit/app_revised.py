@@ -5,6 +5,7 @@ from __future__ import annotations
 from base64 import b64encode
 from html import escape
 from pathlib import Path
+import re
 
 import streamlit as st
 from improvement_content import views as improvement_views
@@ -415,7 +416,12 @@ def planning() -> None:
         encoded = b64encode((content_root / "hjnc-pnc-road.png").read_bytes()).decode("ascii")
         st.html(body.replace("{{ROAD_IMAGE}}", f"data:image/png;base64,{encoded}"))
     with redistribution_tab:
-        st.html((content_root / "redistribution.html").read_text(encoding="utf-8"))
+        body = (content_root / "redistribution.html").read_text(encoding="utf-8")
+        def embed_icon(match):
+            svg = match.group(0).replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ', 1)
+            encoded = b64encode(svg.replace('currentColor', '#3F617C').encode('utf-8')).decode('ascii')
+            return f'<img src="data:image/svg+xml;base64,{encoded}" alt="">'
+        st.html(re.sub(r'<svg\b.*?</svg>', embed_icon, body, flags=re.S))
 
 
 def sources() -> None:

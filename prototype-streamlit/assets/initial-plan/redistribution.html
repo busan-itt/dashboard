@@ -4,6 +4,35 @@
     <strong>과밀 터미널의 환적 물량을 처리 여력이 있는 터미널로 분산</strong>
     <p>터미널별 물동량과 처리능력을 비교하고, 선사 기항과 환적 연결이 가능한 물량을 선별해 재배분하는 초기 분석안. 예상 혼잡도와 재배분 전후의 운영 부담을 함께 비교하는 방향으로 검토했습니다.</p>
   </aside>
+  <figure class="redistribution-visual" aria-labelledby="redistribution-visual-title">
+    <div class="redistribution-visual-heading"><span>CONCEPT</span><h2 id="redistribution-visual-title">몰린 물량은 나누고, 남은 처리 여력은 활용</h2><p>물동량 재배분의 개념 · 실제 실적이나 시뮬레이션 결과가 아닙니다.</p></div>
+    <div class="redistribution-flow">
+      <div class="redistribution-node redistribution-busy">
+        <span class="redistribution-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 54h48M15 50V12h30M15 19h37L43 8H15M28 19v12m-5 0h10M12 12h7M43 19v8"/><rect x="25" y="37" width="13" height="11" rx="1"/><rect x="40" y="37" width="13" height="11" rx="1"/><rect x="32" y="24" width="13" height="11" rx="1"/><path d="M29 40v5m5-5v5m10-5v5m5-5v5m-13-18v5m5-5v5"/></svg></span>
+        <small>물량이 몰린 곳</small><strong>과밀 터미널</strong>
+        <div class="redistribution-containers" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <p>처리능력 대비<br>부하가 높은 터미널</p>
+      </div>
+      <span class="redistribution-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h17m-6-6 6 6-6 6"/></svg></span>
+      <div class="redistribution-node redistribution-match">
+        <span class="redistribution-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m8 37 24-7 24 7-7 14H15L8 37Z M18 34V20h28v14M24 20V12h16v8M32 12V7M8 56q6-5 12 0 6-5 12 0 6-5 12 0 6-5 12 0"/><path d="M24 25h5m6 0h5M32 31v16"/></svg></span>
+        <small>먼저 조건 확인</small><strong>옮길 수 있는<br>환적 물량 선별</strong><p>선사 기항·계약<br>환적 연결·이동 부담</p>
+      </div>
+      <span class="redistribution-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h17m-6-6 6 6-6 6"/></svg></span>
+      <div class="redistribution-node redistribution-room">
+        <span class="redistribution-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 54h48M15 50V12h30M15 19h37L43 8H15M28 19v12m-5 0h10M43 19v8"/><rect x="30" y="37" width="20" height="11" rx="1"/><path d="M35 40v5m5-5v5m5-5v5M30 31l4 4 7-8"/></svg></span>
+        <small>처리 여력이 있는 곳</small><strong>여유 터미널</strong>
+        <div class="redistribution-containers" aria-hidden="true"><i></i><i></i><i></i><b></b><b></b><b></b><b></b><b></b></div>
+        <p>가능한 범위 안에서<br>일부 물량 재배분</p>
+      </div>
+    </div>
+    <div class="redistribution-checks">
+      <span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M9 5v14m6-14v14"/></svg>전체 물량 유지</span>
+      <span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m9 15 6-6m-8 3-2 2a4 4 0 0 0 5 5l2-2m0-10 2-2a4 4 0 0 1 5 5l-2 2"/></svg>기항과 환적 연결 확인</span>
+      <span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5m0 14h16M8 15l4-5 4 2 4-7"/></svg>부하율과 ITT 부담 비교</span>
+    </div>
+    <figcaption>컨테이너 아이콘은 물량 집중과 여유를 나타내는 상징입니다. 모든 물량을 옮기거나 같은 양으로 나누는 방안은 아닙니다.</figcaption>
+  </figure>
   <section aria-labelledby="redistribution-background">
     <div class="initial-plan-heading"><span>01 / BACKGROUND</span><h2 id="redistribution-background">홍콩의 공동 운영 사례에서 출발</h2></div>
     <p>홍콩의 터미널 공동 운영 사례를 참고해, 부산항 신항도 개별 터미널의 부하만 볼 것이 아니라 전체 처리 여력을 함께 활용할 수 있는지 살펴보려 했습니다. 단순히 물량을 같은 양으로 나누는 대신, 각 터미널의 처리능력과 환적 연결 조건을 고려하는 것이 핵심입니다.</p>
@@ -67,6 +96,13 @@
   </section>
   <section aria-labelledby="redistribution-forecast">
     <div class="initial-plan-heading"><span>06 / FORECAST</span><h2 id="redistribution-forecast">확장 아이디어 · 미래 물동량 예측</h2></div>
+    <div class="redistribution-prediction" aria-label="예측 활용 구상: 과거 데이터, 예상 부하율, 재배분 검토">
+      <div><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg><strong>과거 데이터</strong><span>물동량·처리능력</span></div>
+      <span aria-hidden="true">→</span>
+      <div><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V5m0 14h16M7 15l4-6 4 3 5-7"/><path d="M16 5h4v4"/></svg><strong>예상 부하율</strong><span>앞으로 혼잡해질 곳</span></div>
+      <span aria-hidden="true">→</span>
+      <div><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h14m-4-4 4 4-4 4M20 17H6m4-4-4 4 4 4"/></svg><strong>재배분 검토</strong><span>가능한 물량부터</span></div>
+    </div>
     <p>첨부한 초기 제안에서는 현재 혼잡을 확인한 뒤 옮기는 방식에서, 다음 달이나 다음 주에 혼잡해질 터미널을 예상해 미리 분산하는 방식으로 확장하는 아이디어를 검토했습니다.</p>
     <div class="initial-plan-limits">
       <div><h3>기본 분석</h3><p>과거 실적과 단순 평균을 기준으로 예상 부하율을 계산하고 재배분 시나리오를 비교합니다. 데이터 양과 기준선의 예측 오차부터 확인합니다.</p></div>

@@ -49,6 +49,42 @@
 .initial-plan-steps li::marker { color:#3F617C; font-weight:700; }
 .initial-plan-steps strong { display:block; margin-bottom:4px; font-size:15px; }
 .initial-plan-steps p { font-size:14px; }
+.initial-plan-content .redistribution-visual { padding:26px; margin-top:24px; }
+.redistribution-visual-heading>span { color:#647783; font-size:11px; font-weight:750; letter-spacing:.12em; }
+.redistribution-visual-heading h2 { margin:5px 0 8px; padding:0; color:#192C3A; font-size:22px; line-height:1.5; }
+.redistribution-visual-heading p { font-size:12px; }
+.redistribution-flow { display:grid; grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr) 20px minmax(0,1fr); align-items:stretch; gap:10px; margin-top:24px; }
+.redistribution-node { display:flex; flex-direction:column; align-items:center; min-width:0; padding:20px 10px; border-radius:12px; text-align:center; }
+.redistribution-busy { background:#FFF3EC; color:#AE6345; }
+.redistribution-match { background:#F5F7F9; color:#3F617C; }
+.redistribution-room { background:#EDF5F7; color:#376978; }
+.redistribution-icon img { display:block; width:56px; height:56px; margin-bottom:12px; }
+.redistribution-node small { color:inherit; font-size:11px; }
+.redistribution-node>strong { margin-top:5px; color:#192C3A; font-size:17px; line-height:1.5; }
+.redistribution-node>p { margin-top:12px; font-size:12px; line-height:1.8; }
+.redistribution-arrow { align-self:center; color:#7B93A3; }
+.redistribution-arrow img { display:block; width:20px; height:20px; }
+.redistribution-containers { display:grid; grid-template-columns:repeat(4,16px); gap:4px; margin-top:16px; }
+.redistribution-containers i,.redistribution-containers b { height:13px; border:1px solid currentColor; border-radius:2px; }
+.redistribution-containers i { background:currentColor; opacity:.75; }
+.redistribution-containers b { background:transparent; opacity:.3; }
+.redistribution-checks { display:flex; flex-wrap:wrap; gap:10px 20px; padding-top:20px; margin-top:20px; border-top:1px solid #E2E7EB; }
+.redistribution-checks>span { display:flex; align-items:center; gap:7px; color:#3F617C; font-size:12px; }
+.redistribution-checks img { width:19px; height:19px; flex-shrink:0; }
+.initial-plan-content .redistribution-visual figcaption { display:block; font-size:11px; line-height:1.8; }
+.redistribution-prediction { display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:center; gap:14px; margin:18px 0; padding:24px 16px; background:#F5F7F9; border-radius:12px; }
+.redistribution-prediction>div { display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center; }
+.redistribution-prediction img { width:30px; height:30px; margin-bottom:5px; }
+.redistribution-prediction strong { font-size:14px; }
+.redistribution-prediction span { color:#647783; font-size:12px; }
+@media(max-width:550px) {
+ .redistribution-flow { grid-template-columns:1fr; gap:12px; }
+ .redistribution-arrow { justify-self:center; transform:rotate(90deg); }
+ .redistribution-node { padding:22px; }
+ .redistribution-prediction { grid-template-columns:1fr; }
+ .redistribution-prediction>span { justify-self:center; transform:rotate(90deg); }
+ .initial-plan-content .redistribution-visual { padding:18px; }
+}
 @media(max-width:720px) {
  .initial-plan-summary { padding:20px; }
  .initial-plan-content section { margin-top:28px; }
