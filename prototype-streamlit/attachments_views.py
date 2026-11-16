@@ -1,4 +1,4 @@
-"""Navigation and catalog of existing project data artifacts."""
+"""첨부 자료"""
 import json
 from pathlib import Path
 

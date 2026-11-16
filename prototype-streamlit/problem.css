@@ -1,4 +1,4 @@
-/* Project introduction: problem statement from the interim presentation. */
+/* 프로젝트 소개 */
 .problem-page { display:grid; gap:34px; color:var(--ink); }
 .problem-page * { box-sizing:border-box; }
 .problem-page p { margin:0; color:#526573; font-size:14px; line-height:1.85; word-break:keep-all; overflow-wrap:anywhere; }
@@ -81,7 +81,7 @@
   .problem-process-card,.problem-cause-card { padding:22px; }
   .problem-callout { padding:16px 18px; }
 }
-/* Presentation page only: keep the diagrams central and supporting text quiet. */
+/* 문제제기 */
 .problem-presentation { gap:40px; }
 .problem-presentation p { font-size:15px; line-height:1.75; }
 .problem-presentation .problem-section-heading>span { font-size:10px; font-weight:600; color:#647783; }

@@ -1,4 +1,4 @@
-"""Presentation views of the saved correlation reports; original figures and criteria."""
+"""상관분석"""
 import json
 from html import escape
 from pathlib import Path

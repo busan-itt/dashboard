@@ -35,7 +35,7 @@
 @media(max-width:720px){.presentation-content .g4,.presentation-content .g3,.presentation-content .g2,.presentation-content .tl{grid-template-columns:1fr 1fr}.presentation-content .flow{flex-direction:column}.presentation-content .arrow{transform:rotate(90deg)}}
 @container(max-width:720px){.presentation-content .g4,.presentation-content .g3,.presentation-content .g2,.presentation-content .tl{grid-template-columns:1fr 1fr}.presentation-content .flow{flex-direction:column}.presentation-content .arrow{transform:rotate(90deg)}}
 @container(max-width:480px){.presentation-content .g4,.presentation-content .g3,.presentation-content .g2,.presentation-content .tl{grid-template-columns:1fr}.presentation-content section{padding:24px 16px}.presentation-content .bn{width:80px}.presentation-content .bv{width:64px}}
-/* Improvement proposal: compare sharing scope before showing baseline figures. */
+/* 개선안 */
 .presentation-content #s1 { padding:24px 0 36px; }
 .presentation-content #s1 h1 { font-size:30px; font-weight:750; line-height:1.4; margin:8px 0; letter-spacing:-.035em; }
 .presentation-content #s1 .sub { line-height:1.7; margin-bottom:24px; }
@@ -76,7 +76,7 @@
 .presentation-content #s1-reference .scope-question small { color:#526573; font-size:12px; line-height:1.7; }
 .presentation-content #s1-reference .scope-next { display:inline-block; margin-top:12px; color:#192C3A; font-size:14px; text-underline-offset:4px; }
 .presentation-content #s1 { padding-bottom:8px; }
-/* Simulation method: concise process and one schedule illustration. */
+/* 시뮬레이션 방법 */
 .presentation-content #s2 { padding:24px 0 36px; min-height:0; }
 .presentation-content #s2 h1 { font-size:30px; line-height:1.4; font-weight:750; letter-spacing:-.035em; margin:8px 0; }
 .presentation-content #s2 .sub { line-height:1.7; margin-bottom:22px; word-break:keep-all; }
@@ -108,7 +108,7 @@
  .presentation-content #s2 .method-process>span { display:none; }
  .presentation-content #s2 .method-conditions { grid-template-columns:1fr; gap:8px; }
 }
-/* Saved simulation results: compact figures, explicit scenario labels. */
+/* 시뮬레이션 결과 */
 .st-key-simulation_results .results-heading { margin-bottom:14px; }
 .sim-result-takeaway { padding:10px 18px; margin-bottom:16px; border-left:3px solid #192C3A; }
 .sim-result-takeaway strong { color:#192C3A; font-size:24px; line-height:1.5; }
@@ -123,7 +123,7 @@
 .st-key-simulation_results .analysis-next a { color:#192C3A; font-size:14px; text-underline-offset:4px; }
 @media(max-width:1150px) { .sim-result-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:550px) { .sim-result-kpis { grid-template-columns:1fr; } .sim-result-takeaway strong { font-size:21px; } }
-/* Closing slide: representative results first, extended conditions on demand. */
+/* 개선안 결과 */
 .presentation-content #s4 { padding:24px 0 36px; min-height:0; }
 .presentation-content #s4 h1 { margin:8px 0; font-size:30px; font-weight:750; line-height:1.4; letter-spacing:-.035em; }
 .presentation-content #s4 .sub { margin-bottom:18px; line-height:1.7; }
@@ -153,7 +153,7 @@
  .presentation-content #s4 .outcome-tasks>div { grid-template-columns:1fr; gap:5px; }
  .presentation-content #s4 .outcome-details .g2 { grid-template-columns:1fr; }
 }
-/* Project ending: pair each limitation with its next step. */
+/* 한계 및 향후 과제 */
 .presentation-content #s4 .outcome-review { margin-bottom:20px; border-top:1px solid #E2E7EB; }
 .presentation-content #s4 .outcome-review article { padding:16px 0; border-bottom:1px solid #E2E7EB; }
 .presentation-content #s4 .outcome-review h3 { font-size:16px; font-weight:700; margin:0 0 10px; padding:0; }

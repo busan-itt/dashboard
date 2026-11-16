@@ -1,1 +1,1 @@
-"""Supplied proposal and stored simulation presentation content."""
+"""개선안"""

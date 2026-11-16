@@ -1,4 +1,4 @@
-"""Home and dashboard summaries from the project's saved analysis results."""
+"""대시보드"""
 from pathlib import Path
 import json
 
@@ -21,7 +21,7 @@ def snapshot():
 
 
 def home_summaries(*, compact=False):
-    # 저장된 분석 결과의 값으로 요약 문장을 조건에 따라 만든다 (규칙은 auto_summary.py 참고)
+
     routes, reports, simulation, scenarios = snapshot()
     return build_summaries(routes, reports, simulation, scenarios, compact=compact)
 

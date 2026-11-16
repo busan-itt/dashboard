@@ -1,4 +1,4 @@
-/* Approved home layout, loaded only by app_revised.py. */
+/* 홈 */
 .home-page { padding:24px 0 52px; color:var(--deep); }
 .home-page * { box-sizing:border-box; }
 .home-page svg { display:block; width:24px; height:24px; flex-shrink:0; }
@@ -76,7 +76,7 @@
   .home-nav-card { transition:none; }
 }
 
-/* Home summary: compact heading and four concise findings. */
+/* 홈 요약 */
 .home-page .home-summary { display:block; padding:26px 30px; }
 .home-page .home-summary-label { padding:0 0 20px; border:0; }
 .home-page .home-summary-label small { font-size:11px; font-weight:700; letter-spacing:.1em; }
@@ -94,7 +94,7 @@
 .results-yard-grid span { display:block; color:#526573; font-size:12px; }
 .results-yard-grid strong { display:block; margin-top:5px; color:#192C3A; font-size:19px; }
 @media(max-width:700px) { .results-yard-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-/* Compact dashboard: restrained accents and readable charts. */
+/* 대시보드 */
 .intro-overview { max-width:960px; color:#192C3A; }
 .intro-facts { margin:28px 0 36px; padding:8px 0; border-top:1px solid #E2E7EB; border-bottom:1px solid #E2E7EB; }
 .intro-facts>div { display:grid; grid-template-columns:100px minmax(0,1fr); gap:20px; padding:14px 0; }

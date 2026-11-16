@@ -1,4 +1,4 @@
-"""Supplied HTML pages, with live selection of saved simulation conditions."""
+"""개선안 화면"""
 from pathlib import Path
 from base64 import b64encode
 import re
@@ -25,7 +25,7 @@ def render_section(section_id: str) -> None:
         return
     if section_id == "s2":
         encoded = b64encode((ROOT / 'assets' / 'schedule-comparison.svg').read_bytes()).decode('ascii')
-        content = content.replace('<!-- schedule-comparison -->',
+        content = content.replace('{{SCHEDULE_COMPARISON}}',
                                   f'<img class="schedule-diagram" src="data:image/svg+xml;base64,{encoded}" '
                                   'alt="기존 연결선 일정보다 24·48·96시간 앞당김을 요청하는 개념도. 실제 접안은 선석 배정 결과에 따라 달라짐.">')
     st.html(f'<style>{css}</style><div class="presentation-content">{content}</div>')

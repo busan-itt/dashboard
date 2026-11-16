@@ -1,4 +1,4 @@
-"""Simplified harbor map; scope comes from the pinned simulation's NEIGHBORS."""
+"""선석 공유 지도"""
 from base64 import b64encode
 from html import escape
 import json
@@ -8,7 +8,7 @@ import streamlit as st
 
 ROOT = Path(__file__).parent
 
-# Relative positions traced conceptually from the user's reference map; not GIS.
+# 터미널 위치
 TERMINALS = {
     'DGT': ('45,65 150,65 150,330 45,330', 98, 200),
     'HJNC': ('265,45 435,45 435,155 265,155', 350, 105),
@@ -53,8 +53,8 @@ def map_svg(mode, terminal, neighbors):
 def render_proposal(content, css):
     data = json.loads((ROOT/'data/berth-sharing-map.json').read_text(encoding='utf-8'))
     neighbors = data['neighbors']
-    before, after = content.split('<!-- sharing-map -->')
-    # Native widgets sit between the unchanged proposal header and baseline figures.
+    before, after = content.split('{{SHARING_MAP}}')
+
     before = before.replace('<section id="s1">', '<div id="s1">')
     after = after.replace('</section>', '</div>')
     st.html(f'<style>{css}</style><div class="presentation-content">{before}</div></div>')

@@ -1,4 +1,4 @@
-# Pinned runtime dependencies for the dashboard with presentation labels and team profiles.
+# 실행 패키지
 streamlit==1.66.1
 pandas==3.1.1
 altair==6.3.0

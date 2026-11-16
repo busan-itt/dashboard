@@ -38,7 +38,7 @@
  .st-key-correlation_report .portfolio-page { padding-top:18px; }
  .correlation-page .report-section h2 { font-size:23px; }
 }
-/* Presentation summary and reports. Keep original analysis figures in their bounds. */
+/* 상관분석 */
 .st-key-analysis_summary, .st-key-correlation_report { min-width:0; }
 .analysis-question { margin:26px 0; padding:18px 0; border-top:1px solid #E2E7EB; border-bottom:1px solid #E2E7EB; }
 .analysis-question h2 { margin:0 0 10px; padding:0; color:#192C3A; font-size:24px; line-height:1.5; }

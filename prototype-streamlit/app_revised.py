@@ -1,7 +1,4 @@
-"""Streamlit version of the Port Analytics portfolio prototype.
-
-Home, dashboard and detail pages display the team's saved analysis results.
-"""
+"""앱 구성"""
 
 from __future__ import annotations
 
@@ -238,13 +235,13 @@ def intro() -> None:
       </nav>
       <section class="intro-flow" aria-labelledby="intro-flow-title">
         <h2 id="intro-flow-title">분석 흐름</h2>
-        <!-- intro-analysis-flow -->
+        {{INTRO_ANALYSIS_FLOW}}
         <p>시뮬레이션 결과는 실제 도입 성과와 구분해 비교.</p>
       </section>
     </div>'''
     flow = b64encode((ROOT / 'assets' / 'intro-analysis-flow.svg').read_bytes()).decode('ascii')
     mobile_flow = b64encode((ROOT / 'assets' / 'intro-analysis-flow-mobile.svg').read_bytes()).decode('ascii')
-    body = body.replace('<!-- intro-analysis-flow -->',
+    body = body.replace('{{INTRO_ANALYSIS_FLOW}}',
                         f'<picture><source media="(max-width: 600px)" srcset="data:image/svg+xml;base64,{mobile_flow}">'
                         f'<img src="data:image/svg+xml;base64,{flow}" '
                         'alt="분석 흐름: 환적 경로 비교 → 야드 체류 분석 → 일정 조정·선석 공유 → 야드 체류 감소율과 다른 선박의 추가 지연 비교"></picture>')
@@ -256,7 +253,6 @@ def intro() -> None:
 
 
 def process_flow(kind: str) -> str:
-    """Accessible process diagrams with local, decorative SVG line icons."""
     ship = '<path d="M4 19h32l-4 9H10Z"/><path d="M9 19V9h19v10M14 9V5h6v4M14 14h4m5 0h2M4 32q4-4 8 0t8 0t8 0t8 0"/>'
     crane = '<path d="M7 33V5h4v28M7 6h27L11 15M7 33H3m8 0h5M30 7v8"/><rect x="22" y="24" width="14" height="9" rx="1"/>'
     yard = '<rect x="4" y="23" width="15" height="10" rx="1"/><rect x="21" y="23" width="15" height="10" rx="1"/><rect x="12" y="11" width="15" height="10" rx="1"/><path d="M9 26v4m5-4v4m12-4v4m5-4v4M17 14v4m5-4v4"/>'
@@ -315,11 +311,11 @@ def intro_problem() -> None:
           <article class="problem-process-card"><span class="problem-type">ODT</span>
             <h3>자부두 환적</h3><p class="problem-english">On-Dock Transshipment</p>
             <p>같은 터미널에서 양하와 적하</p>
-            <!-- odt-process --></article>
+            {{ODT_PROCESS}}</article>
           <article class="problem-process-card"><span class="problem-type">ITT</span>
             <h3>타부두 환적</h3><p class="problem-english">Inter-Terminal Transshipment</p>
             <p>다른 터미널로 이동한 뒤 적하</p>
-            <!-- itt-process --></article>
+            {{ITT_PROCESS}}</article>
         </div>
         <aside class="problem-callout"><strong>ITT에는 부두 간 운송과 추가 작업이 발생</strong>
           <p>양하와 적하를 서로 다른 터미널에서 처리하기 때문.</p></aside>
@@ -381,8 +377,8 @@ def intro_problem() -> None:
         <a class="problem-next" href="/intro-status">현황 분석 →</a>
       </section>
     </div>'''
-    body = body.replace("<!-- odt-process -->", process_flow("odt"))
-    body = body.replace("<!-- itt-process -->", process_flow("itt"))
+    body = body.replace("{{ODT_PROCESS}}", process_flow("odt"))
+    body = body.replace("{{ITT_PROCESS}}", process_flow("itt"))
     document_page("01 / INTRODUCTION", "문제 제기", "부산항의 환적 구조와 타부두 환적이 발생하는 배경", body)
 
 
@@ -413,7 +409,7 @@ def planning() -> None:
     content_root = ROOT / "assets" / "initial-plan"
     body = (content_root / "content.html").read_text(encoding="utf-8")
     encoded = b64encode((content_root / "hjnc-pnc-road.png").read_bytes()).decode("ascii")
-    body = body.replace("<!-- road-image -->", f"data:image/png;base64,{encoded}")
+    body = body.replace("{{ROAD_IMAGE}}", f"data:image/png;base64,{encoded}")
     document_page("INITIAL PLAN", "초기 개선안 기획", "내부통행로 활용 아이디어와 KPI, 측정 한계를 정리합니다.", body)
 
 
@@ -444,7 +440,7 @@ pages = [
     st.Page(planning, title="초기 개선안 기획", url_path="planning"),
     st.Page(sources, title="참고 기사, 논문 출처", url_path="sources"),
 ]
-# Detail pages are shared by the landing links and sidebar submenus.
+# 상세 페이지
 intro_pages = [
     st.Page(intro_problem, title="문제제기", url_path="intro-problem"),
     st.Page(intro_status, title="현황 분석", url_path="intro-status"),
@@ -471,7 +467,7 @@ groups = (
     (pages[8], improvement_pages),
     (pages[9], attachment_pages),
 )
-# Preserve existing direct links without adding them to the sidebar contents.
+# 이전 주소 연결
 linked_page_parents = {
     "home-analysis": pages[0],
     "home-ai": pages[0],

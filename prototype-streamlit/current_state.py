@@ -1,4 +1,4 @@
-"""Presentation of the team's saved current-state analysis, without recomputation."""
+"""현황 분석"""
 import json
 from pathlib import Path
 
@@ -61,7 +61,6 @@ def share_chart(stages):
 
 
 def overall_chart(routes):
-    """One range per route keeps the two measures separate without paired bars."""
     frame = pd.DataFrame([{'경로':r['route'], '평균':r['reported_total_mean_h'], '중앙값':r['reported_total_median_h']} for r in routes])
     order = frame['경로'].tolist()
     base = alt.Chart(frame)
@@ -78,7 +77,6 @@ def overall_chart(routes):
 
 
 def stage_summary_chart(stages):
-    """Two unit-separated panels in one summary figure, using saved stage means."""
     panels = []
     order = [r['name'] for r in stages]
     for yard, title, divisor, limit in ((True,'야드 체류 합계 · 일',86400,12.5), (False,'나머지 공정 합계 · 분',60,120)):

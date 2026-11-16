@@ -15,7 +15,7 @@ DGT·HJNC의 자부두 환적과 양방향 타부두 환적을 비교하고, 연
 | 분석 내용 | 경로별 선박 운영시간과 야드 체류시간의 상관분석 |
 | 개선안 | A·B·C 운영 방식의 선석 공유 지도와 검증 과정 |
 | 시뮬레이션 결과 | 선별·전체 조정과 24·48·96시간 조건 비교 |
-| 첨부 | 입력자료 설명, 집계 JSON 다운로드, 초기 기획 자료 |
+| 첨부 | 입력자료 설명, 집계 JSON 다운로드, 초기 기획 자료, 팀원 소개 및 사용 기술 |
 
 ## 실행
 
@@ -38,6 +38,7 @@ python -m streamlit run app_revised.py
 prototype-streamlit/
 ├─ app_revised.py          # 실행 파일, 메뉴와 프로젝트 소개
 ├─ overview.py            # 홈 요약과 대시보드
+├─ auto_summary.py        # 분석 핵심 요약
 ├─ current_state.py       # 현황 분석
 ├─ correlation_views.py   # 상관분석
 ├─ attachments_views.py   # 자료 설명과 JSON 다운로드
@@ -48,6 +49,7 @@ prototype-streamlit/
 │  ├─ intro-analysis-flow*.svg    # 분석 흐름도
 │  ├─ initial-plan/              # 화면에서 제공하는 초기 기획 자료
 │  ├─ preliminary-analysis/      # 현황 집계와 공정별 평균시간
+│  ├─ tech-icons/                # 사용 기술 아이콘과 출처
 │  └─ correlation-analysis/unified/ # 상관분석 결과와 사용 중인 그래프
 └─ improvement_content/
    ├─ __init__.py
@@ -86,7 +88,7 @@ B의 인접 관계는 `berth-sharing-map.json`에 정의되어 있으며, 인접
 
 홈의 "분석 핵심 요약"은 저장된 분석 결과(현황·상관분석·시뮬레이션 JSON)의 값을 읽어 파이썬 규칙으로 만든 문장입니다. 외부 API나 키 없이 동작하고, 데이터가 바뀌면 같은 기준으로 문장도 바로 바뀝니다.
 
-- 규칙과 임계값은 `prototype-streamlit/auto_summary.py` 위쪽 상수에 모여 있습니다(예: 야드 비중 95% 이상이면 "거의 전부", 최대 |r|이 0.3 미만이면 "약함").
+- 규칙과 임계값은 `prototype-streamlit/auto_summary.py` 위쪽 상수에 모여 있습니다(예: 야드 비중 100% 이상이면 "거의 전부", 최대 |r|이 0.3 미만이면 "약함").
 - 상관분석의 p값은 상관계수와 표본 수로 계산합니다(보고서 값과 소수 셋째 자리까지 일치).
 - 시뮬레이션 문장에는 항상 모형 결과라는 점이 함께 표시됩니다.
 - 기준을 바꾸고 싶으면 `auto_summary.py`의 상수나 문장만 고치면 됩니다.

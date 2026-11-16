@@ -1,4 +1,4 @@
-"""Presentation of saved simulation outputs with unchanged comparison baselines."""
+"""시뮬레이션 결과"""
 import json
 from pathlib import Path
 
